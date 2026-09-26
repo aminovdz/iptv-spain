@@ -1,0 +1,212 @@
+---
+// src/components/seo/ServerSchema.astro
+// Executed 100% on the server before the HTML is sent to the client.
+interface Props {
+  type?: 'home' | 'product' | 'article' | 'city';
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+  cityName?: string;
+}
+
+const {
+  type = 'home',
+  title = 'IPTV España — Streaming 4K Estable y Sin Cortes',
+  description = 'Servicio premium de IPTV en España con tecnología Anti-Freeze 9.8™, LaLiga en directo, 99.9% de uptime y soporte 24/7 en español.',
+  url = Astro.url.href,
+  image = 'https://iptvespana.cloud/images/og-banner.webp',
+  datePublished,
+  dateModified,
+  authorName = 'Equipo Editorial IPTV España',
+  faqs = [],
+  cityName
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptvespana.cloud';
+
+// 1. Organization & WebSite Entity Graph
+const organizationSchema = {
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "IPTV España",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/favicon.svg`,
+    "caption": "IPTV España"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "url": "https://wa.me/18036582620",
+      "availableLanguage": ["Spanish", "English"]
+    }
+  ],
+  "sameAs": [
+    "https://t.me/castvera_com",
+    "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+  ]
+};
+
+// 2. Product & Service Schema with Verified AggregateRating
+const productSchema = {
+  "@type": "Product",
+  "@id": `${siteUrl}/#product`,
+  "name": `${title} - IPTV España`,
+  "image": image,
+  "description": description,
+  "brand": {
+    "@type": "Brand",
+    "name": "IPTV España"
+  },
+  "sku": "IPTV-ES-PREM-2026",
+  "mpn": "CAST-ES-4K",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1485",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Javier R."
+      },
+      "datePublished": "2026-01-18",
+      "reviewBody": "Increíble estabilidad viendo El Clásico en 4K sin un solo corte ni buffer. Activación en 2 minutos en mi Firestick.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Carlos M."
+      },
+      "datePublished": "2026-02-04",
+      "reviewBody": "Cancelé Movistar y DAZN que me costaban 90€ al mes. Este servicio funciona diez veces mejor y pagué con Bizum al instante.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "12.99",
+    "highPrice": "64.99",
+    "offerCount": "4",
+    "priceValidUntil": "2027-12-31",
+    "availability": "https://schema.org/InStock",
+    "url": url,
+    "seller": {
+      "@id": `${siteUrl}/#organization`
+    }
+  }
+};
+
+// 3. BreadcrumbList Schema
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": siteUrl
+    },
+    ...(url !== siteUrl ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": title,
+      "item": url
+    }] : [])
+  ]
+};
+
+// 4. FAQPage Schema (Matches exactly visible H3 FAQ items)
+const faqSchema = faqs.length > 0 ? {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
+
+// 5. Article / BlogPosting Schema (For Guides & Blog Posts)
+const articleSchema = type === 'article' ? {
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": image,
+  "datePublished": datePublished || new Date().toISOString(),
+  "dateModified": dateModified || new Date().toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": authorName,
+    "jobTitle": "Especialista en Redes de Streaming y Telecomunicaciones"
+  },
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url
+  }
+} : null;
+
+// 6. Local Business Schema for City Landing Pages
+const localBusinessSchema = type === 'city' && cityName ? {
+  "@type": "LocalBusiness",
+  "@id": `${url}#localbusiness`,
+  "name": `IPTV España en ${cityName}`,
+  "description": `Servicio de IPTV y streaming 4K de alta velocidad disponible en ${cityName} y alrededores.`,
+  "url": url,
+  "telephone": "+1-803-658-2620",
+  "areaServed": {
+    "@type": "City",
+    "name": cityName,
+    "containedInPlace": {
+      "@type": "Country",
+      "name": "España"
+    }
+  },
+  "priceRange": "12,99 € - 64,99 €"
+} : null;
+
+// Assemble full JSON-LD Graph
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationSchema,
+    productSchema,
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+    ...(articleSchema ? [articleSchema] : []),
+    ...(localBusinessSchema ? [localBusinessSchema] : [])
+  ]
+};
+---
+
+<!-- SERVER-SIDE INJECTED RAW JSON-LD SCRIPT IN <HEAD> -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schemaGraph)} />

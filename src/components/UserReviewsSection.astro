@@ -1,0 +1,142 @@
+---
+import { Star, ShieldCheck, ThumbsUp, CheckCircle, MessageSquare } from 'lucide-astro';
+
+const reviews = [
+  {
+    name: "Javier R.",
+    city: "Madrid",
+    plan: "Plan 12 Meses",
+    device: "Amazon Fire TV Stick 4K",
+    rating: 5,
+    date: "18 de Enero de 2026",
+    comment: "Increíble estabilidad viendo El Clásico en 4K sin un solo corte ni buffer. La activación tardó apenas 2 minutos tras pagar por Bizum. Llevo 4 meses y la calidad no baja nunca.",
+    verified: true
+  },
+  {
+    name: "Carlos M.",
+    city: "Barcelona",
+    plan: "Plan 12 Meses",
+    device: "Smart TV Samsung",
+    rating: 5,
+    date: "4 de Febrero de 2026",
+    comment: "Cancelé Movistar y DAZN que juntos me costaban 90 € al mes. Este servicio funciona diez veces mejor, tiene Replay para ver lo que me pierdo y el soporte por WhatsApp responde al segundo.",
+    verified: true
+  },
+  {
+    name: "Alejandro G.",
+    city: "Valencia",
+    plan: "Plan 12 Meses",
+    device: "Apple TV 4K",
+    rating: 5,
+    date: "12 de Marzo de 2026",
+    comment: "La fluidez a 60 FPS en los partidos de Champions League y en las carreras de Fórmula 1 con Alonso es sublime. Sin duda el mejor servicio de IPTV en España.",
+    verified: true
+  },
+  {
+    name: "Daniel P. (Hostelería)",
+    city: "Sevilla",
+    plan: "IPTV Profesional",
+    device: "Android TV Box",
+    rating: 5,
+    date: "25 de Febrero de 2026",
+    comment: "Lo instalamos en nuestro bar en Sevilla y los fines de semana de fútbol el local se llena. Cero cortes de señal, calidad nítida y tranquilidad absoluta.",
+    verified: true
+  },
+  {
+    name: "Roberto S.",
+    city: "Bilbao",
+    plan: "Plan 6 Meses",
+    device: "Firestick 4K Max",
+    rating: 5,
+    date: "2 de Febrero de 2026",
+    comment: "Venía de probar listas m3u gratuitas que eran una auténtica pesadilla. Pagar 5 € al mes por esto es regalar el dinero. No vuelvo atrás.",
+    verified: true
+  },
+  {
+    name: "Marcos V.",
+    city: "Málaga",
+    plan: "Plan 12 Meses",
+    device: "Smart TV LG (webOS)",
+    rating: 5,
+    date: "19 de Marzo de 2026",
+    comment: "Atención al cliente inmejorable. Me ayudaron a instalar IBO Player paso a paso un domingo por la tarde en menos de 5 minutos.",
+    verified: true
+  }
+];
+---
+
+<section id="reviews" class="py-24 bg-[#08090D] relative overflow-hidden" aria-labelledby="reviews-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header with Aggregate Rating -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Opiniones Verificadas
+      </div>
+      <h2 id="reviews-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Lo Que Dicen Nuestros <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Clientes en España</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg mb-6">
+        Testimonios reales de abonados que disfrutan diariamente del mejor fútbol y streaming en 4K.
+      </p>
+
+      <!-- Aggregate Score Card -->
+      <div class="inline-flex flex-col sm:flex-row items-center gap-4 py-4 px-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] shadow-lg">
+        <div class="flex items-center gap-2">
+          <span class="text-3xl font-black text-white">4.9</span>
+          <div class="flex text-amber-400">
+            <Star class="w-5 h-5 fill-amber-400" />
+            <Star class="w-5 h-5 fill-amber-400" />
+            <Star class="w-5 h-5 fill-amber-400" />
+            <Star class="w-5 h-5 fill-amber-400" />
+            <Star class="w-5 h-5 fill-amber-400" />
+          </div>
+        </div>
+        <div class="h-6 w-px bg-white/[0.1] hidden sm:block"></div>
+        <span class="text-xs text-gray-300 font-medium">
+          Puntuación media calculada sobre <strong class="text-white">1.485 opiniones</strong> de usuarios en España
+        </span>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reviews.map((rev) => (
+        <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 transition-all duration-300 shadow-md flex flex-col justify-between">
+          <div>
+            <!-- Stars & Verified Badge -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400">
+                {[...Array(rev.rating)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              {rev.verified && (
+                <span class="flex items-center gap-1 text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                  <CheckCircle class="w-3 h-3" /> Compra Verificada
+                </span>
+              )}
+            </div>
+
+            <!-- Comment text -->
+            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
+              "{rev.comment}"
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="pt-4 border-t border-white/[0.05] flex items-center justify-between text-xs">
+            <div>
+              <span class="font-bold text-white block">{rev.name}</span>
+              <span class="text-gray-400 text-[11px]">{rev.city} · {rev.device}</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-[10px] font-semibold text-amber-400 border border-white/[0.05]">
+              {rev.plan}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

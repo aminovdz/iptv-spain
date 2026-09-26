@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import { getCollection } from 'astro:content';
+import { BookOpen, Calendar, Clock, ArrowRight, CheckCircle2 } from 'lucide-astro';
+
+const allGuides = await getCollection('guides');
+allGuides.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Guías y Tutoriales IPTV España ${currentYear} — Guía Completa de Streaming`}
+  description="Aprende a configurar tu Smart TV y Firestick, solucionar errores de buffering y descubrir cómo ver LaLiga en directo sin pagar suscripciones abusivas."
+  canonicalURL="https://iptvespana.cloud/guides"
+>
+  <StickyHeader currentPath="/guides" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-16 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+          <BookOpen class="w-3.5 h-3.5" />
+          <span>Centro de Aprendizaje & Soporte {currentYear}</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Guías Oficiales y Tutoriales de <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">IPTV España</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+          Consejos técnicos redactados por especialistas en telecomunicaciones para optimizar tu conexión, saltar restricciones de ISP y exprimir al máximo tu televisor en 4K.
+        </p>
+      </div>
+
+      <!-- Guides Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allGuides.map((guide) => (
+          <article class="group rounded-3xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
+            <div>
+              <!-- Image Banner -->
+              <div class="aspect-video w-full overflow-hidden bg-neutral-900 relative">
+                <img
+                  src={guide.data.image}
+                  alt={guide.data.imageAlt || guide.data.title}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="600"
+                  height="338"
+                />
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-[#F59E0B] border border-white/10">
+                  {guide.data.category}
+                </span>
+              </div>
+
+              <!-- Body Info -->
+              <div class="p-6">
+                <div class="flex items-center gap-3 text-[11px] text-gray-400 mb-3">
+                  <span class="flex items-center gap-1">
+                    <Calendar class="w-3 h-3" />
+                    {guide.data.pubDate.toLocaleDateString('es-ES', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                  <span>•</span>
+                  <span class="flex items-center gap-1">
+                    <Clock class="w-3 h-3" />
+                    {guide.data.readingTime}
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-bold text-white group-hover:text-[#F59E0B] transition-colors leading-snug mb-3">
+                  <a href={`/guides/${guide.slug}`} class="focus:outline-none">
+                    {guide.data.title}
+                  </a>
+                </h2>
+
+                <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed mb-4">
+                  {guide.data.description}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-2 border-t border-white/[0.05]">
+              <a
+                href={`/guides/${guide.slug}`}
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-[#DC2626] group-hover:text-[#F59E0B] transition-colors"
+              >
+                <span>Leer Guía Completa</span>
+                <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

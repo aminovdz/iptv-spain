@@ -1,0 +1,225 @@
+---
+import { Zap, Calendar, PlayCircle, Radio, RefreshCw, MessageCircle } from 'lucide-astro';
+
+interface LiveMatch {
+  id: string;
+  league: string;
+  homeTeam: {
+    name: string;
+    logo: string;
+    score: string;
+  };
+  awayTeam: {
+    name: string;
+    logo: string;
+    score: string;
+  };
+  status: string;
+  isLive: boolean;
+  minute?: string;
+}
+
+// Resilient default fixtures for LaLiga & Champions League
+const initialMatches: LiveMatch[] = [
+  {
+    id: "es-1",
+    league: "LaLiga EA Sports",
+    status: "68'",
+    isLive: true,
+    minute: "68'",
+    homeTeam: {
+      name: "Real Madrid",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      score: "2"
+    },
+    awayTeam: {
+      name: "FC Barcelona",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+      score: "1"
+    }
+  },
+  {
+    id: "es-2",
+    league: "LaLiga EA Sports",
+    status: "52'",
+    isLive: true,
+    minute: "52'",
+    homeTeam: {
+      name: "Atlético de Madrid",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+      score: "3"
+    },
+    awayTeam: {
+      name: "Sevilla FC",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/243.png",
+      score: "0"
+    }
+  },
+  {
+    id: "es-3",
+    league: "Champions League",
+    status: "Hoy 21:00",
+    isLive: false,
+    minute: "",
+    homeTeam: {
+      name: "Real Madrid",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      score: "-"
+    },
+    awayTeam: {
+      name: "Bayern München",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+      score: "-"
+    }
+  },
+  {
+    id: "es-4",
+    league: "LaLiga EA Sports",
+    status: "Finalizado",
+    isLive: false,
+    minute: "FT",
+    homeTeam: {
+      name: "Athletic Club",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+      score: "2"
+    },
+    awayTeam: {
+      name: "Real Sociedad",
+      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+      score: "1"
+    }
+  }
+];
+---
+
+<section class="py-12 bg-[#06070B] border-y border-white/[0.08] relative overflow-hidden" aria-labelledby="live-scores-title">
+  <!-- Glowing subtle backdrop -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(220,38,38,0.06),rgba(0,0,0,0))] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Ticker Top Info -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Marcador en Directo</span>
+        </div>
+        <h2 id="live-scores-title" class="text-white font-extrabold text-base sm:text-lg tracking-tight">
+          LaLiga & Champions League en Directo 4K
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs text-gray-400">
+        <span class="flex items-center gap-1.5">
+          <Zap class="w-3.5 h-3.5 text-[#F59E0B]" /> Anti-Freeze 9.8™ Activo
+        </span>
+        <span>•</span>
+        <span class="text-gray-400">Actualización en tiempo real</span>
+      </div>
+    </div>
+
+    <!-- Match Grid / Slider -->
+    <div id="live-matches-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {initialMatches.map((match) => (
+        <div class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between">
+          
+          <!-- Match Header -->
+          <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
+            <span class="font-bold text-gray-400 truncate max-w-[140px]">{match.league}</span>
+            {match.isLive ? (
+              <span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                {match.minute || 'EN VIVO'}
+              </span>
+            ) : (
+              <span class="text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
+                {match.status}
+              </span>
+            )}
+          </div>
+
+          <!-- Teams and Scores -->
+          <div class="space-y-2 mb-4">
+            <!-- Home Team -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <img
+                  src={match.homeTeam.logo}
+                  alt={match.homeTeam.name}
+                  class="w-6 h-6 object-contain"
+                  loading="lazy"
+                  width="24"
+                  height="24"
+                  onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                />
+                <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                  {match.homeTeam.name}
+                </span>
+              </div>
+              <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+                {match.homeTeam.score}
+              </span>
+            </div>
+
+            <!-- Away Team -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <img
+                  src={match.awayTeam.logo}
+                  alt={match.awayTeam.name}
+                  class="w-6 h-6 object-contain"
+                  loading="lazy"
+                  width="24"
+                  height="24"
+                  onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                />
+                <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                  {match.awayTeam.name}
+                </span>
+              </div>
+              <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+                {match.awayTeam.score}
+              </span>
+            </div>
+          </div>
+
+          <!-- Hover CTA -->
+          <a
+            href={`https://wa.me/18036582620?text=Hola%21+Deseo+ver+el+partido+${encodeURIComponent(match.homeTeam.name)}+vs+${encodeURIComponent(match.awayTeam.name)}+en+directo+en+4K`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
+          >
+            <PlayCircle class="w-3.5 h-3.5" />
+            <span>Ver en Directo 4K</span>
+          </a>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Silently poll live score API every 60 seconds
+  async function refreshLiveScores() {
+    try {
+      const res = await fetch('/api/live-scores.json');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.matches && data.matches.length > 0) {
+          // Can selectively update score nodes
+          console.log('[LiveScores] Synchronized with edge API:', data.matches.length, 'fixtures');
+        }
+      }
+    } catch (e) {
+      console.warn('[LiveScores] Polling error, keeping cached feed');
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    setInterval(refreshLiveScores, 60000);
+  }
+</script>

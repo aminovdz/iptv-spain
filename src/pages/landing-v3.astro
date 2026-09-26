@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import LiveScores from '../components/LiveScores.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import FAQSection, { defaultFaqs } from '../components/FAQSection.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`IPTV para Smart TV y Firestick España ${currentYear} — Activación en 2 Min`}
+  description="Convierte tu televisor en un centro de entretenimiento 4K con IPTV España. Compatible con Fire TV Stick, Samsung, LG y Android TV. Activación en 2 minutos vía WhatsApp."
+  canonicalURL="https://iptvespana.cloud/landing-v3"
+  schemaType="product"
+  faqs={defaultFaqs}
+>
+  <StickyHeader currentPath="/landing-v3" />
+
+  <main class="flex-1">
+    <!-- Device-First Hero -->
+    <Hero
+      headline="IPTV para Smart TV y Fire TV Stick — 4K Sin Cortes"
+      subheadline="Disfruta de la mejor televisión digital en tu pantalla grande sin necesidad de antenas ni costosos decodificadores. Configuración guiada en 2 minutos para Firestick, Smart TV Samsung, LG y Android con soporte directo en español."
+    />
+
+    <!-- Supported Devices Highlight Early -->
+    <SupportedDevices />
+
+    <!-- Live Matches -->
+    <LiveScores />
+
+    <!-- Features with Anti-Freeze focus -->
+    <FeatureGrid />
+
+    <!-- Pricing Section (12-Month Plan First) -->
+    <PricingCard />
+
+    <!-- Process Steps -->
+    <ProcessSteps />
+
+    <!-- Reviews -->
+    <UserReviewsSection />
+
+    <!-- CTA Section -->
+    <CTASection />
+
+    <!-- Referral -->
+    <ReferralBanner />
+
+    <!-- FAQs -->
+    <FAQSection />
+
+    <!-- Contact Form -->
+    <ContactForm />
+  </main>
+
+  <Footer />
+  <ExitPopup />
+  <FloatingWhatsApp />
+</Layout>

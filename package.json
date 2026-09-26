@@ -1,0 +1,27 @@
+{
+  "name": "iptv-spain",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "IPTV España — Servicio de streaming 4K/8K sin cortes con tecnología Anti-Freeze 9.8™, LaLiga en directo, activación instantánea y pago seguro con Bizum.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "deploy": "CLOUDFLARE_ACCOUNT_ID=392d394e18fb1dd4fd3873e10fc86a73 wrangler pages deploy dist --project-name=iptv-espana --branch=main",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.0.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "@tailwindcss/vite": "^4.0.9",
+    "astro": "^5.3.0",
+    "lucide-astro": "latest",
+    "tailwindcss": "^4.0.9",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.135.0"
+  }
+}

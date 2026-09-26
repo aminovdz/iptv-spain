@@ -1,0 +1,87 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import ServerSchema from '../components/seo/ServerSchema.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string | string[];
+  image?: string;
+  type?: 'website' | 'article';
+  schemaType?: 'home' | 'product' | 'article' | 'city';
+  publishedTime?: string;
+  modifiedTime?: string;
+  authorName?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+  cityName?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+  lang?: string;
+  canonicalURL?: URL | string;
+}
+
+const currentYear = new Date().getFullYear();
+
+const {
+  title = `IPTV España ${currentYear} — Streaming 4K Estable y Sin Cortes`,
+  description = "Servicio oficial de IPTV en España con tecnología Anti-Freeze 9.8™, LaLiga en directo, 99.9% de uptime garantizado, sin permanencia y activación instantánea en 2 minutos.",
+  keywords,
+  image = "/images/og-banner.webp",
+  type = "website",
+  schemaType = "home",
+  publishedTime,
+  modifiedTime,
+  authorName = "Equipo Editorial IPTV España",
+  faqs = [],
+  cityName,
+  schema,
+  noindex = false,
+  lang = "es-ES",
+  canonicalURL,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      canonicalURL={canonicalURL}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      noindex={noindex}
+    />
+
+    <!-- 100% Server-Side Injected JSON-LD Schema (Zero Client JS) -->
+    <ServerSchema
+      type={schemaType}
+      title={title}
+      description={description}
+      url={canonicalURL ? canonicalURL.toString() : Astro.url.href}
+      image={image}
+      datePublished={publishedTime}
+      dateModified={modifiedTime}
+      authorName={authorName}
+      faqs={faqs}
+      cityName={cityName}
+    />
+
+    {schema && (
+      Array.isArray(schema) 
+        ? schema.map((s) => <script type="application/ld+json" is:inline set:html={JSON.stringify(s)} />)
+        : <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-[#08090D] text-[#F3F4F6] min-h-screen flex flex-col antialiased selection:bg-[#DC2626] selection:text-white">
+    <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(220,38,38,0.12),rgba(245,158,11,0.06),rgba(0,0,0,0))] z-0"></div>
+    
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

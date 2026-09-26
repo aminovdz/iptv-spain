@@ -1,0 +1,91 @@
+---
+import { Tv, Monitor, Smartphone, Laptop, Tablet, Cast } from 'lucide-astro';
+
+const devices = [
+  {
+    name: "Smart TV",
+    description: "Samsung (Tizen), LG (webOS), Sony, Philips, TCL, Hisense y modelos con Android TV.",
+    icon: Tv,
+    popularApps: ["IBO Player", "IPTV Smarters", "SmartOne IPTV"]
+  },
+  {
+    name: "Amazon Fire TV Stick",
+    description: "Firestick Lite, 4K y 4K Max. El dispositivo más popular y recomendado en España.",
+    icon: Cast,
+    popularApps: ["TiviMate", "IPTV Smarters Pro", "XCIPTV"]
+  },
+  {
+    name: "Android TV Box & MAG",
+    description: "Xiaomi Mi Box, Nvidia Shield TV, MAG 322/422 y receptores Formuler.",
+    icon: Monitor,
+    popularApps: ["TiviMate Premium", "MYTVOnline", "MAG Portal"]
+  },
+  {
+    name: "Apple TV & iOS",
+    description: "Apple TV 4K, iPhone y iPad con soporte nativo de reproducción fluida.",
+    icon: Tablet,
+    popularApps: ["IPTVX", "GSE Smart IPTV", "Smarters Player Lite"]
+  },
+  {
+    name: "Smartphones & Tablets",
+    description: "Dispositivos móviles Android y tablets para ver tus partidos dondequiera que vayas.",
+    icon: Smartphone,
+    popularApps: ["IPTV Smarters", "TiviMate Mobile", "Televizo"]
+  },
+  {
+    name: "Ordenadores PC & Mac",
+    description: "Windows 10/11, macOS y Linux mediante reproductores y navegadores web.",
+    icon: Laptop,
+    popularApps: ["VLC Media Player", "IPTV Smarters Pro", "Kodi"]
+  }
+];
+---
+
+<section id="devices" class="py-20 bg-[#08090D] relative overflow-hidden" aria-labelledby="devices-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Compatibilidad Universal
+      </div>
+      <h2 id="devices-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Compatible con <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Todos Tus Dispositivos</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Sin necesidad de cambiar de tele ni comprar costosos decodificadores. Usa la pantalla que ya tienes en casa.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {devices.map((device) => {
+        const IconComponent = device.icon;
+        return (
+          <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 transition-all duration-300 hover:-translate-y-1 shadow-lg group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#161926] to-[#08090D] border border-white/[0.1] flex items-center justify-center text-[#DC2626] group-hover:text-[#F59E0B] transition-colors mb-5">
+              <IconComponent class="w-6 h-6" />
+            </div>
+
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#F59E0B] transition-colors">
+              {device.name}
+            </h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+              {device.description}
+            </p>
+
+            <div class="pt-4 border-t border-white/[0.05]">
+              <span class="text-[10px] font-bold uppercase text-gray-500 tracking-wider block mb-2">Apps Recomendadas:</span>
+              <div class="flex flex-wrap gap-1.5">
+                {device.popularApps.map((app) => (
+                  <span class="px-2 py-0.5 rounded bg-white/[0.04] text-[11px] font-medium text-gray-300 border border-white/[0.05]">
+                    {app}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Star, ShieldCheck, Check, X, ArrowRight, MessageCircle, AlertTriangle, Zap } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const smartOneFaqs = [
+  {
+    question: "¿Qué es SmartOne IPTV y cómo se diferencia de un proveedor de contenidos?",
+    answer: "SmartOne IPTV es principalmente una aplicación reproductora multimedia disponible para Smart TV (Samsung, LG, etc.). No incluye listas de canales por sí misma a menos que contrates un proveedor de servicio IPTV compatible que suministre la señal y el soporte técnico."
+  },
+  {
+    question: "¿Por qué los usuarios de SmartOne buscan alternativas?",
+    answer: "Muchos usuarios experimentan dificultades a la hora de renovar la licencia de la app (requiere pagos en divisas extranjeras) o sufren cortes de streaming cuando su lista de canales no cuenta con tecnología Anti-Freeze dedicada."
+  },
+  {
+    question: "¿Es IPTV España 100% compatible con la app SmartOne IPTV?",
+    answer: "Sí, nuestro servicio se conecta de forma inmediata y automática con SmartOne IPTV mediante dirección MAC o mediante listas M3U / API Xtream Codes."
+  },
+  {
+    question: "¿Ofrecen prueba gratuita para probar en SmartOne IPTV?",
+    answer: "Sí, puedes solicitar una prueba gratuita de 24 horas vía WhatsApp para verificar la calidad en 4K y la ausencia de cortes en la aplicación SmartOne de tu Smart TV."
+  }
+];
+---
+
+<Layout
+  title={`SmartOne IPTV Reseña y Alternativas 2026 — Opiniones y Precios`}
+  description="Análisis honesto de SmartOne IPTV en España: precios, opiniones reales de usuarios, pros y contras, y la mejor alternativa en 4K sin cortes con pago por Bizum."
+  canonicalURL="https://iptvespana.cloud/smartone-iptv"
+  schemaType="product"
+  faqs={smartOneFaqs}
+>
+  <StickyHeader currentPath="/smartone-iptv" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <span>Reseña Editorial Independiente {currentYear}</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          SmartOne IPTV en España: <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Opiniones, Precios y Mejor Alternativa</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+          Analizamos en profundidad el rendimiento de SmartOne IPTV, sus limitaciones durante partidos de máxima audiencia y cómo conseguir la mejor experiencia de streaming en 4K sin cortes.
+        </p>
+      </div>
+
+      <!-- Verdict Banner -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#1C0E12] via-[#0F111A] to-[#161926] border border-[#DC2626]/40 mb-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B] block mb-1">Veredicto Rápido</span>
+          <h2 class="text-xl sm:text-2xl font-black text-white mb-2">SmartOne es una buena app, pero necesita servidores estables</h2>
+          <p class="text-xs sm:text-sm text-gray-300 max-w-xl leading-relaxed">
+            La aplicación de SmartOne IPTV destaca por su interfaz sencilla, pero sufre buffering y caídas si el servidor contratado no dispone de balanceo CDN. Nuestra solución te garantiza 99.9% de uptime y soporte en español 24/7.
+          </p>
+        </div>
+        <a
+          href="https://wa.me/18036582620?text=Hola%21+Deseo+probar+la+mejor+alternativa+a+SmartOne+IPTV+durante+24+horas."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-300" />
+          <span>Probar Alternativa 24h Gratis</span>
+        </a>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="rounded-3xl bg-[#0F111A] border border-white/[0.08] p-6 sm:p-8 mb-16 overflow-x-auto shadow-xl">
+        <h3 class="text-xl font-bold text-white mb-6">Comparativa: SmartOne Estándar vs IPTV España</h3>
+        
+        <table class="w-full text-left text-xs sm:text-sm text-gray-300 min-w-[500px]">
+          <thead>
+            <tr class="border-b border-white/[0.1] text-gray-400 font-bold uppercase text-[11px]">
+              <th class="py-3 px-4">Característica</th>
+              <th class="py-3 px-4">SmartOne IPTV (Básico)</th>
+              <th class="py-3 px-4 text-[#F59E0B]">IPTV España (Recomendado)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/[0.05]">
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Calidad de Señal</td>
+              <td class="py-4 px-4 text-gray-400">Full HD variable</td>
+              <td class="py-4 px-4 text-emerald-400 font-bold">4K Ultra HD real a 60 FPS</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Estabilidad en El Clásico</td>
+              <td class="py-4 px-4 text-amber-400">Posibles saturaciones</td>
+              <td class="py-4 px-4 text-emerald-400 font-bold">Tecnología Anti-Freeze 9.8™ (Cero cortes)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Métodos de Pago en España</td>
+              <td class="py-4 px-4 text-gray-400">Tarjeta extranjera</td>
+              <td class="py-4 px-4 text-[#F59E0B] font-bold">Bizum instantáneo, Tarjeta, PayPal y Cripto</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Soporte al Cliente</td>
+              <td class="py-4 px-4 text-gray-400">Ticket por email (demora 24-48h)</td>
+              <td class="py-4 px-4 text-emerald-400 font-bold">WhatsApp directo 24/7 en español (&lt; 2 min)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Prueba Gratuita</td>
+              <td class="py-4 px-4 text-gray-400">Limitada</td>
+              <td class="py-4 px-4 text-emerald-400 font-bold">24 horas completas sin compromiso</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-semibold text-white">Garantía de Devolución</td>
+              <td class="py-4 px-4 text-gray-400">Sin reembolso</td>
+              <td class="py-4 px-4 text-emerald-400 font-bold">Garantía estricta de 24 horas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pricing Plans -->
+      <PricingCard />
+
+      <!-- FAQs -->
+      <FAQSection faqs={smartOneFaqs} />
+
+      <!-- Final CTA -->
+      <CTASection />
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

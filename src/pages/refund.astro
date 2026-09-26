@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Clock, ShieldCheck, CheckCircle2, MessageCircle, AlertTriangle } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappRefundUrl = "https://wa.me/18036582620?text=Hola%21+Deseo+hacer+una+consulta+respecto+a+la+garant%C3%ADa+de+reembolso+de+24+horas.";
+---
+
+<Layout
+  title={`Política de Reembolso (24 Horas) — IPTV España ${currentYear}`}
+  description="Consulta nuestra política estricta de reembolso de 24 horas. Garantía total de satisfacción o devolución íntegra de tu dinero en caso de problemas técnicos."
+  canonicalURL="https://iptvespana.cloud/refund"
+>
+  <StickyHeader currentPath="/refund" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <Clock class="w-3.5 h-3.5" />
+          <span>Garantía de Satisfacción 24 Horas</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Política de Reembolso
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400 mb-8 max-w-2xl mx-auto">
+          Regla estricta y transparente: Todo nuevo abonado dispone de una ventana de garantía de 24 horas consecutivas a contar desde la recepción de sus credenciales de acceso.
+        </p>
+
+        <!-- Visual Banner -->
+        <div class="rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl max-w-2xl mx-auto group">
+          <img 
+            src="/images/garantie-remboursement-24h.webp" 
+            alt="Compromiso y garantía contractual de 24 horas de devolución del 100% del importe" 
+            class="w-full h-auto max-h-[380px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+            width="1200"
+            height="675"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Content Box -->
+      <div class="rounded-3xl bg-[#0F111A] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <!-- Highlight Callout Box -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 to-[#121422] border border-emerald-500/40 text-emerald-300 flex items-start gap-4">
+          <ShieldCheck class="w-7 h-7 text-emerald-400 shrink-0 mt-0.5" />
+          <div>
+            <h2 class="text-base font-bold text-white mb-1">Garantía Íntegra de 24 Horas</h2>
+            <p class="text-xs sm:text-sm text-gray-300">
+              En <strong>IPTV España</strong> tenemos plena confianza en la solidez de nuestros servidores CDN y en nuestra tecnología Anti-Freeze 9.8™. Si durante las <strong>primeras 24 horas tras la entrega de tus claves</strong> experimentas problemas técnicos insalvables con tu conexión y nuestro equipo técnico no logra resolverlos, te reintegramos el 100% de tu dinero.
+            </p>
+          </div>
+        </div>
+
+        <section class="space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">1.</span> Ámbito de Aplicación de la Garantía
+          </h2>
+          <p>
+            Nuestra garantía de reembolso cubre a todas las compras de suscripciones (1, 3, 6 o 12 meses) efectuadas a través de nuestros canales oficiales (WhatsApp o sitio web oficial).
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-400">
+            <li>El plazo límite para solicitar el reembolso es de <strong>exactamente 24 horas naturales</strong> desde la confirmación de activación del servicio.</li>
+            <li>Transcurrido este plazo inicial de 24 horas, no se admitirán solicitudes de devolución, habida cuenta del carácter de entrega digital inmediata y del consumo de licencias asignadas en los servidores dedicados.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">2.</span> Motivos Aceptados para el Reembolso
+          </h2>
+          <p>El reembolso se concederá cuando se verifique alguna de las siguientes causas técnicas justificadas:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <h3 class="font-bold text-white text-xs mb-1 flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400" /> Incompatibilidad Insuperable
+              </h3>
+              <p class="text-xs text-gray-400">Incompatibilidad técnica no atribuible al cliente con el dispositivo homologado tras el soporte guiado.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <h3 class="font-bold text-white text-xs mb-1 flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400" /> Caída de Servicio Continuada
+              </h3>
+              <p class="text-xs text-gray-400">Fallo o inoperatividad continuada de la señal en los servidores durante la ventana de 24 horas.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">3.</span> Procedimiento de Solicitud
+          </h2>
+          <p>Para tramitar la solicitud de reintegro en el periodo legal de 24 horas:</p>
+          <ol class="list-decimal pl-5 space-y-2 text-gray-400">
+            <li>Escribe a nuestro soporte por WhatsApp (+1 803 658-2620) o al correo <code>support@castvera.com</code>.</li>
+            <li>Facilita el número de pedido o justificante de Bizum / tarjeta, junto con tu usuario de acceso.</li>
+            <li>Describe brevemente el fallo técnico encontrado para que el agente verifique la incidencia.</li>
+            <li>Una vez comprobado, el reintegro se procesará por el mismo medio de pago en un plazo máximo de 2 a 5 días laborables.</li>
+          </ol>
+        </section>
+
+        <!-- CTA Box -->
+        <div class="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="text-white font-bold text-sm">¿Deseas iniciar una prueba previa de 24h?</h3>
+            <p class="text-gray-400 text-xs">Te recomendamos probar el servicio sin compromiso antes de suscribirte.</p>
+          </div>
+          <a
+            href={whatsappRefundUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all"
+          >
+            <MessageCircle class="w-4 h-4" />
+            <span>Contactar Soporte WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,230 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { 
+  Check, 
+  X, 
+  Trophy, 
+  ArrowRight, 
+  MessageCircle, 
+  ShieldCheck, 
+  HelpCircle 
+} from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const currentYear = new Date().getFullYear();
+  const comparisons = [
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "smartone-iptv",
+      competitorName: "SmartOne IPTV",
+      title: `IPTV España vs SmartOne IPTV: La Gran Comparativa ${currentYear}`,
+      metaDescription: "Comparativa técnica entre IPTV España y SmartOne IPTV. Estabilidad Anti-Freeze, precio anual, calidad 4K, soporte WhatsApp y pago con Bizum.",
+      headline: "IPTV España vs SmartOne IPTV",
+      subtitle: "Descubre por qué nuestro servicio ofrece una infraestructura más estable, mejor precio con reproductor incluido y asistencia 24/7 en español.",
+      verdict: "SmartOne es una aplicación ampliamente utilizada, pero por sí sola carece de canales y obliga al usuario a buscar proveedores externos sin garantías. Con IPTV España obtienes un paquete integral con servidores Anti-Freeze 9.8™ de 10 Gbps, todo el fútbol en 4K y activación instantánea por 64,99 € al año con pago por Bizum.",
+      criteria: [
+        { name: "Precio Plan Anual (12 Meses)", us: "64,99 € (~5,41 €/mes)", them: "70 € - 90 € (app + lista externa)", winner: "us" },
+        { name: "Tecnología Anti-Cortes", us: "Anti-Freeze 9.8™ dedicado", them: "Depende de la lista externa", winner: "us" },
+        { name: "Fútbol en Directo (LaLiga, Champions)", us: "4K UHD y 60 FPS sin retraso", them: "Frecuente buffering en horas pico", winner: "us" },
+        { name: "Activación del Reproductor", us: "Activación gratuita incluida", them: "Pago adicional de licencia", winner: "us" },
+        { name: "Método de Pago Bizum", us: "Sí, instantáneo en 3 segundos", them: "No disponible (tarjeta internacional)", winner: "us" },
+        { name: "Soporte Técnico en Español", us: "WhatsApp directo 24/7 (< 2 min)", them: "Tickets en inglés con demora", winner: "us" },
+        { name: "Garantía de Satisfacción", us: "24h de devolución garantizada", them: "Sin política de reembolso", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Puedo usar mi aplicación SmartOne IPTV con vuestro servicio?",
+          a: "Sí. Si ya tienes instalada la app SmartOne en tu televisor, te proporcionamos el enlace M3U o la dirección MAC para activar nuestra señal en menos de 2 minutos."
+        },
+        {
+          q: "¿Por qué IPTV España es más estable durante El Clásico?",
+          a: "Contamos con balanceadores CDN de 10 Gbps en puntos neutros españoles (ESpanix y CATNIX), lo que disipa la saturación durante eventos de máxima audiencia."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "movistar-plus",
+      competitorName: "Movistar Plus+",
+      title: `IPTV España vs Movistar Plus+: ¿Por Qué Pagar 90€ al Mes? ${currentYear}`,
+      metaDescription: "Comparativa directa: IPTV España frente a Movistar Plus+. Ahorra más de 900 € al año en fútbol de LaLiga sin permanencia ni decodificadores obligatorios.",
+      headline: "IPTV España vs Movistar Plus+",
+      subtitle: "¿Por qué pagar más de 90 € al mes por paquetes de fibra y televisión atados a contratos?",
+      verdict: "Para ver todo el fútbol con Movistar Plus+ estás obligado a contratar paquetes combinados de fibra y móvil que superan los 80-110 € mensuales. Con IPTV España disfrutas del fútbol en 4K y de todas las transmisiones deportivas por solo 64,99 € al año, sin permanencias ni cuotas ocultas.",
+      criteria: [
+        { name: "Coste Anual Estimado", us: "64,99 € al año", them: "1.000 € a 1.300 € al año", winner: "us" },
+        { name: "Compromiso de Permanencia", us: "Sin permanencia (pago único)", them: "Permanencias y penalizaciones", winner: "us" },
+        { name: "Equipos Necesarios", us: "Tu Smart TV o Firestick actual", them: "Decodificador obligatorio y alquiler", winner: "us" },
+        { name: "Movilidad (Ver fuera de casa)", us: "Universal en cualquier dispositivo", them: "Restricciones fuera del hogar", winner: "us" },
+        { name: "Flexibilidad de Pago", us: "Bizum, Tarjeta, PayPal y Cripto", them: "Domiciliación bancaria fija", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Tengo que cambiar de compañía de fibra para usar IPTV España?",
+          a: "No. Puedes mantener tu conexión de fibra óptica con cualquier operador (Digi, Orange, Vodafone, MásMóvil, etc.) y disfrutar de IPTV España sin restricciones."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "dazn-espana",
+      competitorName: "DAZN España",
+      title: `IPTV España vs DAZN España: Comparativa de Deportes y Precios ${currentYear}`,
+      metaDescription: "Comparativa entre IPTV España y DAZN España. Precios, partidos de LaLiga, F1, MotoGP y ausencia de restricciones en directo.",
+      headline: "IPTV España vs DAZN España",
+      subtitle: "Analizamos precios, cobertura de fútbol y deportes de motor (F1 y MotoGP).",
+      verdict: "DAZN ha subido sus tarifas progresivamente hasta los 39,99 € al mes para ver solo 5 partidos de LaLiga por jornada y deportes de motor. IPTV España te ofrece TODOS los partidos de LaLiga, Champions League, Fórmula 1 y MotoGP en 4K por una fracción del precio.",
+      criteria: [
+        { name: "Precio Mensual Equivalente", us: "~5,41 € / mes (plan anual)", them: "29,99 € a 39,99 € / mes", winner: "us" },
+        { name: "Partidos de LaLiga Incluidos", us: "10 de 10 cada jornada", them: "5 partidos por jornada", winner: "us" },
+        { name: "Fórmula 1 y MotoGP", us: "Incluidos en 4K 60 FPS", them: "Requiere planes superiores", winner: "us" },
+        { name: "Subidas de Precio", us: "Tarifa fija anual sin sorpresas", them: "Incrementos continuos de tarifas", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Puedo ver las carreras de Fernando Alonso en F1 con IPTV España?",
+          a: "Sí, todas las sesiones de entrenamientos, clasificaciones y grandes premios de Fórmula 1 se transmiten en 4K Ultra HD a 60 FPS."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "operadores-tradicionales",
+      competitorName: "Operadores Tradicionales",
+      title: `IPTV España vs Operadores de Cable Tradicionales ${currentYear}`,
+      metaDescription: "¿Vale la pena cambiar de la televisión por cable a IPTV España? Comparativa completa de ahorro, calidad 4K y libertad sin contratos.",
+      headline: "IPTV España vs Operadores Tradicionales",
+      subtitle: "Libérate de las ataduras de las grandes compañías telefónicas y ahorra hasta un 85%.",
+      verdict: "El modelo de televisión cerrada de los operadores tradicionales está obsoleto. IPTV España ofrece mayor catálogo, streaming en 4K nativo en tus dispositivos preferidos y el soporte más ágil del mercado español.",
+      criteria: [
+        { name: "Ahorro Anual Medio", us: "Más de 800 € / año de ahorro", them: "Precios elevados e inflados", winner: "us" },
+        { name: "Instalación", us: "Instantánea en 2 minutos", them: "Visita de técnicos y cableado", winner: "us" },
+        { name: "Atención al Cliente", us: "Humana e inmediata por WhatsApp", them: "Centralitas y esperas telefónicas", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Qué velocidad de fibra necesito para usar el servicio?",
+          a: "Con una conexión de fibra de al menos 25 Mbps dispondrás de ancho de banda suficiente para streaming fluido en 4K."
+        }
+      ]
+    }
+  ];
+
+  return comparisons.map((comp) => ({
+    params: {
+      brand: comp.brandSlug,
+      competitor: comp.competitorSlug
+    },
+    props: { comp }
+  }));
+}
+
+const { comp } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={comp.title}
+  description={comp.metaDescription}
+  canonicalURL={`https://iptvespana.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
+  schemaType="product"
+>
+  <StickyHeader currentPath={`/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`} />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-8" aria-label="Miga de pan">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <a href="/compare" class="hover:text-white transition-colors">Comparativas</a>
+        <span>/</span>
+        <span class="text-white font-semibold">{comp.competitorName}</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+          <Trophy class="w-3.5 h-3.5" />
+          <span>Comparativa Oficial {currentYear}</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          {comp.headline}
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+          {comp.subtitle}
+        </p>
+      </div>
+
+      <!-- Verdict Box -->
+      <div class="p-8 rounded-3xl bg-gradient-to-r from-[#1C0E12] via-[#0F111A] to-[#161926] border border-[#DC2626]/40 mb-12 shadow-xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B] block mb-2">Veredicto Técnico</span>
+        <p class="text-xs sm:text-sm text-gray-200 leading-relaxed">
+          {comp.verdict}
+        </p>
+      </div>
+
+      <!-- Criteria Table -->
+      <div class="rounded-3xl bg-[#0F111A] border border-white/[0.08] p-6 sm:p-8 mb-16 overflow-x-auto shadow-xl">
+        <h2 class="text-xl font-bold text-white mb-6">Tabla Comparativa Detallada</h2>
+        
+        <table class="w-full text-left text-xs sm:text-sm text-gray-300 min-w-[500px]">
+          <thead>
+            <tr class="border-b border-white/[0.1] text-gray-400 font-bold uppercase text-[11px]">
+              <th class="py-3 px-4">Criterio de Evaluación</th>
+              <th class="py-3 px-4 text-[#F59E0B]">IPTV España (Nosotros)</th>
+              <th class="py-3 px-4">{comp.competitorName}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/[0.05]">
+            {comp.criteria.map((item) => (
+              <tr>
+                <td class="py-4 px-4 font-semibold text-white">{item.name}</td>
+                <td class="py-4 px-4 text-emerald-400 font-bold flex items-center gap-1.5">
+                  <Check class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>{item.us}</span>
+                </td>
+                <td class="py-4 px-4 text-gray-400">
+                  <span>{item.them}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pricing Section -->
+      <PricingCard />
+
+      <!-- FAQs -->
+      {comp.faqs && comp.faqs.length > 0 && (
+        <div class="my-16">
+          <h2 class="text-2xl font-bold text-white text-center mb-8">Preguntas Frecuentes de la Comparativa</h2>
+          <div class="space-y-4 max-w-3xl mx-auto">
+            {comp.faqs.map((faq) => (
+              <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08]">
+                <h3 class="text-base font-bold text-white mb-2">{faq.q}</h3>
+                <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Final CTA -->
+      <CTASection />
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

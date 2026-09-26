@@ -1,0 +1,15 @@
+name = "iptv-espana"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
+
+[vars]
+SITE_URL = "https://iptvespana.cloud"
+SITE_NAME = "IPTV España"
+BRAND_LANGUAGE = "es-ES"
+PRIMARY_KEYWORD = "iptv españa"
+SUPPORT_EMAIL = "support@castvera.com"
+CONTACT_EMAIL = "contact@iptvespana.cloud"
+WHATSAPP_NUMBER = "https://wa.me/18036582620"
+WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+TELEGRAM_CHANNEL = "https://t.me/castvera_com"

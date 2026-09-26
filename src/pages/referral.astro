@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Gift, Users, MessageCircle, ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappReferralUrl = "https://wa.me/18036582620?text=Hola%21+Deseo+unirme+al+Programa+de+Recomendados+de+IPTV+Espa%C3%B1a+y+obtener+mi+enlace.";
+---
+
+<Layout
+  title={`Programa de Recomendados — Gana Meses Gratis con IPTV España ${currentYear}`}
+  description="Recomienda IPTV España a tus amigos o familiares y recibe 1 mes de suscripción premium 4K completamente gratis por cada persona que se active."
+  canonicalURL="https://iptvespana.cloud/referral"
+>
+  <StickyHeader currentPath="/referral" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+          <Gift class="w-3.5 h-3.5" />
+          <span>Gana Meses Gratis Sin Límite</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Programa de Amigos y Recomendados
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
+          Comparte la mejor televisión y fútbol sin cortes. Por cada amigo que se suscriba con tu código, te regalamos un mes completo adicional a tu abono.
+        </p>
+      </div>
+
+      <!-- Main Explanation Card -->
+      <div class="rounded-3xl bg-[#0F111A] border border-white/[0.08] p-8 sm:p-12 space-y-10 text-gray-300 text-sm leading-relaxed">
+        
+        <!-- Reward Hero Callout -->
+        <div class="p-8 rounded-2xl bg-gradient-to-r from-[#1C0E12] to-[#161926] border border-[#DC2626]/40 text-center">
+          <span class="text-xs font-extrabold text-[#F59E0B] uppercase tracking-widest block mb-2">Recompensa Directa</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">
+            1 Amigo Recomendado = 1 Mes Gratis
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto mb-6">
+            Si recomiendas a 12 amigos a lo largo del año, ¡disfrutarás de tu servicio de IPTV completamente gratis durante todo el año siguiente!
+          </p>
+          <a
+            href={whatsappReferralUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all"
+          >
+            <MessageCircle class="w-4 h-4 text-emerald-300" />
+            <span>Solicitar Mi Código por WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- 3 Steps -->
+        <section class="space-y-6">
+          <h2 class="text-xl font-bold text-white text-center">
+            ¿Cómo Funciona el Programa?
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+            <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] text-center">
+              <span class="w-10 h-10 rounded-full bg-[#DC2626]/20 text-[#DC2626] font-black text-lg flex items-center justify-center mx-auto mb-4">1</span>
+              <h3 class="font-bold text-white text-base mb-2">Pide Tu Código</h3>
+              <p class="text-xs text-gray-400">Escríbenos por WhatsApp y te generamos tu identificador de recomendación personal en 30 segundos.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] text-center">
+              <span class="w-10 h-10 rounded-full bg-[#F59E0B]/20 text-[#F59E0B] font-black text-lg flex items-center justify-center mx-auto mb-4">2</span>
+              <h3 class="font-bold text-white text-base mb-2">Compártelo</h3>
+              <p class="text-xs text-gray-400">Envíaselo a amigos, compañeros de trabajo o familiares que quieran ver el fútbol o la tele sin pagar fortunas.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] text-center">
+              <span class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-black text-lg flex items-center justify-center mx-auto mb-4">3</span>
+              <h3 class="font-bold text-white text-base mb-2">Recibe Tu Mes</h3>
+              <p class="text-xs text-gray-400">Cuando tu amigo active su suscripción, se sumará automáticamente un mes gratis a la fecha de caducidad de tu cuenta.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Terms of the program -->
+        <section class="pt-6 border-t border-white/[0.08] space-y-3">
+          <h3 class="text-base font-bold text-white">Condiciones del Programa:</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-gray-400">
+            <li>No hay límite de amigos recomendados ni de meses acumulables.</li>
+            <li>El amigo recomendado debe contratar cualquier plan de pago (mínimo plan trimestral o superior).</li>
+            <li>Los meses gratis se añaden a cuentas existentes y no son canjeables por dinero en efectivo.</li>
+          </ul>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

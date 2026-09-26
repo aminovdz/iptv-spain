@@ -1,0 +1,96 @@
+---
+import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-astro';
+
+export const defaultFaqs = [
+  {
+    question: "¿Qué es IPTV España y cómo funciona?",
+    answer: "IPTV España es un servicio de transmisión de televisión digital a través de tu conexión a internet (fibra o 4G/5G). A diferencia de la televisión tradicional por satélite o cable, te permite acceder a una señal en 4K Ultra HD en tu Smart TV, Firestick o móvil mediante aplicaciones multimedia como TiviMate o IPTV Smarters."
+  },
+  {
+    question: "¿Puedo ver todos los partidos de fútbol de LaLiga y Champions League sin cortes?",
+    answer: "Sí. Nuestra infraestructura cuenta con servidores dedicados de 10 Gbps con tecnología Anti-Freeze 9.8™. Esto distribuye la carga de usuarios equitativamente durante los partidos de máxima audiencia (como El Clásico entre Real Madrid y Barcelona), garantizando una reproducción fluida a 60 FPS sin retrasos ni buffering."
+  },
+  {
+    question: "¿Cómo puedo pagar con Bizum y cuánto tarda la activación?",
+    answer: "Bizum es nuestro método de pago más rápido en España. Al contactarnos por WhatsApp (+1 803 658-2620), te indicaremos el número de Bizum correspondiente. Una vez confirmado en tu app bancaria en 3 segundos, tus datos de acceso se activan y entregan en menos de 2 minutos."
+  },
+  {
+    question: "¿Necesito utilizar una VPN para ver IPTV en España?",
+    answer: "No es obligatorio. Nuestros servidores cuentan con encriptación SSL y rutas optimizadas que eluden las limitaciones de ancho de banda impuestas por proveedores locales. No obstante, si prefieres usar una VPN por privacidad adicional, el servicio es 100% compatible."
+  },
+  {
+    question: "¿Por qué las listas IPTV M3U gratis fallan y este servicio es superior?",
+    answer: "Las listas gratuitas que circulan por internet sufren caídas constantes porque miles de usuarios saturan servidores precarios, además de carecer de soporte técnico y exponer a los usuarios a riesgos de seguridad. Nuestro servicio privado ofrece un uptime del 99.9%, calidad 4K real, guía EPG y soporte 24/7."
+  },
+  {
+    question: "¿Ofrecen prueba gratuita y cuál es la política de reembolso?",
+    answer: "Sí, disponemos de una prueba gratuita de 24 horas para que verifiques la calidad de imagen y la ausencia de cortes en tu propio televisor antes de pagar. Asimismo, todos nuestros planes disponen de una estricta garantía de satisfacción o devolución del dinero válida durante las primeras 24 horas tras la compra."
+  },
+  {
+    question: "¿Cuáles son las mejores aplicaciones para configurar el servicio?",
+    answer: "Para Amazon Fire TV Stick y dispositivos Android recomendamos TiviMate IPTV Player e IPTV Smarters Pro. Para Smart TV Samsung o LG, las apps más estables son IBO Player y SmartOne IPTV. Para Apple TV e iOS recomendamos GSE Smart IPTV e IPTVX."
+  },
+  {
+    question: "¿Hay algún compromiso de permanencia o cobro automático no deseado?",
+    answer: "Ninguno. En IPTV España eres libre de contratar el periodo que prefieras (1, 3, 6 o 12 meses) mediante un pago único. No almacenamos tarjetas para cobros automáticos sorpresa ni exigimos contratos de permanencia como las operadoras de telecomunicaciones convencionales."
+  }
+];
+
+interface Props {
+  faqs?: Array<{ question: string; answer: string }>;
+}
+
+const { faqs = defaultFaqs } = Astro.props;
+---
+
+<section id="faq" class="py-24 bg-[#08090D] relative overflow-hidden" aria-labelledby="faq-title">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Preguntas Frecuentes
+      </div>
+      <h2 id="faq-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Todo lo que Necesitas Saber Sobre <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">IPTV España</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Respuestas claras y directas a las dudas más comunes de nuestros abonados.
+      </p>
+    </div>
+
+    <!-- Accordion Items -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="group rounded-2xl bg-[#0F111A] border border-white/[0.08] p-6 transition-all duration-300 open:border-[#DC2626]/40 open:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.2)]">
+          <summary class="flex items-center justify-between cursor-pointer list-none text-base sm:text-lg font-bold text-white group-hover:text-[#F59E0B] transition-colors">
+            <span class="pr-6">{faq.question}</span>
+            <span class="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center flex-shrink-0 text-[#DC2626] group-open:rotate-180 group-open:bg-[#DC2626] group-open:text-white transition-all">
+              <ChevronDown class="w-4 h-4" />
+            </span>
+          </summary>
+          <div class="pt-4 mt-3 border-t border-white/[0.06] text-gray-400 text-sm leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Additional Help CTA Box -->
+    <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-[#161926] to-[#0F111A] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <h3 class="text-white font-bold text-base mb-1">¿Tienes alguna pregunta adicional?</h3>
+        <p class="text-gray-400 text-xs">Nuestro equipo técnico en España responde en menos de 2 minutos vía WhatsApp.</p>
+      </div>
+      <a
+        href="https://wa.me/18036582620?text=Hola%21+Tengo+una+consulta+sobre+el+servicio+IPTV+Espa%C3%B1a."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-all whitespace-nowrap"
+      >
+        <MessageCircle class="w-4 h-4 text-emerald-300" />
+        <span>Consultar por WhatsApp</span>
+      </a>
+    </div>
+
+  </div>
+</section>

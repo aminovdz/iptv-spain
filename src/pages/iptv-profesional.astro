@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Building2, UtensilsCrossed, Hotel, Dumbbell, ShieldCheck, MessageCircle, CheckCircle2, Zap } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const b2bFaqs = [
+  {
+    question: "¿Es apto este servicio para bares, restaurantes y locales de hostelería en España?",
+    answer: "Sí. Ofrecemos planes adaptados con soporte multipantalla para que puedas emitir simultáneamente en varios televisores del local sin pérdida de velocidad ni cortes de señal en los partidos de alta demanda."
+  },
+  {
+    question: "¿Emiten factura para desgravar el gasto de la empresa o autónomo?",
+    answer: "Sí, emitimos factura oficial para empresas y profesionales autónomos con todos los datos fiscales correspondientes."
+  },
+  {
+    question: "¿Qué garantía de disponibilidad (SLA) tiene el servicio profesional?",
+    answer: "Garantizamos un 99.9% de uptime gracias a servidores redundantes con ancho de banda de 10 Gbps y línea prioritaria de asistencia técnica por WhatsApp disponible al instante."
+  },
+  {
+    question: "¿Cómo puedo solicitar un presupuesto personalizado para mi negocio?",
+    answer: "Escríbenos directamente por WhatsApp indicando el número de pantallas de tu establecimiento y te elaboramos una propuesta adaptada a tus necesidades en 5 minutos."
+  }
+];
+---
+
+<Layout
+  title={`IPTV Profesional España — Solución para Bares, Hoteles y Empresas ${currentYear}`}
+  description="El servicio de IPTV profesional líder en España para hostelería, bares, hoteles y empresas. Máxima estabilidad en 4K, opción multipantalla y soporte prioritario."
+  canonicalURL="https://iptvespana.cloud/iptv-profesional"
+  schemaType="product"
+  faqs={b2bFaqs}
+>
+  <StickyHeader currentPath="/iptv-profesional" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <Building2 class="w-3.5 h-3.5" />
+          <span>Soluciones B2B & Clientes Exigentes</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          IPTV Profesional para <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Bares, Hoteles y Negocios</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
+          Atrae más clientes a tu local los días de partido con una señal 4K impecable. Servidores dedicados sin saturación, soporte VIP 24/7 y facturación para empresas.
+        </p>
+      </div>
+
+      <!-- B2B Verticals Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] text-center hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mx-auto mb-4">
+            <UtensilsCrossed class="w-6 h-6" />
+          </div>
+          <h3 class="font-bold text-white text-base mb-1">Bares y Restaurantes</h3>
+          <p class="text-xs text-gray-400">Llena tu local los fines de semana de LaLiga y los miércoles de Champions League.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] text-center hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto mb-4">
+            <Hotel class="w-6 h-6" />
+          </div>
+          <h3 class="font-bold text-white text-base mb-1">Hoteles y Alojamientos</h3>
+          <p class="text-xs text-gray-400">Ofrece la mejor televisión a tus huéspedes nacionales e internacionales en 4K.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] text-center hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4">
+            <Dumbbell class="w-6 h-6" />
+          </div>
+          <h3 class="font-bold text-white text-base mb-1">Gimnasios y Centros</h3>
+          <p class="text-xs text-gray-400">Deportes en directo continuo en las salas de fitness y zonas de entrenamiento.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] text-center hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-4">
+            <Zap class="w-6 h-6" />
+          </div>
+          <h3 class="font-bold text-white text-base mb-1">Usuarios Exigentes</h3>
+          <p class="text-xs text-gray-400">Particulares que no toleran el mínimo corte y exigen la máxima tasa de bits posible.</p>
+        </div>
+      </div>
+
+      <!-- B2B Hero CTA Box -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#1C0E12] via-[#0F111A] to-[#161926] border border-[#DC2626]/40 mb-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B] block mb-1">Presupuesto en 5 Minutos</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">Solicita Presupuesto B2B a Medida</h2>
+          <p class="text-xs sm:text-sm text-gray-300 max-w-xl leading-relaxed">
+            Adaptamos la oferta al volumen de pantallas y características de tu establecimiento comercial.
+          </p>
+        </div>
+        <a
+          href="https://wa.me/18036582620?text=Hola%21+Tengo+un+negocio+%28bar%2Fhotel%29+en+Espa%C3%B1a+y+deseo+solicitar+presupuesto+de+IPTV+Profesional."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-300" />
+          <span>Contactar Departamento B2B</span>
+        </a>
+      </div>
+
+      <!-- Consumer & Pro Plans -->
+      <PricingCard />
+
+      <!-- FAQs -->
+      <FAQSection faqs={b2bFaqs} />
+
+      <!-- Contact Form -->
+      <ContactForm />
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

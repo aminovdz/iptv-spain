@@ -1,0 +1,235 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Hero from '../../components/Hero.astro';
+import LiveScores from '../../components/LiveScores.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import SupportedDevices from '../../components/SupportedDevices.astro';
+import UserReviewsSection from '../../components/UserReviewsSection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { MapPin, Server, Wifi, Zap, CheckCircle2, ArrowRight } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const citiesData = [
+    {
+      name: "Madrid",
+      slug: "madrid",
+      region: "Comunidad de Madrid",
+      postalCode: "28001",
+      population: "3,3 millones de habitantes",
+      localClub: "Real Madrid y Atlético de Madrid",
+      datacenterHub: "Punto Neutro ESpanix & Interxion Madrid",
+      latency: "4 ms",
+      isps: "Fibra óptica simétrica hasta 10 Gbps (Telefónica, Orange, Vodafone, Digi, MásMóvil)",
+      localDetails: "En la capital de España, la interconexión directa con el punto neutro ESpanix garantiza latencias mínimas inferiores a 5 ms. Vive los derbis madrileños y las noches europeas en el Santiago Bernabéu o el Metropolitano en 4K Ultra HD sin cortes.",
+      metaTitle: "IPTV en Madrid — Streaming 4K Sin Cortes y Pago con Bizum",
+      metaDescription: "Servicio oficial de IPTV en Madrid. Acceso a LaLiga, Champions League y televisión en 4K Ultra HD con servidores locales de 10 Gbps y tecnología Anti-Freeze 9.8™."
+    },
+    {
+      name: "Barcelona",
+      slug: "barcelona",
+      region: "Cataluña",
+      postalCode: "08001",
+      population: "1,6 millones de habitantes",
+      localClub: "FC Barcelona y RCD Espanyol",
+      datacenterHub: "Punto Neutro CATNIX & Equinix Barcelona",
+      latency: "5 ms",
+      isps: "Fibra óptica ultrarrápida (Movistar, Adamo, Digi, Orange, Vodafone)",
+      localDetails: "Conexión preferente a través del anillo de fibra CATNIX en Cataluña. Disfruta de todos los partidos del Barça en Montjuïc y de canales autonómicos como TV3 en alta resolución sin retrasos de señal.",
+      metaTitle: "IPTV en Barcelona — Streaming 4K Estable y Sin Cortes",
+      metaDescription: "IPTV en Barcelona y toda Cataluña. Transmisión estable a 60 FPS con tecnología Anti-Freeze 9.8™, LaLiga en directo y activación en 2 minutos vía WhatsApp."
+    },
+    {
+      name: "Valencia",
+      slug: "valencia",
+      region: "Comunidad Valenciana",
+      postalCode: "46001",
+      population: "800.000 habitantes",
+      localClub: "Valencia CF y Levante UD",
+      datacenterHub: "Hub Levante & NIX Mediterráneo",
+      latency: "6 ms",
+      isps: "Redes de fibra óptica de alta velocidad y conexiones 5G",
+      localDetails: "Servidores enrutados directamente para la Comunidad Valenciana con soporte específico para canales autonómicos y cobertura íntegra de competiciones deportivas en directo a 60 FPS.",
+      metaTitle: "IPTV en Valencia — Fútbol en Directo 4K y Activación Rápida",
+      metaDescription: "Descubre el mejor IPTV en Valencia. Servidores dedicados anti-buffering para ver LaLiga y cine en 4K. Prueba de 24 horas y pago seguro con Bizum."
+    },
+    {
+      name: "Sevilla",
+      slug: "sevilla",
+      region: "Andalucía",
+      postalCode: "41001",
+      population: "680.000 habitantes",
+      localClub: "Sevilla FC y Real Betis Balompié",
+      datacenterHub: "Nodo Sur Andalucía & Interconexión Sevilla",
+      latency: "7 ms",
+      isps: "Fibra óptica FTTH y redes móviles 5G",
+      localDetails: "La pasión por el fútbol en Sevilla exige una señal que jamás se congele en El Gran Derbi. Nuestros servidores en Andalucía absorben los picos de audiencia con total holgura.",
+      metaTitle: "IPTV en Sevilla — Todos los Partidos de LaLiga Sin Cortes",
+      metaDescription: "Servicio de IPTV en Sevilla. Calidad 4K sin interrupciones para vivir el fútbol del Sevilla y el Betis. Activación instantánea y soporte 24/7 en español."
+    },
+    {
+      name: "Zaragoza",
+      slug: "zaragoza",
+      region: "Aragón",
+      postalCode: "50001",
+      population: "675.000 habitantes",
+      localClub: "Real Zaragoza",
+      datacenterHub: "Corredor Central Digital Ebro",
+      latency: "6 ms",
+      isps: "Fibra óptica de alta densidad y 5G",
+      localDetails: "Ubicación estratégica en el corredor digital del Ebro que ofrece un rendimiento de enrutamiento excepcional para Smart TV y Fire TV Sticks en todo Aragón.",
+      metaTitle: "IPTV en Zaragoza — Televisión y Deportes en 4K Ultra HD",
+      metaDescription: "Disfruta de IPTV en Zaragoza con máxima fluidez. Compatible con Smart TV, Firestick y Android. Todo el fútbol sin permanencia ni intermediarios."
+    },
+    {
+      name: "Málaga",
+      slug: "malaga",
+      region: "Andalucía (Costa del Sol)",
+      population: "580.000 habitantes",
+      localClub: "Málaga CF",
+      datacenterHub: "Punto de Aterrizaje Submarino Málaga & Hub Sur",
+      latency: "7 ms",
+      isps: "Fibra óptica internacional y operadores nacionales",
+      localDetails: "Ideal tanto para residentes locales como para la comunidad internacional en la Costa del Sol. Accede a canales nacionales españoles y transmisiones mundiales en 4K.",
+      metaTitle: "IPTV en Málaga y Costa del Sol — Streaming 4K Sin Permanencia",
+      metaDescription: "Servicio de IPTV en Málaga. Disfruta de LaLiga, eventos deportivos y canales internacionales con tecnología Anti-Freeze 9.8™. Prueba 24 horas."
+    },
+    {
+      name: "Bilbao",
+      slug: "bilbao",
+      region: "País Vasco",
+      postalCode: "48001",
+      population: "350.000 habitantes",
+      localClub: "Athletic Club",
+      datacenterHub: "Nodo Euskadi & Red Cantábrica",
+      latency: "6 ms",
+      isps: "Redes Euskaltel, Telefónica y fibra óptica de última generación",
+      localDetails: "Rendimiento óptimo para seguir al Athletic Club en San Mamés y las competiciones europeas con el flujo de vídeo a 60 fotogramas por segundo más nítido del mercado.",
+      metaTitle: "IPTV en Bilbao — Streaming Deportivo 4K Estable",
+      metaDescription: "IPTV en Bilbao y País Vasco. Tecnología Anti-Freeze 9.8™ para ver todos los partidos sin cortes. Activación en 2 minutos con Bizum."
+    },
+    {
+      name: "Murcia",
+      slug: "murcia",
+      region: "Región de Murcia",
+      postalCode: "30001",
+      population: "460.000 habitantes",
+      localClub: "Real Murcia",
+      datacenterHub: "Nodo Sureste Mediterráneo",
+      latency: "7 ms",
+      isps: "Fibra óptica FTTH y conexiones 4G/5G",
+      localDetails: "Baja latencia garantizada y acceso instantáneo a los principales canales deportivos y de entretenimiento en toda la Región de Murcia.",
+      metaTitle: "IPTV en Murcia — Calidad 4K y Cero Buffer Garantizado",
+      metaDescription: "Contrata IPTV en Murcia con soporte 24/7 en WhatsApp y pago por Bizum. Prueba de 24 horas gratis para Smart TV y Fire TV Stick."
+    }
+  ];
+
+  return citiesData.map((city) => ({
+    params: { city: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={city.metaTitle}
+  description={city.metaDescription}
+  canonicalURL={`https://iptvespana.cloud/locations/${city.slug}`}
+  schemaType="city"
+  cityName={city.name}
+>
+  <StickyHeader currentPath={`/locations/${city.slug}`} />
+
+  <main class="flex-1">
+    <!-- Local Hero -->
+    <Hero
+      headline={`Servicio IPTV en ${city.name} — Streaming 4K Sin Cortes`}
+      subheadline={`Disfruta de la mejor televisión digital en ${city.name} (${city.region}). Acceso inmediato a LaLiga en directo, eventos deportivos y canales en 4K Ultra HD sin permanencia.`}
+      cityName={city.name}
+    />
+
+    <!-- Local Infrastructure Highlights -->
+    <section class="py-12 bg-[#06070B] border-y border-white/[0.08]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs">
+          <div class="p-4 rounded-xl bg-[#0F111A] border border-white/[0.06] flex items-center gap-3">
+            <Server class="w-6 h-6 text-[#DC2626] flex-shrink-0" />
+            <div>
+              <span class="text-gray-400 block text-[10px] uppercase font-bold">Centro de Conexión</span>
+              <strong class="text-white text-xs">{city.datacenterHub}</strong>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0F111A] border border-white/[0.06] flex items-center gap-3">
+            <Wifi class="w-6 h-6 text-emerald-400 flex-shrink-0" />
+            <div>
+              <span class="text-gray-400 block text-[10px] uppercase font-bold">Latencia Local Promedio</span>
+              <strong class="text-emerald-400 text-xs font-mono">{city.latency} (Enrutamiento Directo)</strong>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0F111A] border border-white/[0.06] flex items-center gap-3">
+            <Zap class="w-6 h-6 text-[#F59E0B] flex-shrink-0" />
+            <div>
+              <span class="text-gray-400 block text-[10px] uppercase font-bold">Deporte en {city.name}</span>
+              <strong class="text-white text-xs">{city.localClub}</strong>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0F111A] border border-white/[0.06] flex items-center gap-3">
+            <MapPin class="w-6 h-6 text-cyan-400 flex-shrink-0" />
+            <div>
+              <span class="text-gray-400 block text-[10px] uppercase font-bold">Población Cobertura</span>
+              <strong class="text-white text-xs">{city.population}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-[#0F111A]/80 border border-white/[0.05] text-xs text-gray-300">
+          <p><strong>Detalle de Cobertura Local en {city.name}:</strong> {city.localDetails} Compatible con {city.isps}.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Matches -->
+    <LiveScores />
+
+    <!-- Feature Grid -->
+    <FeatureGrid />
+
+    <!-- Pricing (12-Month Plan First) -->
+    <PricingCard />
+
+    <!-- Process -->
+    <ProcessSteps />
+
+    <!-- Supported Devices -->
+    <SupportedDevices />
+
+    <!-- Reviews -->
+    <UserReviewsSection />
+
+    <!-- CTA Section -->
+    <CTASection />
+
+    <!-- FAQs -->
+    <FAQSection />
+
+    <!-- Contact Form -->
+    <ContactForm />
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

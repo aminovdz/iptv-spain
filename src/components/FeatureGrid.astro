@@ -1,0 +1,111 @@
+---
+import { Zap, ShieldCheck, Tv, Trophy, Radio, Smartphone, Clock, CreditCard, RotateCcw, Headphones, Lock } from 'lucide-astro';
+
+const features = [
+  {
+    icon: Zap,
+    title: "Tecnología Anti-Freeze™ 9.8",
+    description: "Nuestros servidores dedicados balanceados por CDN evitan saturaciones y congelaciones de imagen incluso en partidos de máxima audiencia.",
+    badge: "Estabilidad 99.9%",
+    badgeColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+  },
+  {
+    icon: Trophy,
+    title: "Todo el Fútbol y Deportes en Directo",
+    description: "LaLiga EA Sports, Champions League, Europa League, Fórmula 1 (con Fernando Alonso), MotoGP, tenis y competiciones internacionales en 4K.",
+    badge: "Fútbol Premium",
+    badgeColor: "text-[#F59E0B] bg-[#F59E0B]/10 border-[#F59E0B]/30"
+  },
+  {
+    icon: Tv,
+    title: "Calidad 4K Ultra HD a 60 FPS",
+    description: "Resolución cristalina con tasa de refresco a 60 fotogramas por segundo, ideal para pantallas grandes y transmisiones deportivas de alta velocidad.",
+    badge: "Ultra HD",
+    badgeColor: "text-blue-400 bg-blue-500/10 border-blue-500/30"
+  },
+  {
+    icon: CreditCard,
+    title: "Pago Instantáneo con Bizum",
+    description: "Aceptamos Bizum, la forma de pago preferida en España por más de 22 millones de personas. También tarjetas de crédito, PayPal y criptomonedas.",
+    badge: "Esencial en España",
+    badgeColor: "text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/30"
+  },
+  {
+    icon: Radio,
+    title: "Guía EPG y Replay 7 Días",
+    description: "Guía interactiva de programación actualizada al segundo y opción de ver programas y partidos emitidos en los últimos 7 días.",
+    badge: "Puesta al Día",
+    badgeColor: "text-purple-400 bg-purple-500/10 border-purple-500/30"
+  },
+  {
+    icon: Smartphone,
+    title: "Compatibilidad Multi-Dispositivo",
+    description: "Instala y disfruta en Smart TV (Samsung, LG, Philips), Fire TV Stick, Android TV, Apple TV, iPhone, Android, tablets y ordenadores.",
+    badge: "Universal",
+    badgeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30"
+  },
+  {
+    icon: Lock,
+    title: "Sin Permanencia ni Contratos",
+    description: "A diferencia de las operadoras tradicionales (Movistar/Telefónica), tú decides cuándo renovar. Sin letras pequeñas ni cobros automáticos sorpresa.",
+    badge: "Libertad Total",
+    badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/30"
+  },
+  {
+    icon: Headphones,
+    title: "Soporte VIP 24/7 en Español",
+    description: "Equipo técnico dedicado en WhatsApp listo para asistirte en la configuración, resolución de dudas o activación en menos de 2 minutos.",
+    badge: "Atención Exprés",
+    badgeColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+  }
+];
+---
+
+<section id="features" class="py-20 bg-[#08090D] relative overflow-hidden" aria-labelledby="features-title">
+  <!-- Glow Accents -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#DC2626]/05 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        ¿Por Qué Elegir IPTV España?
+      </div>
+      <h2 id="features-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Tecnología de Vanguardia para una <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Experiencia Sin Cortes</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Diseñado específicamente para el público español que exige máxima estabilidad durante los partidos de fútbol y eventos en directo.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((feature) => {
+        const IconComponent = feature.icon;
+        return (
+          <div class="group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 p-6 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-[0_15px_30px_-10px_rgba(220,38,38,0.25)] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#161926] to-[#08090D] border border-white/[0.1] flex items-center justify-center text-[#DC2626] group-hover:scale-110 group-hover:text-[#F59E0B] transition-all">
+                  <IconComponent class="w-6 h-6" />
+                </div>
+                <span class={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${feature.badgeColor}`}>
+                  {feature.badge}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#F59E0B] transition-colors">
+                {feature.title}
+              </h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/[0.05] flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
+              <ShieldCheck class="w-3.5 h-3.5" />
+              <span>Garantía de Calidad IPTV España</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

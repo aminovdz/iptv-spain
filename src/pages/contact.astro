@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Contacto y Soporte Oficial 24/7 — IPTV España ${currentYear}`}
+  description="Contacta con el equipo oficial de IPTV España. Soporte técnico 24/7 en español por WhatsApp, canales VIP de Telegram y atención por correo electrónico."
+  canonicalURL="https://iptvespana.cloud/contact"
+>
+  <StickyHeader currentPath="/contact" />
+
+  <main class="flex-1 py-12 bg-[#08090D]">
+    <ContactForm />
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

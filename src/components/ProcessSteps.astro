@@ -1,0 +1,76 @@
+---
+import { MessageCircle, Settings, Tv, ArrowRight } from 'lucide-astro';
+
+const steps = [
+  {
+    number: "01",
+    title: "Elige tu Plan o Prueba Gratis",
+    description: "Contáctanos por WhatsApp y selecciona tu suscripción preferida (recomendamos el Plan 12 Meses) o solicita una prueba de 24 horas sin compromiso.",
+    icon: MessageCircle,
+    color: "from-[#DC2626] to-[#B91C1C]"
+  },
+  {
+    number: "02",
+    title: "Configuración Rápida en 2 Minutos",
+    description: "Te enviamos al instante tus credenciales de acceso (enlace M3U o API Xtream Codes) junto con la guía específica para tu Smart TV, Firestick o móvil.",
+    icon: Settings,
+    color: "from-[#F59E0B] to-[#D97706]"
+  },
+  {
+    number: "03",
+    title: "¡Disfruta del Streaming en 4K!",
+    description: "Abre tu aplicación favorita (TiviMate, IPTV Smarters o similar) y sumérgete en el mejor fútbol de LaLiga y competiciones en directo sin cortes.",
+    icon: Tv,
+    color: "from-emerald-500 to-teal-600"
+  }
+];
+---
+
+<section class="py-20 bg-[#08090D] relative overflow-hidden" aria-labelledby="steps-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Activación Rápida
+      </div>
+      <h2 id="steps-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        ¿Cómo Funciona? Empieza en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">3 Sencillos Pasos</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Sin instalaciones complejas ni visitas de instaladores a tu domicilio. En 2 minutos estarás viendo la tele.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((step, index) => {
+        const IconComponent = step.icon;
+        return (
+          <div class="relative rounded-3xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg group">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-4xl font-black text-white/10 group-hover:text-[#DC2626]/30 transition-colors">
+                  {step.number}
+                </span>
+                <div class={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
+                  <IconComponent class="w-6 h-6" />
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#F59E0B] transition-colors">
+                {step.title}
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-xs font-bold text-emerald-400">
+              <span>Activación asistida 24/7</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

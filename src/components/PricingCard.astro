@@ -1,0 +1,247 @@
+---
+import { Check, Sparkles, ShieldCheck, MessageCircle, Zap, CreditCard } from 'lucide-astro';
+
+interface Plan {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  monthlyEquivalent: string;
+  savings?: string;
+  featured?: boolean;
+  popularBadge?: string;
+  bonus?: string;
+  features: string[];
+  ctaText: string;
+  whatsappMessage: string;
+}
+
+// Strict Rule: Always start the pricing table/cards with the 12-month plan prominently displayed
+const plans: Plan[] = [
+  {
+    id: "12-months",
+    name: "Plan 12 Meses + Reproductor VIP",
+    duration: "12 Meses",
+    price: "64,99",
+    monthlyEquivalent: "solo ~5,41 € / mes",
+    savings: "AHORRA 60% · PLAN N°1 EN ESPAÑA",
+    featured: true,
+    popularBadge: "MÁS VENDIDO EN ESPAÑA",
+    bonus: "Regalo exclusivo: Activación de reproductor premium incluida gratis",
+    features: [
+      "Reproductor Premium activado gratis (ahorro de 15 €)",
+      "Streaming Ultra HD 4K y 8K a 60 FPS",
+      "Tecnología Anti-Freeze 9.8™ sin cortes en El Clásico",
+      "Todo el fútbol de LaLiga EA Sports y Champions League",
+      "Guía EPG completa y Replay de transmisiones 7 días",
+      "Compatible con Smart TV, Fire TV Stick, Android y PC",
+      "Activación instantánea en menos de 2 minutos vía WhatsApp",
+      "Soporte técnico prioritario 24/7 en español",
+      "Garantía de devolución total válida durante 24 horas"
+    ],
+    ctaText: "Elegir Plan 12 Meses (64,99 €)",
+    whatsappMessage: "Hola%21+Deseo+contratar+el+Plan+12+Meses+de+IPTV+Espa%C3%B1a+por+64%2C99+%E2%82%AC+con+el+reproductor+incluido."
+  },
+  {
+    id: "6-months",
+    name: "Plan 6 Meses",
+    duration: "6 Meses",
+    price: "39,99",
+    monthlyEquivalent: "soit ~6,66 € / mes",
+    savings: "PLAN SEMESTRAL RECOMENDADO",
+    featured: false,
+    popularBadge: "POPULAR",
+    bonus: "Configuración asistida paso a paso por WhatsApp",
+    features: [
+      "Streaming en 4K Ultra HD y Full HD 60 FPS",
+      "Tecnología Anti-Freeze 9.8™ anti-saturación",
+      "Acceso completo a todos los partidos de fútbol",
+      "Guía electrónica de programas (EPG)",
+      "Compatible con todos tus dispositivos",
+      "Activación rápida en 2 minutos",
+      "Atención técnica 24/7 en español",
+      "Garantía de reembolso de 24 horas"
+    ],
+    ctaText: "Elegir Plan 6 Meses (39,99 €)",
+    whatsappMessage: "Hola%21+Deseo+contratar+el+Plan+6+Meses+de+IPTV+Espa%C3%B1a+por+39%2C99+%E2%82%AC."
+  },
+  {
+    id: "3-months",
+    name: "Plan 3 Meses",
+    duration: "3 Meses",
+    price: "24,99",
+    monthlyEquivalent: "soit ~8,33 € / mes",
+    savings: "PLAN TRIMESTRAL FLEXIBLE",
+    featured: false,
+    bonus: "Ideal para seguir el final de temporada",
+    features: [
+      "Calidad Full HD y 4K Ultra HD",
+      "Estabilidad garantizada 99.9% de uptime",
+      "Partidos de fútbol y deportes en directo",
+      "Compatible con Smart TV y Fire TV Stick",
+      "Sin permanencia ni renovación obligatoria",
+      "Soporte 24/7 por WhatsApp"
+    ],
+    ctaText: "Elegir Plan 3 Meses (24,99 €)",
+    whatsappMessage: "Hola%21+Deseo+contratar+el+Plan+3+Meses+de+IPTV+Espa%C3%B1a+por+24%2C99+%E2%82%AC."
+  },
+  {
+    id: "1-month",
+    name: "Plan 1 Mes",
+    duration: "1 Mes",
+    price: "12,99",
+    monthlyEquivalent: "pago único sin compromiso",
+    savings: "PRUEBA SIN PERMANENCIA",
+    featured: false,
+    bonus: "Acceso completo inmediato",
+    features: [
+      "Acceso total a fútbol y canales en directo",
+      "Calidad Full HD y 4K",
+      "Servidores Anti-Freeze™",
+      "Activación instantánea",
+      "Sin renovación automática",
+      "Soporte técnico por WhatsApp"
+    ],
+    ctaText: "Elegir Plan 1 Mes (12,99 €)",
+    whatsappMessage: "Hola%21+Deseo+contratar+el+Plan+1+Mes+de+IPTV+Espa%C3%B1a+por+12%2C99+%E2%82%AC."
+  }
+];
+---
+
+<section id="pricing" class="py-24 bg-[#08090D] relative overflow-hidden" aria-labelledby="pricing-title">
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#DC2626]/06 rounded-full blur-[160px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Tarifas Claras y Transparentes
+      </div>
+      <h2 id="pricing-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Elige Tu Plan de IPTV España <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Sin Permanencia</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Sin contratos atados ni costes ocultos. Aceptamos <strong class="text-amber-400">Bizum</strong>, tarjeta de crédito y criptomonedas con garantía de reembolso de 24 horas.
+      </p>
+
+      <!-- Movistar & DAZN vs IPTV España Callout Box -->
+      <div class="mt-8 p-4 rounded-2xl bg-[#0F111A] border border-[#DC2626]/30 max-w-xl mx-auto text-xs sm:text-sm text-gray-300 flex items-center justify-between gap-4">
+        <div>
+          <span class="text-gray-400 block">Movistar+ + DAZN:</span>
+          <span class="text-red-400 font-bold line-through">~90,00 € / mes</span>
+        </div>
+        <div class="text-center">
+          <span class="text-[#F59E0B] font-extrabold">VS</span>
+        </div>
+        <div class="text-right">
+          <span class="text-white block font-bold">IPTV España 12 Meses:</span>
+          <span class="text-emerald-400 font-extrabold text-base sm:text-lg">5,41 € / mes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Cards Grid: 12-Month Plan FIRST -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+      {plans.map((plan) => (
+        <div
+          class={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
+            plan.featured
+              ? 'bg-gradient-to-b from-[#1C0E12] via-[#0F111A] to-[#0F111A] border-2 border-[#DC2626] shadow-[0_0_40px_rgba(220,38,38,0.3)] lg:-translate-y-3'
+              : 'bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 shadow-lg hover:-translate-y-1'
+          }`}
+        >
+          {/* Featured Badge */}
+          {plan.popularBadge && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#DC2626] to-[#F59E0B] text-white text-[11px] font-black uppercase tracking-wider shadow-md whitespace-nowrap">
+              {plan.popularBadge}
+            </div>
+          )}
+
+          <div>
+            <div class="mb-4">
+              <h3 class="text-xl font-bold text-white mb-1">{plan.name}</h3>
+              <p class="text-xs text-gray-400 font-medium">{plan.savings}</p>
+            </div>
+
+            <!-- Price Display in Euros -->
+            <div class="mb-6 pb-6 border-b border-white/[0.08]">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-white">{plan.price}</span>
+                <span class="text-xl font-bold text-[#F59E0B]">€</span>
+              </div>
+              <span class="text-xs font-semibold text-emerald-400 block mt-1">
+                {plan.monthlyEquivalent}
+              </span>
+              {plan.bonus && (
+                <div class="mt-3 p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-semibold text-emerald-300 flex items-center gap-1.5">
+                  <Sparkles class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span>{plan.bonus}</span>
+                </div>
+              )}
+            </div>
+
+            <!-- Features List -->
+            <ul class="space-y-3 mb-8 text-xs text-gray-300">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2.5">
+                  <div class="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check class="w-2.5 h-2.5 text-emerald-400" />
+                  </div>
+                  <span class="leading-relaxed">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Card CTA Button -->
+          <div class="pt-4 border-t border-white/[0.06] mt-auto">
+            <a
+              href={`https://wa.me/18036582620?text=${plan.whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 ${
+                plan.featured
+                  ? 'bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] hover:scale-[1.02]'
+                  : 'bg-[#161926] hover:bg-[#DC2626] text-white border border-white/[0.1] hover:border-[#DC2626]'
+              }`}
+            >
+              <MessageCircle class="w-4 h-4" />
+              <span>{plan.ctaText}</span>
+            </a>
+            
+            <div class="flex items-center justify-center gap-1.5 mt-3 text-[10px] text-gray-400">
+              <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
+              <span>Garantía de devolución válida 24h</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Payment Trust Banner -->
+    <div class="mt-16 p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] text-center max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3 text-left">
+        <CreditCard class="w-8 h-8 text-[#F59E0B] flex-shrink-0" />
+        <div>
+          <h4 class="text-white font-bold text-sm">Formas de Pago Seguras para Clientes en España</h4>
+          <p class="text-gray-400 text-xs">Paga con Bizum en 3 segundos desde la app de tu banco, o con tarjeta y PayPal.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1.5 rounded-lg bg-[#DC2626]/20 border border-[#DC2626]/40 text-[#F59E0B] font-bold text-xs">
+          Bizum
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-gray-200 text-xs font-medium">
+          Visa / Mastercard
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-gray-200 text-xs font-medium">
+          PayPal
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>

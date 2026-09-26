@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Tv, Home, MessageCircle, ArrowRight } from 'lucide-astro';
+---
+
+<Layout
+  title="Página No Encontrada (Error 404) — IPTV España"
+  description="La página que buscas no existe o ha sido trasladada. Vuelve al inicio o contacta con el soporte oficial de IPTV España."
+  noindex={true}
+>
+  <StickyHeader />
+
+  <main class="flex-1 flex items-center justify-center py-24 sm:py-32 bg-[#08090D] relative overflow-hidden">
+    <!-- Ambient Red Glow -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-96 h-96 bg-[#DC2626]/10 rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-xl mx-auto px-4 text-center relative z-10">
+      
+      <div class="w-20 h-20 rounded-3xl bg-[#0F111A] border border-[#DC2626]/40 flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+        <Tv class="w-10 h-10 text-[#DC2626]" />
+      </div>
+
+      <span class="inline-block px-3 py-1 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-black uppercase tracking-wider mb-4">
+        Error 404 · Canal Sin Señal
+      </span>
+
+      <h1 class="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        Página No Encontrada
+      </h1>
+
+      <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-10">
+        El canal o enlace que buscas ha cambiado de frecuencia o ya no está disponible. No te preocupes, nuestra señal principal de streaming en 4K sigue activa al 100%.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all"
+        >
+          <Home class="w-4 h-4" />
+          <span>Volver al Inicio</span>
+        </a>
+
+        <a
+          href="https://wa.me/18036582620?text=Hola%21+He+tenido+un+problema+en+la+web+de+IPTV+Espa%C3%B1a."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#0F111A] border border-white/[0.1] text-gray-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-all"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-400" />
+          <span>Contactar Soporte</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,187 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { getCollection } from 'astro:content';
+import { Clock, Calendar, CheckCircle, ArrowRight, MessageCircle, Share2, BookOpen } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const guideEntries = await getCollection('guides');
+  return guideEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const faqs = entry.data.faqs || [
+  { 
+    question: "¿Es seguro y privado utilizar este servicio en España?", 
+    answer: "Sí. Nuestra plataforma implementa encriptación SSL de extremo a extremo y protocolos seguros que garantizan total confidencialidad en tu navegación doméstica." 
+  },
+  { 
+    question: "¿Qué velocidad de conexión a internet necesito?", 
+    answer: "Para disfrutar de transmisiones en 4K Ultra HD a 60 FPS sin buffering recomendamos una conexión de fibra óptica de al menos 25 Mbps." 
+  }
+];
+
+const currentYear = new Date().getFullYear();
+const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout
+  title={`${entry.data.title} | IPTV España`}
+  description={entry.data.description}
+  canonicalURL={`https://iptvespana.cloud/guides/${entry.slug}`}
+  type="article"
+  schemaType="article"
+  publishedTime={entry.data.pubDate.toISOString()}
+  modifiedTime={entry.data.updatedDate ? entry.data.updatedDate.toISOString() : entry.data.pubDate.toISOString()}
+  authorName={entry.data.author}
+  faqs={faqs}
+>
+  <StickyHeader currentPath="/guides" />
+
+  <main class="flex-1 py-12 sm:py-20 bg-[#08090D]">
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav class="text-xs text-gray-400 mb-6 flex items-center space-x-2" aria-label="Miga de pan">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <a href="/guides" class="hover:text-white transition-colors">Guías</a>
+        <span>/</span>
+        <span class="text-gray-200 truncate">{entry.data.title}</span>
+      </nav>
+
+      <!-- H1 Article Title Header -->
+      <header class="mb-10">
+        <div class="inline-block bg-[#DC2626]/20 border border-[#DC2626]/40 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+          {entry.data.category || 'Guía Especializada'}
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.18] mb-6">
+          {entry.data.title}
+        </h1>
+
+        <div class="flex flex-wrap items-center text-xs text-gray-400 gap-4 border-b border-white/[0.08] pb-6">
+          <span class="flex items-center gap-1.5">
+            <Calendar class="w-3.5 h-3.5 text-gray-400" />
+            <span>Publicado: {formattedPubDate}</span>
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1.5">
+            <Clock class="w-3.5 h-3.5 text-gray-400" />
+            <span>⏱️ {entry.data.readingTime || '6 min de lectura'}</span>
+          </span>
+          <span>•</span>
+          <span class="text-emerald-400 flex items-center gap-1 font-semibold">
+            <CheckCircle class="w-3.5 h-3.5" /> Verificado por Experto en Telecomunicaciones
+          </span>
+        </div>
+      </header>
+
+      <!-- Quick Summary / Featured Snippet (Position 0) Callout Box -->
+      <div class="bg-[#0F111A] border-l-4 border-[#DC2626] p-6 rounded-r-2xl mb-10 shadow-xl">
+        <h2 class="text-base font-black text-white mb-2 flex items-center gap-2">
+          <span>⚡</span> Resumen Rápido (Puntos Clave)
+        </h2>
+        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3">
+          {entry.data.quickSummary || 'Conoce las conclusiones principales y los pasos indispensables para disfrutar de streaming 4K de máxima estabilidad en España.'}
+        </p>
+        <ul class="text-xs sm:text-sm text-gray-300 space-y-2 list-disc list-inside">
+          <li>Máxima calidad visual en 4K Ultra HD gracias a la tecnología Anti-Freeze 9.8™.</li>
+          <li>Configuración asistida en 2 minutos para Smart TV, Firestick y Android Box.</li>
+          <li>Soporte técnico 24/7 en español y activación inmediata vía WhatsApp con pago por Bizum.</li>
+        </ul>
+      </div>
+
+      <!-- Table of Contents -->
+      {entry.data.toc && entry.data.toc.length > 0 && (
+        <div class="bg-[#0F111A]/60 border border-white/[0.08] rounded-2xl p-6 mb-10">
+          <div class="font-bold text-white text-sm uppercase tracking-wider mb-3 flex items-center gap-2">
+            <BookOpen class="w-4 h-4 text-[#F59E0B]" />
+            <span>Índice de Contenidos</span>
+          </div>
+          <ul class="space-y-2 text-xs sm:text-sm text-gray-400">
+            {entry.data.toc.map((item) => (
+              <li>
+                <a href={item.anchor} class="hover:text-[#F59E0B] transition-colors flex items-center gap-2">
+                  <span class="text-xs text-[#DC2626] font-bold">#</span> {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Main Markdown Content -->
+      <div class="prose prose-invert prose-red max-w-none 
+        prose-headings:font-black prose-headings:tracking-tight prose-headings:text-white
+        prose-h2:text-2xl prose-h2:border-b prose-h2:border-white/[0.08] prose-h2:pb-3 prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-amber-400
+        prose-h4:text-lg prose-h4:mt-6 prose-h4:text-white
+        prose-p:text-gray-300 prose-p:text-sm sm:prose-p:text-base prose-p:leading-relaxed prose-p:mb-4
+        prose-ul:text-gray-300 prose-ul:text-sm prose-ul:space-y-2 prose-ul:my-4
+        prose-ol:text-gray-300 prose-ol:text-sm prose-ol:space-y-2 prose-ol:my-4
+        prose-strong:text-white prose-strong:font-bold
+        prose-a:text-[#F59E0B] prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white
+        prose-table:border-collapse prose-table:w-full prose-table:my-6 prose-table:text-xs sm:prose-table:text-sm
+        prose-th:bg-[#161926] prose-th:p-3 prose-th:text-white prose-th:border prose-th:border-white/[0.1]
+        prose-td:p-3 prose-td:border prose-td:border-white/[0.06] prose-td:text-gray-300">
+        <Content />
+      </div>
+
+      <!-- Mid/Bottom Article High-Converting Banner -->
+      <div class="my-14 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#1C0E12] via-[#0F111A] to-[#161926] border border-[#DC2626]/40 text-center relative overflow-hidden shadow-2xl">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#DC2626]/20 rounded-full blur-2xl pointer-events-none"></div>
+        <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">
+          Experimenta IPTV España Hoy Mismo Sin Riesgo
+        </h3>
+        <p class="text-gray-300 max-w-xl mx-auto mb-8 text-xs sm:text-sm leading-relaxed">
+          Comienza en 2 minutos con nuestra prueba gratuita de 24 horas. Activación directa a través de WhatsApp y pago fácil con Bizum.
+        </p>
+        <a
+          href="https://wa.me/18036582620?text=Hola%21+He+le%C3%ADdo+vuestra+gu%C3%ADa+y+deseo+activar+mi+prueba+de+24+horas."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:scale-105 transition-all"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-300" />
+          <span>Iniciar Prueba 24h en WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- E-E-A-T Author & Fact-Check Card -->
+      <footer class="mt-14 pt-8 border-t border-white/[0.08] flex items-center gap-4 bg-[#0F111A] p-6 rounded-2xl">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#DC2626] to-[#F59E0B] flex items-center justify-center text-white font-black text-lg shadow-md shrink-0">
+          ES
+        </div>
+        <div>
+          <div class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+            <span>{entry.data.author || 'Equipo Editorial IPTV España'}</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold uppercase">
+              Verificado
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">
+            Especialistas en redes de streaming digital, arquitecturas IPTV privadas, codecs de vídeo H.265 y optimización de conectividad en España.
+          </p>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

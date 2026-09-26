@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import LiveScores from '../components/LiveScores.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import CitiesList from '../components/CitiesList.astro';
+import FAQSection, { defaultFaqs } from '../components/FAQSection.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`IPTV España ${currentYear} — Streaming 4K Sin Cortes con Anti-Freeze 9.8™`}
+  description="El mejor servicio de IPTV en España con tecnología Anti-Freeze 9.8™, LaLiga en directo, 99.9% de uptime garantizado, sin permanencia y pago instantáneo con Bizum."
+  canonicalURL="https://iptvespana.cloud/"
+  schemaType="home"
+  faqs={defaultFaqs}
+>
+  <!-- 1. StickyHeader with Live Status & WhatsApp CTA -->
+  <StickyHeader currentPath="/" />
+
+  <main class="flex-1">
+    <!-- 2. Hero Section -->
+    <Hero />
+
+    <!-- 3. LiveScores Ticker (Edge-Cached Real LaLiga Fixtures) -->
+    <LiveScores />
+
+    <!-- 4. Features Grid (Anti-Freeze™, 4K, EPG, 99.9% Uptime) -->
+    <FeatureGrid />
+
+    <!-- 5. Pricing Section (12-Month Plan FIRST as Best Value) -->
+    <PricingCard />
+
+    <!-- 6. ProcessSteps (3 simple steps: Order -> Get M3U/Xtream -> Enjoy) -->
+    <ProcessSteps />
+
+    <!-- 7. SupportedDevices (Smart TV, Firestick, Apple TV, Android, MAG, PC) -->
+    <SupportedDevices />
+
+    <!-- 8. UserReviewsSection (4.9/5 stars matching AggregateRating schema) -->
+    <UserReviewsSection />
+
+    <!-- High-Converting Mid CTA -->
+    <CTASection />
+
+    <!-- 9. ReferralBanner (Earn free months) -->
+    <ReferralBanner />
+
+    <!-- 10. CitiesList (Internal linking to local city pages) -->
+    <CitiesList />
+
+    <!-- 11. FAQSection (Structured accordion matching FAQPage schema) -->
+    <FAQSection />
+
+    <!-- 12. ContactForm (Direct WhatsApp, Telegram and email contact) -->
+    <ContactForm />
+  </main>
+
+  <!-- 13. Footer -->
+  <Footer />
+
+  <!-- Conversion & Engagement Popups -->
+  <ExitPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+  <SocialPopup />
+</Layout>

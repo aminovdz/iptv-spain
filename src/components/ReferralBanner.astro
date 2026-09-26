@@ -1,0 +1,47 @@
+---
+import { Gift, ArrowRight, MessageCircle, Users } from 'lucide-astro';
+
+const whatsappReferralUrl = "https://wa.me/18036582620?text=Hola%21+Deseo+unirme+al+Programa+de+Recomendados+de+IPTV+Espa%C3%B1a+para+ganar+meses+gratis.";
+---
+
+<section class="py-12 bg-[#08090D] relative overflow-hidden" aria-labelledby="referral-banner-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-gradient-to-r from-[#1C0E12] via-[#0F111A] to-[#161926] border border-[#DC2626]/30 p-8 sm:p-12 overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+      
+      <!-- Ambient Glow Behind -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#DC2626]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-2xl text-center lg:text-left relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/20 border border-[#DC2626]/40 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+          <Gift class="w-3.5 h-3.5" />
+          <span>Programa Viral de Recomendados</span>
+        </div>
+        <h2 id="referral-banner-title" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight mb-3">
+          ¿Tienes Amigos que Pagan Demasiado por el Fútbol? <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">¡Gana Meses Gratis!</span>
+        </h2>
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+          Invita a tus amigos, familiares o compañeros de trabajo a IPTV España. Por cada persona que active una suscripción utilizando tu código, recibirás <strong class="text-white font-bold">+1 mes de servicio premium gratuito</strong> añadido a tu cuenta sin límite.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row lg:flex-col items-center gap-4 relative z-10 w-full sm:w-auto">
+        <a
+          href={whatsappReferralUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:scale-105 transition-all whitespace-nowrap"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-300" />
+          <span>Obtener Mi Enlace de Afiliado</span>
+        </a>
+        <a
+          href="/referral"
+          class="text-xs text-gray-400 hover:text-white font-semibold underline underline-offset-4 transition-colors"
+        >
+          Leer condiciones completas del programa
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

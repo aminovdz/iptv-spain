@@ -1,0 +1,115 @@
+---
+import { MapPin, ArrowRight } from 'lucide-astro';
+
+const cities = [
+  {
+    name: "Madrid",
+    slug: "madrid",
+    region: "Comunidad de Madrid",
+    population: "3.3M habitantes",
+    badge: "Capital & Cobertura Total"
+  },
+  {
+    name: "Barcelona",
+    slug: "barcelona",
+    region: "Cataluña",
+    population: "1.6M habitantes",
+    badge: "Fibra Ultra Rápida"
+  },
+  {
+    name: "Valencia",
+    slug: "valencia",
+    region: "Comunidad Valenciana",
+    population: "800K habitantes",
+    badge: "Servidores Mediterráneos"
+  },
+  {
+    name: "Sevilla",
+    slug: "sevilla",
+    region: "Andalucía",
+    population: "680K habitantes",
+    badge: "Máxima Demanda Fútbol"
+  },
+  {
+    name: "Zaragoza",
+    slug: "zaragoza",
+    region: "Aragón",
+    population: "675K habitantes",
+    badge: "Conexión Red Central"
+  },
+  {
+    name: "Málaga",
+    slug: "malaga",
+    region: "Andalucía (Costa del Sol)",
+    population: "580K habitantes",
+    badge: "Comunidad Internacional"
+  },
+  {
+    name: "Bilbao",
+    slug: "bilbao",
+    region: "País Vasco",
+    population: "350K habitantes",
+    badge: "Streaming de Alta Fidelidad"
+  },
+  {
+    name: "Murcia",
+    slug: "murcia",
+    region: "Región de Murcia",
+    population: "460K habitantes",
+    badge: "Baja Latencia"
+  }
+];
+---
+
+<section id="cities" class="py-20 bg-[#08090D] relative overflow-hidden" aria-labelledby="cities-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        Presencia Local en España
+      </div>
+      <h2 id="cities-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Servicio IPTV Optimizado en las <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#F59E0B] to-[#DC2626]">Principales Ciudades</span>
+      </h2>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Enrutamiento directo y puntos de presencia CDN para reducir la latencia de streaming a mínimos históricos en toda la península e islas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {cities.map((city) => (
+        <a
+          href={`/locations/${city.slug}`}
+          class="group p-6 rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#161926] to-[#08090D] border border-white/[0.1] flex items-center justify-center text-[#DC2626] group-hover:scale-110 group-hover:text-[#F59E0B] transition-transform">
+                <MapPin class="w-5 h-5" />
+              </div>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {city.badge}
+              </span>
+            </div>
+
+            <h3 class="text-lg font-bold text-white group-hover:text-[#F59E0B] transition-colors mb-1">
+              IPTV en {city.name}
+            </h3>
+            <p class="text-xs text-gray-400 font-medium mb-1">
+              {city.region}
+            </p>
+            <span class="text-[11px] text-gray-500">
+              {city.population}
+            </span>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-xs font-bold text-[#DC2626] group-hover:text-[#F59E0B] transition-colors">
+            <span>Ver Ofertas en {city.name}</span>
+            <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>

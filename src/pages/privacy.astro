@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldCheck, Lock, Eye, FileText } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Política de Privacidad (RGPD) — IPTV España ${currentYear}`}
+  description="Política de privacidad y protección de datos personales de IPTV España conforme al Reglamento General de Protección de Datos (RGPD) y la LOPDGDD española."
+  canonicalURL="https://iptvespana.cloud/privacy"
+>
+  <StickyHeader currentPath="/privacy" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+          <Lock class="w-3.5 h-3.5" />
+          <span>Protección de Datos & RGPD</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Política de Privacidad
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Última actualización: Enero de {currentYear} · Conforme a las directrices de la Agencia Española de Protección de Datos (AEPD).
+        </p>
+      </div>
+
+      <div class="rounded-3xl bg-[#0F111A] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">1.</span> Responsable del Tratamiento
+          </h2>
+          <p>
+            El responsable del tratamiento de los datos recabados en este sitio web es <strong>IPTV España</strong> (con soporte técnico prestado en cooperación con CastVera Network). Puedes ponerte en contacto con nuestro delegado de protección de datos en cualquier momento a través de:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-gray-400">
+            <li>Correo electrónico de contacto: <code>contact@iptvespana.cloud</code></li>
+            <li>Correo de soporte técnico: <code>support@castvera.com</code></li>
+            <li>Atención en tiempo real: WhatsApp oficial +1 (803) 658-2620</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">2.</span> Datos que Recopilamos y Finalidad
+          </h2>
+          <p>
+            Recopilamos únicamente la información estrictamente necesaria para la prestación del servicio técnico y la entrega de credenciales:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-400">
+            <li><strong>Datos de contacto:</strong> Nombre y número de teléfono / WhatsApp para la entrega de credenciales m3u y asistencia técnica.</li>
+            <li><strong>Datos de pago:</strong> Los pagos por Bizum o tarjeta son gestionados directamente por entidades bancarias con cifrado SSL. En ningún momento almacenamos números completos de tarjetas ni contraseñas bancarias.</li>
+            <li><strong>Datos técnicos anónimos:</strong> Dirección IP truncada y tipo de dispositivo con la finalidad exclusiva de optimizar el enrutamiento CDN y prevenir saturaciones de servidor.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">3.</span> Base Legal para el Tratamiento
+          </h2>
+          <p>
+            El tratamiento de tus datos se fundamenta en la ejecución del contrato de prestación del servicio solicitado (art. 6.1.b del RGPD) y en el consentimiento explícito otorgado al remitir consultas a través de nuestros canales oficiales de mensajería o formularios.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">4.</span> Conservación de los Datos
+          </h2>
+          <p>
+            Tus datos se conservarán únicamente durante la vigencia de la suscripción contratada para la gestión técnica de la cuenta y, una vez finalizada, durante los plazos legalmente exigibles para la atención de responsabilidades administrativas o fiscales.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-[#DC2626]">5.</span> Tus Derechos (Acceso, Rectificación, Supresión)
+          </h2>
+          <p>
+            En virtud del RGPD y la normativa española vigente, tienes derecho a acceder, rectificar, suprimir y solicitar la portabilidad o limitación del tratamiento de tus datos personales enviando un correo a <code>contact@iptvespana.cloud</code> o solicitándolo directamente a nuestro agente en WhatsApp.
+          </p>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

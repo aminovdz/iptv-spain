@@ -1,0 +1,112 @@
+---
+import { MessageCircle, Send, X, Users, Bell } from 'lucide-astro';
+
+const whatsappChannelUrl = "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v";
+const telegramChannelUrl = "https://t.me/castvera_com";
+---
+
+<div
+  id="groups-popup"
+  class="fixed bottom-6 right-6 z-40 hidden max-w-sm w-full transition-all duration-300 transform translate-y-8 opacity-0"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="groups-popup-title"
+>
+  <div class="relative rounded-2xl bg-[#0F111A]/95 border border-[#DC2626]/40 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-xl overflow-hidden">
+    
+    <!-- Close Button -->
+    <button
+      id="close-groups-popup"
+      type="button"
+      class="absolute top-3 right-3 p-1.5 rounded-full text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 transition-colors focus:outline-none"
+      aria-label="Cerrar notificación"
+    >
+      <X class="w-4 h-4" />
+    </button>
+
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#DC2626] to-[#F59E0B] flex items-center justify-center text-white flex-shrink-0 shadow-md">
+        <Bell class="w-5 h-5" />
+      </div>
+
+      <div class="pr-4">
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Comunidad VIP</span>
+        </div>
+        <h4 id="groups-popup-title" class="text-sm font-bold text-white mb-1">
+          Canales Oficiales en Directo
+        </h4>
+        <p class="text-xs text-gray-300 leading-relaxed mb-3">
+          Entérate antes que nadie de los partidos de LaLiga, enlaces de respaldo y promociones exclusivas.
+        </p>
+
+        <div class="flex items-center gap-2">
+          <a
+            href={whatsappChannelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#10B981] hover:bg-[#059669] text-white text-[11px] font-bold uppercase transition-all shadow-sm"
+          >
+            <MessageCircle class="w-3.5 h-3.5" />
+            <span>WhatsApp</span>
+          </a>
+          <a
+            href={telegramChannelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#0088cc] hover:bg-[#0077b5] text-white text-[11px] font-bold uppercase transition-all shadow-sm"
+          >
+            <Send class="w-3.5 h-3.5" />
+            <span>Telegram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'spain_iptv_groups_popup_24h_v1';
+  const POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+
+  const popup = document.getElementById('groups-popup');
+  const closeBtn = document.getElementById('close-groups-popup');
+
+  function isEligible(): boolean {
+    const lastShown = localStorage.getItem(STORAGE_KEY);
+    if (lastShown) {
+      if (Date.now() - parseInt(lastShown, 10) < POPUP_COOLDOWN_MS) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function showPopup() {
+    if (!isEligible()) return;
+    if (popup) {
+      popup.classList.remove('hidden');
+      setTimeout(() => {
+        popup.classList.remove('translate-y-8', 'opacity-0');
+      }, 50);
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+  }
+
+  function hidePopup() {
+    if (popup) {
+      popup.classList.add('translate-y-8', 'opacity-0');
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 300);
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+  }
+
+  // Trigger after 18 seconds on page
+  setTimeout(showPopup, 18000);
+
+  if (closeBtn) closeBtn.addEventListener('click', hidePopup);
+</script>

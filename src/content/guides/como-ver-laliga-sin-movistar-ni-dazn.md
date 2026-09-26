@@ -63,7 +63,7 @@ Con **[IPTV España](/)**, no tienes que elegir qué partidos ver. Nuestra plata
 - **Fórmula 1 completa (con Fernando Alonso) y MotoGP.**
 - **Resolución nativa en 4K Ultra HD y 60 fotogramas por segundo fluidos.**
 
-Todo esto sin contratos de permanencia y por un coste anual de tan solo **64,99 €** (es decir, **~5,41 € al mes**).
+Todo esto sin contratos de permanencia y por un coste anual de tan solo **55,00 €** (es decir, **~4,58 € al mes**).
 
 ---
 
@@ -71,10 +71,10 @@ Todo esto sin contratos de permanencia y por un coste anual de tan solo **64,99 
 
 | Concepto | Movistar + DAZN Oficial | IPTV España (Plan 12 Meses) | Ahorro Anual |
 | :--- | :--- | :--- | :--- |
-| **Coste Mensual** | 90,00 € / mes | **~5,41 € / mes** | **+84,59 € / mes** |
-| **Gasto Anual** | 1.080,00 € | **64,99 €** | **¡Ahorras más de 1.015 €!** |
+| **Coste Mensual** | 90,00 € / mes | **~4,58 € / mes** | **+85,42 € / mes** |
+| **Gasto Anual** | 1.080,00 € | **55,00 €** | **¡Ahorras más de 1.025 €!** |
 | **Permanencia** | Forzosa | **Cero (0 meses)** | Libertad absoluta |
-| **Pago Móvil** | No | **Bizum instantáneo** | Máxima comodidad |
+| **Pago Seguro** | Domiciliación bancaria | **Tarjeta / PayPal / Cripto** | Máxima protección |
 
 ---
 

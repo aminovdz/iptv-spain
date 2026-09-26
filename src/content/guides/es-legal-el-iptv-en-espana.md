@@ -69,7 +69,7 @@ La legislación española y las directivas europeas de comercio electrónico est
 | **Seguridad de Datos** | Conexión SSL encriptada | Riesgo de malware y robo de datos |
 | **Calidad de Vídeo** | 4K Ultra HD a 60 FPS real | Resolución 480p/720p comprimida |
 | **Soporte al Usuario** | Atención 24/7 en español | Cero asistencia técnica |
-| **Forma de Pago** | Canales oficiales y Bizum seguro | Sitios sospechosos no verificados |
+| **Forma de Pago** | Pasarelas cifradas SSL y PayPal | Sitios sospechosos no verificados |
 
 ---
 

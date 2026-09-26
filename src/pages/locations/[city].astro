@@ -14,7 +14,7 @@ import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
 import ExitPopup from '../../components/ExitPopup.astro';
-import { MapPin, Server, Wifi, Zap, CheckCircle2, ArrowRight } from 'lucide-astro';
+import { MapPin, Server, Wifi, Zap } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const citiesData = [
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
       latency: "4 ms",
       isps: "Fibra óptica simétrica hasta 10 Gbps (Telefónica, Orange, Vodafone, Digi, MásMóvil)",
       localDetails: "En la capital de España, la interconexión directa con el punto neutro ESpanix garantiza latencias mínimas inferiores a 5 ms. Vive los derbis madrileños y las noches europeas en el Santiago Bernabéu o el Metropolitano en 4K Ultra HD sin cortes.",
-      metaTitle: "IPTV en Madrid — Streaming 4K Sin Cortes y Pago con Bizum",
+      metaTitle: "IPTV en Madrid — Streaming 4K Sin Cortes y Pago Seguro",
       metaDescription: "Servicio oficial de IPTV en Madrid. Acceso a LaLiga, Champions League y televisión en 4K Ultra HD con servidores locales de 10 Gbps y tecnología Anti-Freeze 9.8™."
     },
     {
@@ -58,7 +58,7 @@ export async function getStaticPaths() {
       isps: "Redes de fibra óptica de alta velocidad y conexiones 5G",
       localDetails: "Servidores enrutados directamente para la Comunidad Valenciana con soporte específico para canales autonómicos y cobertura íntegra de competiciones deportivas en directo a 60 FPS.",
       metaTitle: "IPTV en Valencia — Fútbol en Directo 4K y Activación Rápida",
-      metaDescription: "Descubre el mejor IPTV en Valencia. Servidores dedicados anti-buffering para ver LaLiga y cine en 4K. Prueba de 24 horas y pago seguro con Bizum."
+      metaDescription: "Descubre el mejor IPTV en Valencia. Servidores dedicados anti-buffering para ver LaLiga y cine en 4K. Prueba de 24 horas y pago 100% seguro."
     },
     {
       name: "Sevilla",
@@ -113,7 +113,7 @@ export async function getStaticPaths() {
       isps: "Redes Euskaltel, Telefónica y fibra óptica de última generación",
       localDetails: "Rendimiento óptimo para seguir al Athletic Club en San Mamés y las competiciones europeas con el flujo de vídeo a 60 fotogramas por segundo más nítido del mercado.",
       metaTitle: "IPTV en Bilbao — Streaming Deportivo 4K Estable",
-      metaDescription: "IPTV en Bilbao y País Vasco. Tecnología Anti-Freeze 9.8™ para ver todos los partidos sin cortes. Activación en 2 minutos con Bizum."
+      metaDescription: "IPTV en Bilbao y País Vasco. Tecnología Anti-Freeze 9.8™ para ver todos los partidos sin cortes. Activación en 2 minutos vía WhatsApp."
     },
     {
       name: "Murcia",
@@ -127,7 +127,7 @@ export async function getStaticPaths() {
       isps: "Fibra óptica FTTH y conexiones 4G/5G",
       localDetails: "Baja latencia garantizada y acceso instantáneo a los principales canales deportivos y de entretenimiento en toda la Región de Murcia.",
       metaTitle: "IPTV en Murcia — Calidad 4K y Cero Buffer Garantizado",
-      metaDescription: "Contrata IPTV en Murcia con soporte 24/7 en WhatsApp y pago por Bizum. Prueba de 24 horas gratis para Smart TV y Fire TV Stick."
+      metaDescription: "Contrata IPTV en Murcia con soporte 24/7 en WhatsApp y pago 100% seguro. Prueba de 24 horas gratis para Smart TV y Fire TV Stick."
     }
   ];
 
@@ -138,13 +138,12 @@ export async function getStaticPaths() {
 }
 
 const { city } = Astro.props;
-const currentYear = new Date().getFullYear();
 ---
 
 <Layout
   title={city.metaTitle}
   description={city.metaDescription}
-  canonicalURL={`https://iptvespana.cloud/locations/${city.slug}`}
+  canonicalURL={`https://iptve-spana.cloud/locations/${city.slug}`}
   schemaType="city"
   cityName={city.name}
 >

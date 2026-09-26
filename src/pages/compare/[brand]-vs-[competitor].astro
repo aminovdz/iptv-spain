@@ -6,34 +6,104 @@ import CTASection from '../../components/CTASection.astro';
 import Footer from '../../components/Footer.astro';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
 import ExitPopup from '../../components/ExitPopup.astro';
-import { 
-  Check, 
-  X, 
-  Trophy, 
-  ArrowRight, 
-  MessageCircle, 
-  ShieldCheck, 
-  HelpCircle 
-} from 'lucide-astro';
+import { Check, Trophy } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const currentYear = new Date().getFullYear();
   const comparisons = [
     {
       brandSlug: "iptv-espana",
+      competitorSlug: "iptv-es",
+      competitorName: "IPTV-ES (iptv-es.com)",
+      competitorUrl: "https://iptv-es.com/tv-espana/",
+      title: `IPTV España vs IPTV-ES (iptv-es.com): La Gran Comparativa ${currentYear}`,
+      metaDescription: "Comparativa técnica: IPTV España frente a iptv-es.com. Estabilidad Anti-Freeze 9.8™, 55€ al año con reproductor VIP y soporte WhatsApp 24/7.",
+      headline: "IPTV España vs IPTV-ES (iptv-es.com)",
+      subtitle: "Análisis técnico de estabilidad de señal, tasa de refresco a 60 FPS, precios anuales y soporte técnico en español.",
+      verdict: "Mientras que iptv-es.com ofrece servicios estándar con saturaciones habituales en El Clásico y precios que rondan los 75-85 € anuales sin reproductor premium, IPTV España cuenta con infraestructura de balanceo CDN de 10 Gbps con tecnología Anti-Freeze 9.8™, reproductor VIP incluido gratis por 55 € al año y soporte inmediato por WhatsApp.",
+      criteria: [
+        { name: "Precio Plan 12 Meses", us: "55,00 € (~4,58 €/mes)", them: "75 € - 85 € anuales", winner: "us" },
+        { name: "Reproductor VIP Activado Gratis", us: "Sí, incluido (ahorro 15 €)", them: "No incluido (coste extra)", winner: "us" },
+        { name: "Tecnología Anti-Cortes", us: "Anti-Freeze 9.8™ dedicado 10 Gbps", them: "Servidor genérico sin balanceo", winner: "us" },
+        { name: "Fútbol LaLiga & Champions", us: "4K UHD 60 FPS sin retraso", them: "Full HD con buffering en horas punta", winner: "us" },
+        { name: "Métodos de Pago Seguros", us: "Tarjeta, PayPal, Cripto (USDT/BTC)", them: "Pasarelas externas lentas", winner: "us" },
+        { name: "Atención al Cliente", us: "WhatsApp 24/7 en español (< 2 min)", them: "Formulario web / Email con retraso", winner: "us" },
+        { name: "Garantía de Devolución", us: "24h contractuales garantizadas", them: "Sin garantía de reembolso", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Por qué IPTV España tiene mejor estabilidad que iptv-es.com?",
+          a: "Contamos con nodos CDN dedicados en Madrid (ESpanix) y Barcelona (CATNIX) con enlaces directos de 10 Gbps, lo que evita por completo los cuellos de botella en partidos de alta demanda."
+        },
+        {
+          q: "¿Puedo transferir mi lista o solicitar una prueba previa?",
+          a: "Sí, disponemos de una prueba gratuita de 24 horas para que compruebes la calidad en tu televisor antes de realizar ningún pago."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "optiwebtv",
+      competitorName: "OptiWebTV (optiwebtv.live)",
+      competitorUrl: "https://optiwebtv.live/",
+      title: `IPTV España vs OptiWebTV (optiwebtv.live): Análisis y Opiniones ${currentYear}`,
+      metaDescription: "Comparativa entre IPTV España y optiwebtv.live. Diferencias de servidores, calidad 4K 60 FPS para LaLiga, precios desde 8€ y reproductor VIP.",
+      headline: "IPTV España vs OptiWebTV (optiwebtv.live)",
+      subtitle: "Descubre las diferencias en estabilidad de señal, catálogo deportivo, latencia de transmisión y servicio al cliente.",
+      verdict: "OptiWebTV ofrece un catálogo genérico pero adolece de caídas de señal en momentos clave de LaLiga y Champions League debido a servidores sobrecargados. Con IPTV España dispones de servidores dedicados con tecnología Anti-Freeze 9.8™ que absorbe picos de audiencia y una tarifa anual de 55 € con reproductor VIP activado.",
+      criteria: [
+        { name: "Precio Plan Anual", us: "55,00 € con reproductor VIP", them: "65 € - 80 € sin reproductor", winner: "us" },
+        { name: "Estabilidad en Partidos Clave", us: "99.9% Uptime garantizado", them: "Buffering frecuente en clásicos", winner: "us" },
+        { name: "Calidad de Imagen", us: "4K Ultra HD nativo a 60 FPS", them: "Compresión 1080p variable", winner: "us" },
+        { name: "Prueba Gratuita", us: "24 horas completas sin compromiso", them: "Prueba limitada o inexistente", winner: "us" },
+        { name: "Soporte Técnico", us: "WhatsApp inmediato 24/7 en español", them: "Soporte diferido por email", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Qué diferencia la calidad 4K de IPTV España frente a OptiWebTV?",
+          a: "Transmitimos con un bitrate sin compresión agresiva y a 60 FPS reales, permitiendo ver las trayectorias de balón y la velocidad del juego con nitidez cristalina en pantallas de 55 pulgadas o superiores."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
+      competitorSlug: "iptvespana24",
+      competitorName: "IPTVEspana24 (iptvespana24.com)",
+      competitorUrl: "https://iptvespana24.com/",
+      title: `IPTV España vs IPTVEspana24 (iptvespana24.com): ¿Cuál Conviene en ${currentYear}?`,
+      metaDescription: "Comparativa técnica: IPTV España frente a iptvespana24.com. Compara precios, estabilidad sin cortes, 4K nativo y garantía de devolución 24 horas.",
+      headline: "IPTV España vs IPTVEspana24 (iptvespana24.com)",
+      subtitle: "¿Buscas un proveedor definitivo en España? Comparamos los aspectos clave de rendimiento y soporte.",
+      verdict: "IPTVEspana24 es una opción conocida en el mercado español pero sufre de cuellos de botella en partidos de máxima audiencia. IPTV España se posiciona como el estándar de oro en streaming 4K gracias a su infraestructura Anti-Freeze 9.8™, entrega de claves en menos de 2 minutos y tarifas imbatibles desde 8 € al mes y 55 € el plan anual con reproductor VIP.",
+      criteria: [
+        { name: "Precio Plan 12 Meses", us: "55,00 € con reproductor VIP", them: "69 € - 89 € al año", winner: "us" },
+        { name: "Tasa de Refresco", us: "60 FPS reales y fluidos", them: "30-50 FPS con desincronización", winner: "us" },
+        { name: "Configuración y Entrega", us: "< 2 minutos en WhatsApp", them: "Demora de 1 a 6 horas", winner: "us" },
+        { name: "EPG y Guía Interactiva", us: "EPG completa + Replay 7 días", them: "EPG intermitente", winner: "us" },
+        { name: "Garantía de Reembolso", us: "24 horas contractuales", them: "Condiciones restrictivas", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "¿Cuánto tiempo tardan en enviar las claves tras contratar?",
+          a: "En IPTV España la entrega se realiza en menos de 2 minutos tras la confirmación del pago a través de WhatsApp o correo electrónico."
+        }
+      ]
+    },
+    {
+      brandSlug: "iptv-espana",
       competitorSlug: "smartone-iptv",
       competitorName: "SmartOne IPTV",
       title: `IPTV España vs SmartOne IPTV: La Gran Comparativa ${currentYear}`,
-      metaDescription: "Comparativa técnica entre IPTV España y SmartOne IPTV. Estabilidad Anti-Freeze, precio anual, calidad 4K, soporte WhatsApp y pago con Bizum.",
+      metaDescription: "Comparativa técnica entre IPTV España y SmartOne IPTV. Estabilidad Anti-Freeze, precio anual, calidad 4K, soporte WhatsApp y pagos protegidos.",
       headline: "IPTV España vs SmartOne IPTV",
       subtitle: "Descubre por qué nuestro servicio ofrece una infraestructura más estable, mejor precio con reproductor incluido y asistencia 24/7 en español.",
-      verdict: "SmartOne es una aplicación ampliamente utilizada, pero por sí sola carece de canales y obliga al usuario a buscar proveedores externos sin garantías. Con IPTV España obtienes un paquete integral con servidores Anti-Freeze 9.8™ de 10 Gbps, todo el fútbol en 4K y activación instantánea por 64,99 € al año con pago por Bizum.",
+      verdict: "SmartOne es una aplicación ampliamente utilizada, pero por sí sola carece de canales y obliga al usuario a buscar proveedores externos sin garantías. Con IPTV España obtienes un paquete integral con servidores Anti-Freeze 9.8™ de 10 Gbps, todo el fútbol en 4K y activación instantánea por 55,00 € al año con reproductor VIP incluido.",
       criteria: [
-        { name: "Precio Plan Anual (12 Meses)", us: "64,99 € (~5,41 €/mes)", them: "70 € - 90 € (app + lista externa)", winner: "us" },
+        { name: "Precio Plan Anual (12 Meses)", us: "55,00 € (~4,58 €/mes)", them: "70 € - 90 € (app + lista externa)", winner: "us" },
         { name: "Tecnología Anti-Cortes", us: "Anti-Freeze 9.8™ dedicado", them: "Depende de la lista externa", winner: "us" },
         { name: "Fútbol en Directo (LaLiga, Champions)", us: "4K UHD y 60 FPS sin retraso", them: "Frecuente buffering en horas pico", winner: "us" },
-        { name: "Activación del Reproductor", us: "Activación gratuita incluida", them: "Pago adicional de licencia", winner: "us" },
-        { name: "Método de Pago Bizum", us: "Sí, instantáneo en 3 segundos", them: "No disponible (tarjeta internacional)", winner: "us" },
+        { name: "Activación del Reproductor", us: "Activación VIP gratuita incluida", them: "Pago adicional de licencia", winner: "us" },
+        { name: "Métodos de Pago Seguros", us: "Tarjeta bancaria, PayPal y Cripto", them: "No disponible (tarjeta internacional)", winner: "us" },
         { name: "Soporte Técnico en Español", us: "WhatsApp directo 24/7 (< 2 min)", them: "Tickets en inglés con demora", winner: "us" },
         { name: "Garantía de Satisfacción", us: "24h de devolución garantizada", them: "Sin política de reembolso", winner: "us" }
       ],
@@ -56,13 +126,13 @@ export async function getStaticPaths() {
       metaDescription: "Comparativa directa: IPTV España frente a Movistar Plus+. Ahorra más de 900 € al año en fútbol de LaLiga sin permanencia ni decodificadores obligatorios.",
       headline: "IPTV España vs Movistar Plus+",
       subtitle: "¿Por qué pagar más de 90 € al mes por paquetes de fibra y televisión atados a contratos?",
-      verdict: "Para ver todo el fútbol con Movistar Plus+ estás obligado a contratar paquetes combinados de fibra y móvil que superan los 80-110 € mensuales. Con IPTV España disfrutas del fútbol en 4K y de todas las transmisiones deportivas por solo 64,99 € al año, sin permanencias ni cuotas ocultas.",
+      verdict: "Para ver todo el fútbol con Movistar Plus+ estás obligado a contratar paquetes combinados de fibra y móvil que superan los 80-110 € mensuales. Con IPTV España disfrutas del fútbol en 4K y de todas las transmisiones deportivas por solo 55,00 € al año, sin permanencias ni cuotas ocultas.",
       criteria: [
-        { name: "Coste Anual Estimado", us: "64,99 € al año", them: "1.000 € a 1.300 € al año", winner: "us" },
+        { name: "Coste Anual Estimado", us: "55,00 € al año", them: "1.000 € a 1.300 € al año", winner: "us" },
         { name: "Compromiso de Permanencia", us: "Sin permanencia (pago único)", them: "Permanencias y penalizaciones", winner: "us" },
         { name: "Equipos Necesarios", us: "Tu Smart TV o Firestick actual", them: "Decodificador obligatorio y alquiler", winner: "us" },
         { name: "Movilidad (Ver fuera de casa)", us: "Universal en cualquier dispositivo", them: "Restricciones fuera del hogar", winner: "us" },
-        { name: "Flexibilidad de Pago", us: "Bizum, Tarjeta, PayPal y Cripto", them: "Domiciliación bancaria fija", winner: "us" }
+        { name: "Flexibilidad de Pago", us: "Tarjeta, PayPal y Cripto", them: "Domiciliación bancaria fija", winner: "us" }
       ],
       faqs: [
         {
@@ -79,9 +149,9 @@ export async function getStaticPaths() {
       metaDescription: "Comparativa entre IPTV España y DAZN España. Precios, partidos de LaLiga, F1, MotoGP y ausencia de restricciones en directo.",
       headline: "IPTV España vs DAZN España",
       subtitle: "Analizamos precios, cobertura de fútbol y deportes de motor (F1 y MotoGP).",
-      verdict: "DAZN ha subido sus tarifas progresivamente hasta los 39,99 € al mes para ver solo 5 partidos de LaLiga por jornada y deportes de motor. IPTV España te ofrece TODOS los partidos de LaLiga, Champions League, Fórmula 1 y MotoGP en 4K por una fracción del precio.",
+      verdict: "DAZN ha subido sus tarifas progresivamente hasta los 39,99 € al mes para ver solo 5 partidos de LaLiga por jornada y deportes de motor. IPTV España te ofrece TODOS los partidos de LaLiga, Champions League, Fórmula 1 y MotoGP en 4K por una fracción del precio: 55 € al año.",
       criteria: [
-        { name: "Precio Mensual Equivalente", us: "~5,41 € / mes (plan anual)", them: "29,99 € a 39,99 € / mes", winner: "us" },
+        { name: "Precio Mensual Equivalente", us: "~4,58 € / mes (plan anual)", them: "29,99 € a 39,99 € / mes", winner: "us" },
         { name: "Partidos de LaLiga Incluidos", us: "10 de 10 cada jornada", them: "5 partidos por jornada", winner: "us" },
         { name: "Fórmula 1 y MotoGP", us: "Incluidos en 4K 60 FPS", them: "Requiere planes superiores", winner: "us" },
         { name: "Subidas de Precio", us: "Tarifa fija anual sin sorpresas", them: "Incrementos continuos de tarifas", winner: "us" }
@@ -103,7 +173,7 @@ export async function getStaticPaths() {
       subtitle: "Libérate de las ataduras de las grandes compañías telefónicas y ahorra hasta un 85%.",
       verdict: "El modelo de televisión cerrada de los operadores tradicionales está obsoleto. IPTV España ofrece mayor catálogo, streaming en 4K nativo en tus dispositivos preferidos y el soporte más ágil del mercado español.",
       criteria: [
-        { name: "Ahorro Anual Medio", us: "Más de 800 € / año de ahorro", them: "Precios elevados e inflados", winner: "us" },
+        { name: "Ahorro Anual Medio", us: "Más de 900 € / año de ahorro", them: "Precios elevados e inflados", winner: "us" },
         { name: "Instalación", us: "Instantánea en 2 minutos", them: "Visita de técnicos y cableado", winner: "us" },
         { name: "Atención al Cliente", us: "Humana e inmediata por WhatsApp", them: "Centralitas y esperas telefónicas", winner: "us" }
       ],
@@ -132,7 +202,7 @@ const currentYear = new Date().getFullYear();
 <Layout
   title={comp.title}
   description={comp.metaDescription}
-  canonicalURL={`https://iptvespana.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
+  canonicalURL={`https://iptve-spana.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
   schemaType="product"
 >
   <StickyHeader currentPath={`/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`} />

@@ -19,7 +19,7 @@ const {
   title = 'IPTV España — Streaming 4K Estable y Sin Cortes',
   description = 'Servicio premium de IPTV en España con tecnología Anti-Freeze 9.8™, LaLiga en directo, 99.9% de uptime y soporte 24/7 en español.',
   url = Astro.url.href,
-  image = 'https://iptvespana.cloud/images/og-banner.webp',
+  image = 'https://iptve-spana.cloud/images/og-banner.webp',
   datePublished,
   dateModified,
   authorName = 'Equipo Editorial IPTV España',
@@ -27,7 +27,7 @@ const {
   cityName
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptvespana.cloud';
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptve-spana.cloud';
 
 // 1. Organization & WebSite Entity Graph
 const organizationSchema = {
@@ -35,6 +35,7 @@ const organizationSchema = {
   "@id": `${siteUrl}/#organization`,
   "name": "IPTV España",
   "url": siteUrl,
+  "email": "contact@iptve-spana.cloud",
   "logo": {
     "@type": "ImageObject",
     "url": `${siteUrl}/favicon.svg`,
@@ -45,7 +46,14 @@ const organizationSchema = {
       "@type": "ContactPoint",
       "contactType": "customer support",
       "url": "https://wa.me/18036582620",
+      "email": "support@castvera.com",
       "availableLanguage": ["Spanish", "English"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "contact@iptve-spana.cloud",
+      "availableLanguage": ["Spanish"]
     }
   ],
   "sameAs": [
@@ -97,7 +105,7 @@ const productSchema = {
         "name": "Carlos M."
       },
       "datePublished": "2026-02-04",
-      "reviewBody": "Cancelé Movistar y DAZN que me costaban 90€ al mes. Este servicio funciona diez veces mejor y pagué con Bizum al instante.",
+      "reviewBody": "Cancelé Movistar y DAZN que me costaban 90€ al mes. Este servicio funciona diez veces mejor y pagué con tarjeta de crédito al instante.",
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": "5",
@@ -109,15 +117,49 @@ const productSchema = {
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "EUR",
-    "lowPrice": "12.99",
-    "highPrice": "64.99",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
     "offerCount": "4",
     "priceValidUntil": "2027-12-31",
     "availability": "https://schema.org/InStock",
     "url": url,
     "seller": {
       "@id": `${siteUrl}/#organization`
-    }
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Plan 1 Mes IPTV España",
+        "price": "8.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": url
+      },
+      {
+        "@type": "Offer",
+        "name": "Plan 3 Meses IPTV España",
+        "price": "20.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": url
+      },
+      {
+        "@type": "Offer",
+        "name": "Plan 6 Meses IPTV España + Reproductor VIP",
+        "price": "30.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": url
+      },
+      {
+        "@type": "Offer",
+        "name": "Plan 12 Meses IPTV España + Reproductor VIP",
+        "price": "55.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": url
+      }
+    ]
   }
 };
 
@@ -191,7 +233,7 @@ const localBusinessSchema = type === 'city' && cityName ? {
       "name": "España"
     }
   },
-  "priceRange": "12,99 € - 64,99 €"
+  "priceRange": "8,00 € - 55,00 €"
 } : null;
 
 // Assemble full JSON-LD Graph

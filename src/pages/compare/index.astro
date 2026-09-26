@@ -3,9 +3,24 @@ import Layout from '../../layouts/Layout.astro';
 import StickyHeader from '../../components/StickyHeader.astro';
 import Footer from '../../components/Footer.astro';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
-import { Trophy, ArrowRight, ShieldCheck } from 'lucide-astro';
+import { Trophy, ArrowRight } from 'lucide-astro';
 
 const comparisons = [
+  {
+    title: "IPTV España vs IPTV-ES (iptv-es.com)",
+    slug: "iptv-espana-vs-iptv-es",
+    desc: "Comparativa técnica frente a iptv-es.com/tv-espana/. Servidores Anti-Freeze dedicados, tarifa anual de 55 € con reproductor VIP y soporte WhatsApp."
+  },
+  {
+    title: "IPTV España vs OptiWebTV (optiwebtv.live)",
+    slug: "iptv-espana-vs-optiwebtv",
+    desc: "Análisis de estabilidad frente a optiwebtv.live. Streaming a 60 FPS sin saturación en clásicos de fútbol, prueba de 24h y 99.9% de uptime."
+  },
+  {
+    title: "IPTV España vs IPTVEspana24 (iptvespana24.com)",
+    slug: "iptv-espana-vs-iptvespana24",
+    desc: "Evaluación objetiva frente a iptvespana24.com. Calidad 4K UHD real, entrega de claves en menos de 2 minutos y garantía de reembolso de 24 horas."
+  },
   {
     title: "IPTV España vs SmartOne IPTV",
     slug: "iptv-espana-vs-smartone-iptv",
@@ -14,17 +29,12 @@ const comparisons = [
   {
     title: "IPTV España vs Movistar Plus+",
     slug: "iptv-espana-vs-movistar-plus",
-    desc: "¿Por qué pagar más de 90 € al mes? Descubre cómo ahorrar más de 800 € al año en fútbol de LaLiga sin permanencia."
+    desc: "¿Por qué pagar más de 90 € al mes? Descubre cómo ahorrar más de 900 € al año en fútbol de LaLiga sin permanencia."
   },
   {
     title: "IPTV España vs DAZN España",
     slug: "iptv-espana-vs-dazn-espana",
     desc: "Comparativa de cobertura de partidos, retransmisiones de Fórmula 1 y MotoGP en 4K sin restricciones."
-  },
-  {
-    title: "IPTV España vs Operadores de Cable Tradicionales",
-    slug: "iptv-espana-vs-operadores-tradicionales",
-    desc: "Ventajas de liberarse de las tarifas abusivas y los contratos cerrados de los grandes operadores de telecomunicaciones."
   }
 ];
 ---
@@ -32,7 +42,7 @@ const comparisons = [
 <Layout
   title="Comparativas de IPTV en España 2026 — Análisis Objetivo"
   description="Todas las comparativas entre IPTV España y sus principales competidores y alternativas del mercado español. Ahorro, calidad 4K y estabilidad."
-  canonicalURL="https://iptvespana.cloud/compare"
+  canonicalURL="https://iptve-spana.cloud/compare"
 >
   <StickyHeader currentPath="/compare" />
 
@@ -48,7 +58,7 @@ const comparisons = [
           Comparativas de IPTV en España
         </h1>
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
-          Analizamos objetivamente las diferencias técnicas, precios, calidad de imagen y atención al cliente entre nuestro servicio y las alternativas más conocidas del mercado.
+          Analizamos objetivamente las diferencias técnicas, precios, calidad de imagen y atención al cliente entre nuestro servicio y las alternativas más conocidas del mercado español.
         </p>
       </div>
 

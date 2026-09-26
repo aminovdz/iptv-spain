@@ -4,7 +4,7 @@ import StickyHeader from '../../components/StickyHeader.astro';
 import Footer from '../../components/Footer.astro';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
 import { getCollection } from 'astro:content';
-import { BookOpen, Calendar, Clock, ArrowRight, CheckCircle2 } from 'lucide-astro';
+import { BookOpen, Calendar, Clock, ArrowRight } from 'lucide-astro';
 
 const allGuides = await getCollection('guides');
 allGuides.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
 <Layout
   title={`Guías y Tutoriales IPTV España ${currentYear} — Guía Completa de Streaming`}
   description="Aprende a configurar tu Smart TV y Firestick, solucionar errores de buffering y descubrir cómo ver LaLiga en directo sin pagar suscripciones abusivas."
-  canonicalURL="https://iptvespana.cloud/guides"
+  canonicalURL="https://iptve-spana.cloud/guides"
 >
   <StickyHeader currentPath="/guides" />
 

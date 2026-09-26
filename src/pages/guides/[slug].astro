@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
 import ExitPopup from '../../components/ExitPopup.astro';
 import { getCollection } from 'astro:content';
-import { Clock, Calendar, CheckCircle, ArrowRight, MessageCircle, Share2, BookOpen } from 'lucide-astro';
+import { Clock, Calendar, CheckCircle, MessageCircle, BookOpen } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const guideEntries = await getCollection('guides');
@@ -29,7 +29,6 @@ const faqs = entry.data.faqs || [
   }
 ];
 
-const currentYear = new Date().getFullYear();
 const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
   year: 'numeric',
   month: 'long',
@@ -40,7 +39,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
 <Layout
   title={`${entry.data.title} | IPTV España`}
   description={entry.data.description}
-  canonicalURL={`https://iptvespana.cloud/guides/${entry.slug}`}
+  canonicalURL={`https://iptve-spana.cloud/guides/${entry.slug}`}
   type="article"
   schemaType="article"
   publishedTime={entry.data.pubDate.toISOString()}
@@ -100,7 +99,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
         <ul class="text-xs sm:text-sm text-gray-300 space-y-2 list-disc list-inside">
           <li>Máxima calidad visual en 4K Ultra HD gracias a la tecnología Anti-Freeze 9.8™.</li>
           <li>Configuración asistida en 2 minutos para Smart TV, Firestick y Android Box.</li>
-          <li>Soporte técnico 24/7 en español y activación inmediata vía WhatsApp con pago por Bizum.</li>
+          <li>Soporte técnico 24/7 en español y activación inmediata vía WhatsApp con pago 100% seguro.</li>
         </ul>
       </div>
 
@@ -147,7 +146,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
           Experimenta IPTV España Hoy Mismo Sin Riesgo
         </h3>
         <p class="text-gray-300 max-w-xl mx-auto mb-8 text-xs sm:text-sm leading-relaxed">
-          Comienza en 2 minutos con nuestra prueba gratuita de 24 horas. Activación directa a través de WhatsApp y pago fácil con Bizum.
+          Comienza en 2 minutos con nuestra prueba gratuita de 24 horas. Activación directa a través de WhatsApp y garantía total de satisfacción.
         </p>
         <a
           href="https://wa.me/18036582620?text=Hola%21+He+le%C3%ADdo+vuestra+gu%C3%ADa+y+deseo+activar+mi+prueba+de+24+horas."

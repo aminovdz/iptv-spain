@@ -23,12 +23,12 @@ const {
   noindex = false,
 } = Astro.props;
 
-const defaultKeywords = "iptv españa, smartone iptv, lista iptv españa, iptv profesional, mejor iptv españa, iptv laliga, comprar iptv, iptv m3u españa, iptv bizum, iptv 4k españa, smart tv iptv";
+const defaultKeywords = "iptv españa, smartone iptv, lista iptv españa, iptv profesional, mejor iptv españa, iptv laliga, comprar iptv, iptv m3u españa, iptv paypal, iptv 4k españa, smart tv iptv";
 const keywordsString = Array.isArray(keywords) 
   ? keywords.join(', ') 
   : (keywords || defaultKeywords);
 
-const siteUrl = 'https://iptvespana.cloud';
+const siteUrl = 'https://iptve-spana.cloud';
 const fullCanonicalURL = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
 const ogImageUrl = new URL(image, Astro.site || siteUrl).toString();
 ---

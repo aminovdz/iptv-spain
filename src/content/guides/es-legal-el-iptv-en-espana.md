@@ -36,7 +36,7 @@ faqs:
 
 ## ¿Qué es el IPTV y por qué la tecnología es 100% legal? {#que-es-el-iptv-y-por-que-la-tecnologia-es-legal}
 
-Existe una confusión generalizada generada por titulares sensacionalistas. **IPTV (Internet Protocol Television)** es simplemente un protocolo técnico de telecomunicaciones que transmite paquetes de vídeo digital sobre redes IP. Operadoras oficiales como Movistar+, Orange TV y Vodafone TV utilizan exactamente este mismo protocolo para hacer llegar sus canales a los hogares.
+Existe una confusión generalizada generada por titulares sensacionalistas. **IPTV (Internet Protocol Television)** es simplemente un protocolo técnico de telecomunicaciones que transmite paquetes de vídeo digital sobre redes IP. Las principales compañías de telecomunicaciones y operadores de televisión por fibra óptica utilizan exactamente este mismo protocolo para hacer llegar sus canales a los hogares.
 
 El protocolo en sí mismo es completamente neutro y legal. Lo que determina la legalidad de una emisión es la autorización de los derechos de retransmisión del contenido difundido.
 

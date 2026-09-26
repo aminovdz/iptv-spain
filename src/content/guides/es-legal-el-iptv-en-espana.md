@@ -4,8 +4,8 @@ description: "Análisis legal completo sobre el uso de IPTV en España en 2026. 
 pubDate: 2026-01-15T10:00:00Z
 updatedDate: 2026-03-20T12:00:00Z
 author: "Equipo Editorial IPTV España"
-image: "/images/iptv-legal-france.webp"
-imageAlt: "¿Es legal el IPTV en España? Análisis legal y regulatorio 2026"
+image: "/images/iptv-legal-espana.webp"
+imageAlt: "Marco legal de telecomunicaciones y normativa de IPTV en España CNMC"
 tags: ["IPTV Legal España", "Ley Kangaroo", "CNMC", "Seguridad Streaming", "Normativa"]
 featured: true
 readingTime: "7 min de lectura"

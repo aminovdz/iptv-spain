@@ -88,6 +88,21 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
         </div>
       </header>
 
+      <!-- Featured Cinematic Image Banner -->
+      {entry.data.image && (
+        <div class="mb-10 rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative aspect-video bg-neutral-900 group">
+          <img
+            src={entry.data.image}
+            alt={entry.data.imageAlt || entry.data.title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="eager"
+            width="1200"
+            height="675"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#08090D] via-transparent to-black/20 pointer-events-none"></div>
+        </div>
+      )}
+
       <!-- Quick Summary / Featured Snippet (Position 0) Callout Box -->
       <div class="bg-[#0F111A] border-l-4 border-[#DC2626] p-6 rounded-r-2xl mb-10 shadow-xl">
         <h2 class="text-base font-black text-white mb-2 flex items-center gap-2">

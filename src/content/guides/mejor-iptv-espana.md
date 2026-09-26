@@ -4,8 +4,8 @@ description: "Descubre la guía completa para comprar y configurar el mejor serv
 pubDate: 2026-01-10T10:00:00Z
 updatedDate: 2026-03-22T12:00:00Z
 author: "Equipo Editorial IPTV España"
-image: "/images/sports-streaming-4k.webp"
-imageAlt: "Mejor servicio IPTV España 2026 streaming 4K fútbol"
+image: "/images/mejor-iptv-espana-streaming.webp"
+imageAlt: "Mejor servicio IPTV España 2026 streaming 4K de fútbol y cine en Smart TV"
 tags: ["IPTV España", "Comprar IPTV", "Streaming 4K", "LaLiga Directo", "PayPal"]
 featured: true
 readingTime: "6 min de lectura"

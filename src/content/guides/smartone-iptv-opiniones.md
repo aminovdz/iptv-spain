@@ -4,8 +4,8 @@ description: "Opiniones reales sobre SmartOne IPTV en España. Pros, contras, pr
 pubDate: 2026-02-15T10:00:00Z
 updatedDate: 2026-03-25T12:00:00Z
 author: "Equipo Editorial IPTV España"
-image: "/images/smart-tv-streaming-4k.webp"
-imageAlt: "SmartOne IPTV opiniones y análisis en España 2026"
+image: "/images/smartone-iptv-interfaz.webp"
+imageAlt: "Interfaz oficial del reproductor SmartOne IPTV en Smart TV 4K con guía EPG"
 tags: ["SmartOne IPTV", "Opiniones SmartOne", "Mejor App IPTV", "Smart TV Samsung", "Smart TV LG"]
 featured: true
 readingTime: "7 min de lectura"

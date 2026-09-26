@@ -4,8 +4,8 @@ description: "Aprende a ver todos los partidos de LaLiga EA Sports en 4K Ultra H
 pubDate: 2026-02-01T10:00:00Z
 updatedDate: 2026-03-24T12:00:00Z
 author: "Equipo Editorial IPTV España"
-image: "/images/sports-streaming-4k.webp"
-imageAlt: "Ver LaLiga en directo 4K online en España"
+image: "/images/laliga-online-streaming-4k.webp"
+imageAlt: "Transmisión en directo de fútbol LaLiga en resolución 4K Ultra HD y 60 FPS sin cortes"
 tags: ["LaLiga Directo", "Ver Fútbol 4K", "Fútbol Online", "El Clásico Directo", "Ahorro Streaming"]
 featured: true
 readingTime: "8 min de lectura"

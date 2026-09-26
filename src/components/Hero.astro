@@ -160,17 +160,17 @@ const whatsappTrialUrl = "https://wa.me/18036582620?text=Hola%21+Quiero+probar+g
             <!-- Match Screen Preview -->
             <div class="relative rounded-xl overflow-hidden aspect-video bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 border border-white/[0.08] flex flex-col justify-between p-4">
               <!-- Scoreboard -->
-              <div class="flex items-center justify-between bg-black/60 backdrop-blur-md rounded-lg p-2.5 border border-white/[0.1]">
+              <div id="hero-scoreboard" class="flex items-center justify-between bg-black/60 backdrop-blur-md rounded-lg p-2.5 border border-white/[0.1]">
                 <div class="flex items-center gap-2">
-                  <span class="font-bold text-white text-sm">Real Madrid</span>
+                  <span id="hero-home-team" class="font-bold text-white text-sm">Atlético Madrid</span>
                 </div>
-                <div class="flex items-center gap-2 px-3 py-1 bg-[#DC2626] rounded text-white font-black text-sm">
-                  <span>2</span>
+                <div class="flex items-center gap-2 px-3 py-1 bg-[#DC2626] rounded text-white font-black text-sm font-mono">
+                  <span id="hero-home-score">2</span>
                   <span class="text-xs opacity-75">-</span>
-                  <span>1</span>
+                  <span id="hero-away-score">1</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="font-bold text-white text-sm">FC Barcelona</span>
+                  <span id="hero-away-team" class="font-bold text-white text-sm">Real Madrid</span>
                 </div>
               </div>
 
@@ -179,8 +179,8 @@ const whatsappTrialUrl = "https://wa.me/18036582620?text=Hola%21+Quiero+probar+g
                 <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
                   <Signal class="w-3.5 h-3.5" /> 60 FPS Estable
                 </span>
-                <span class="px-2 py-0.5 rounded bg-black/70 text-gray-200 text-[11px] font-mono">
-                  Minuto 74' · El Clásico
+                <span id="hero-match-status" class="px-2 py-0.5 rounded bg-black/70 text-gray-200 text-[11px] font-mono">
+                  LaLiga EA Sports · Marcador Oficial
                 </span>
               </div>
             </div>

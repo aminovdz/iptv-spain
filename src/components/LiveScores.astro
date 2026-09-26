@@ -1,95 +1,9 @@
 ---
-import { Zap, Calendar, PlayCircle, Radio, RefreshCw, MessageCircle } from 'lucide-astro';
+import { Zap, PlayCircle, Radio } from 'lucide-astro';
+import { fetchLiveScoresFromESPN, type LiveMatch } from '../utils/sports';
 
-interface LiveMatch {
-  id: string;
-  league: string;
-  homeTeam: {
-    name: string;
-    logo: string;
-    score: string;
-  };
-  awayTeam: {
-    name: string;
-    logo: string;
-    score: string;
-  };
-  status: string;
-  isLive: boolean;
-  minute?: string;
-}
-
-// Resilient default fixtures for LaLiga & Champions League
-const initialMatches: LiveMatch[] = [
-  {
-    id: "es-1",
-    league: "LaLiga EA Sports",
-    status: "68'",
-    isLive: true,
-    minute: "68'",
-    homeTeam: {
-      name: "Real Madrid",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-      score: "2"
-    },
-    awayTeam: {
-      name: "FC Barcelona",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
-      score: "1"
-    }
-  },
-  {
-    id: "es-2",
-    league: "LaLiga EA Sports",
-    status: "52'",
-    isLive: true,
-    minute: "52'",
-    homeTeam: {
-      name: "Atlético de Madrid",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
-      score: "3"
-    },
-    awayTeam: {
-      name: "Sevilla FC",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/243.png",
-      score: "0"
-    }
-  },
-  {
-    id: "es-3",
-    league: "Champions League",
-    status: "Hoy 21:00",
-    isLive: false,
-    minute: "",
-    homeTeam: {
-      name: "Real Madrid",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-      score: "-"
-    },
-    awayTeam: {
-      name: "Bayern München",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
-      score: "-"
-    }
-  },
-  {
-    id: "es-4",
-    league: "LaLiga EA Sports",
-    status: "Finalizado",
-    isLive: false,
-    minute: "FT",
-    homeTeam: {
-      name: "Athletic Club",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
-      score: "2"
-    },
-    awayTeam: {
-      name: "Real Sociedad",
-      logo: "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-      score: "1"
-    }
-  }
-];
+// Fetch real ESPN live matches at build time
+const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
 ---
 
 <section class="py-12 bg-[#06070B] border-y border-white/[0.08] relative overflow-hidden" aria-labelledby="live-scores-title">
@@ -103,37 +17,43 @@ const initialMatches: LiveMatch[] = [
       <div class="flex items-center gap-3">
         <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Marcador en Directo</span>
+          <span>Marcador en Directo Oficial</span>
         </div>
         <h2 id="live-scores-title" class="text-white font-extrabold text-base sm:text-lg tracking-tight">
-          LaLiga & Champions League en Directo 4K
+          LaLiga & Champions League en Tiempo Real 4K
         </h2>
       </div>
 
       <div class="flex items-center gap-3 text-xs text-gray-400">
-        <span class="flex items-center gap-1.5">
-          <Zap class="w-3.5 h-3.5 text-[#F59E0B]" /> Anti-Freeze 9.8™ Activo
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <Radio class="w-3.5 h-3.5 animate-pulse text-emerald-400" />
+          <span id="live-sync-indicator">Feed en vivo conectado</span>
         </span>
         <span>•</span>
-        <span class="text-gray-400">Actualización en tiempo real</span>
+        <span class="flex items-center gap-1 text-[#F59E0B]">
+          <Zap class="w-3.5 h-3.5" /> Anti-Freeze 9.8™
+        </span>
       </div>
     </div>
 
-    <!-- Match Grid / Slider -->
+    <!-- Match Grid -->
     <div id="live-matches-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {initialMatches.map((match) => (
-        <div class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between">
+      {initialMatches.slice(0, 4).map((match) => (
+        <div 
+          class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between"
+          data-match-id={match.id}
+        >
           
           <!-- Match Header -->
           <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
-            <span class="font-bold text-gray-400 truncate max-w-[140px]">{match.league}</span>
+            <span class="font-bold text-gray-400 truncate max-w-[140px] match-league">{match.league}</span>
             {match.isLive ? (
-              <span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+              <span class="match-status-badge flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                {match.minute || 'EN VIVO'}
+                <span>{match.minute || 'EN VIVO'}</span>
               </span>
             ) : (
-              <span class="text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
+              <span class="match-status-badge text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
                 {match.status}
               </span>
             )}
@@ -147,17 +67,17 @@ const initialMatches: LiveMatch[] = [
                 <img
                   src={match.homeTeam.logo}
                   alt={match.homeTeam.name}
-                  class="w-6 h-6 object-contain"
+                  class="match-home-logo w-6 h-6 object-contain"
                   loading="lazy"
                   width="24"
                   height="24"
                   onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
                 />
-                <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                <span class="match-home-name text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
                   {match.homeTeam.name}
                 </span>
               </div>
-              <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+              <span class="match-home-score text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
                 {match.homeTeam.score}
               </span>
             </div>
@@ -168,28 +88,28 @@ const initialMatches: LiveMatch[] = [
                 <img
                   src={match.awayTeam.logo}
                   alt={match.awayTeam.name}
-                  class="w-6 h-6 object-contain"
+                  class="match-away-logo w-6 h-6 object-contain"
                   loading="lazy"
                   width="24"
                   height="24"
                   onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
                 />
-                <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                <span class="match-away-name text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
                   {match.awayTeam.name}
                 </span>
               </div>
-              <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+              <span class="match-away-score text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
                 {match.awayTeam.score}
               </span>
             </div>
           </div>
 
-          <!-- Hover CTA -->
+          <!-- Match Action CTA -->
           <a
             href={`https://wa.me/18036582620?text=Hola%21+Deseo+ver+el+partido+${encodeURIComponent(match.homeTeam.name)}+vs+${encodeURIComponent(match.awayTeam.name)}+en+directo+en+4K`}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
+            class="match-cta w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
           >
             <PlayCircle class="w-3.5 h-3.5" />
             <span>Ver en Directo 4K</span>
@@ -203,23 +123,229 @@ const initialMatches: LiveMatch[] = [
 </section>
 
 <script>
-  // Silently poll live score API every 60 seconds
-  async function refreshLiveScores() {
-    try {
-      const res = await fetch('/api/live-scores.json');
-      if (res.ok) {
-        const data = await res.json();
-        if (data.matches && data.matches.length > 0) {
-          // Can selectively update score nodes
-          console.log('[LiveScores] Synchronized with edge API:', data.matches.length, 'fixtures');
-        }
+  // Real-time client-side synchronization with ESPN official scoreboard feed
+  interface RealMatch {
+    id: string;
+    league: string;
+    status: string;
+    isLive: boolean;
+    minute?: string;
+    state?: string;
+    homeTeam: {
+      name: string;
+      logo: string;
+      score: string;
+    };
+    awayTeam: {
+      name: string;
+      logo: string;
+      score: string;
+    };
+  }
+
+  function parseESPNEvent(evt: any, league: string): RealMatch {
+    const comp = evt.competitions?.[0];
+    const home = comp?.competitors?.find((c: any) => c.homeAway === 'home');
+    const away = comp?.competitors?.find((c: any) => c.homeAway === 'away');
+    const state = evt.status?.type?.state;
+    const isLive = state === 'in';
+
+    let statusText = 'Programado';
+    if (isLive) {
+      statusText = evt.status?.displayClock ? `${evt.status.displayClock}` : 'EN DIRECTO';
+    } else if (state === 'post') {
+      statusText = evt.status?.type?.shortDetail || 'Finalizado';
+    } else if (evt.date) {
+      try {
+        const d = new Date(evt.date);
+        statusText = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false });
+      } catch {
+        statusText = 'Próximo';
       }
-    } catch (e) {
-      console.warn('[LiveScores] Polling error, keeping cached feed');
+    }
+
+    return {
+      id: String(evt.id),
+      league,
+      status: statusText,
+      isLive,
+      minute: isLive ? (evt.status?.displayClock || 'EN VIVO') : '',
+      state: state || 'unknown',
+      homeTeam: {
+        name: home?.team?.displayName || 'Equipo Local',
+        logo: home?.team?.logo || 'https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png',
+        score: home?.score !== undefined ? String(home.score) : '-'
+      },
+      awayTeam: {
+        name: away?.team?.displayName || 'Equipo Visitante',
+        logo: away?.team?.logo || 'https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png',
+        score: away?.score !== undefined ? String(away.score) : '-'
+      }
+    };
+  }
+
+  async function fetchRealMatches(): Promise<RealMatch[]> {
+    try {
+      const [laligaRes, championsRes] = await Promise.allSettled([
+        fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard'),
+        fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard')
+      ]);
+
+      const matches: RealMatch[] = [];
+
+      if (laligaRes.status === 'fulfilled' && laligaRes.value.ok) {
+        const d = await laligaRes.value.json();
+        matches.push(...(d.events || []).map((e: any) => parseESPNEvent(e, 'LaLiga EA Sports')));
+      }
+
+      if (championsRes.status === 'fulfilled' && championsRes.value.ok) {
+        const d = await championsRes.value.json();
+        matches.push(...(d.events || []).map((e: any) => parseESPNEvent(e, 'Champions League')));
+      }
+
+      if (matches.length > 0) {
+        matches.sort((a, b) => {
+          if (a.isLive && !b.isLive) return -1;
+          if (!a.isLive && b.isLive) return 1;
+          if (a.state === 'pre' && b.state === 'post') return -1;
+          if (a.state === 'post' && b.state === 'pre') return 1;
+          return 0;
+        });
+        return matches;
+      }
+    } catch {
+      // If direct ESPN fetch fails (e.g. adblocker), fallback to cached edge API
+      try {
+        const res = await fetch('/api/live-scores.json');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.matches && data.matches.length > 0) {
+            return data.matches;
+          }
+        }
+      } catch {
+        // Silent fallback
+      }
+    }
+    return [];
+  }
+
+  function renderMatchCard(match: RealMatch): string {
+    const statusBadge = match.isLive
+      ? `<span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+           <span>${match.minute || 'EN VIVO'}</span>
+         </span>`
+      : `<span class="text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
+           ${match.status}
+         </span>`;
+
+    const waText = encodeURIComponent(`Hola! Deseo ver el partido ${match.homeTeam.name} vs ${match.awayTeam.name} en directo en 4K`);
+
+    return `
+      <div 
+        class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between"
+        data-match-id="${match.id}"
+      >
+        <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
+          <span class="font-bold text-gray-400 truncate max-w-[140px]">${match.league}</span>
+          ${statusBadge}
+        </div>
+
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img
+                src="${match.homeTeam.logo}"
+                alt="${match.homeTeam.name}"
+                class="w-6 h-6 object-contain"
+                loading="lazy"
+                width="24"
+                height="24"
+                onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+              />
+              <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                ${match.homeTeam.name}
+              </span>
+            </div>
+            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+              ${match.homeTeam.score}
+            </span>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img
+                src="${match.awayTeam.logo}"
+                alt="${match.awayTeam.name}"
+                class="w-6 h-6 object-contain"
+                loading="lazy"
+                width="24"
+                height="24"
+                onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+              />
+              <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                ${match.awayTeam.name}
+              </span>
+            </div>
+            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+              ${match.awayTeam.score}
+            </span>
+          </div>
+        </div>
+
+        <a
+          href="https://wa.me/18036582620?text=${waText}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          <span>Ver en Directo 4K</span>
+        </a>
+      </div>
+    `;
+  }
+
+  async function updateLiveScoresDOM() {
+    const matches = await fetchRealMatches();
+    if (!matches || matches.length === 0) return;
+
+    const container = document.getElementById('live-matches-container');
+    if (container) {
+      container.innerHTML = matches.slice(0, 4).map(renderMatchCard).join('');
+    }
+
+    // Update Hero Screen Scoreboard if present
+    const topMatch = matches[0];
+    if (topMatch) {
+      const heroHomeTeam = document.getElementById('hero-home-team');
+      const heroAwayTeam = document.getElementById('hero-away-team');
+      const heroHomeScore = document.getElementById('hero-home-score');
+      const heroAwayScore = document.getElementById('hero-away-score');
+      const heroStatus = document.getElementById('hero-match-status');
+
+      if (heroHomeTeam) heroHomeTeam.textContent = topMatch.homeTeam.name;
+      if (heroAwayTeam) heroAwayTeam.textContent = topMatch.awayTeam.name;
+      if (heroHomeScore) heroHomeScore.textContent = topMatch.homeTeam.score;
+      if (heroAwayScore) heroAwayScore.textContent = topMatch.awayTeam.score;
+      if (heroStatus) {
+        heroStatus.textContent = topMatch.isLive 
+          ? `Minuto ${topMatch.minute || 'En Directo'} · ${topMatch.league}`
+          : `${topMatch.status} · ${topMatch.league}`;
+      }
+    }
+
+    const indicator = document.getElementById('live-sync-indicator');
+    if (indicator) {
+      indicator.textContent = 'En vivo · Actualizado';
     }
   }
 
   if (typeof window !== 'undefined') {
-    setInterval(refreshLiveScores, 60000);
+    // Run update shortly after DOM load
+    setTimeout(updateLiveScoresDOM, 1000);
+    // Poll every 45 seconds for real live score events
+    setInterval(updateLiveScoresDOM, 45000);
   }
 </script>

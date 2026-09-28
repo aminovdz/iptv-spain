@@ -5,6 +5,8 @@ export interface LiveMatch {
   isLive: boolean;
   minute?: string;
   state?: 'pre' | 'in' | 'post' | string;
+  venue?: string;
+  date?: string;
   homeTeam: {
     name: string;
     shortName: string;
@@ -108,6 +110,7 @@ export function formatESPNMatch(evt: any, leagueName: string): LiveMatch {
   const away = comp?.competitors?.find((c: any) => c.homeAway === 'away');
   const state = evt.status?.type?.state;
   const isLive = state === 'in';
+  const venue = comp?.venue?.fullName ? `${comp.venue.fullName}${comp.venue.address?.city ? ` (${comp.venue.address.city})` : ''}` : undefined;
 
   let statusText = 'Programado';
   if (isLive) {
@@ -130,6 +133,8 @@ export function formatESPNMatch(evt: any, leagueName: string): LiveMatch {
     isLive,
     minute: isLive ? (evt.status?.displayClock || 'EN VIVO') : '',
     state: state || 'unknown',
+    venue,
+    date: evt.date,
     homeTeam: {
       name: home?.team?.displayName || 'Equipo Local',
       shortName: home?.team?.shortDisplayName || home?.team?.name || 'Local',
@@ -169,9 +174,10 @@ export async function fetchLiveScoresFromESPN(): Promise<LiveMatch[]> {
   };
 
   try {
-    const [laligaRes, championsRes] = await Promise.allSettled([
+    const [laligaRes, championsRes, europaRes] = await Promise.allSettled([
       fetchWithTimeout('https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard'),
-      fetchWithTimeout('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard')
+      fetchWithTimeout('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard'),
+      fetchWithTimeout('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard')
     ]);
 
     const matches: LiveMatch[] = [];
@@ -184,6 +190,11 @@ export async function fetchLiveScoresFromESPN(): Promise<LiveMatch[]> {
     if (championsRes.status === 'fulfilled' && championsRes.value && championsRes.value.ok) {
       const d = await championsRes.value.json();
       matches.push(...(d.events || []).map((e: any) => formatESPNMatch(e, 'Champions League')));
+    }
+
+    if (europaRes.status === 'fulfilled' && europaRes.value && europaRes.value.ok) {
+      const d = await europaRes.value.json();
+      matches.push(...(d.events || []).map((e: any) => formatESPNMatch(e, 'UEFA Europa League')));
     }
 
     if (matches.length > 0) {

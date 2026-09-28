@@ -157,6 +157,9 @@ const { city } = Astro.props;
       cityName={city.name}
     />
 
+    <!-- Live Matches Infinite Loop Carousel Under Hero -->
+    <LiveScores />
+
     <!-- Local Infrastructure Highlights -->
     <section class="py-12 bg-[#06070B] border-y border-white/[0.08]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -199,9 +202,6 @@ const { city } = Astro.props;
         </div>
       </div>
     </section>
-
-    <!-- Live Matches -->
-    <LiveScores />
 
     <!-- Feature Grid -->
     <FeatureGrid />

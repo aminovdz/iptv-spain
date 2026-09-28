@@ -159,14 +159,14 @@ const whatsappTrialUrl = "https://wa.me/18036582620?text=Hola%21+Quiero+probar+g
               </div>
             </div>
 
-            <!-- Match Screen Preview -->
-            <div class="relative rounded-xl overflow-hidden aspect-video bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 border border-white/[0.08] flex flex-col justify-between p-4">
+            <!-- Match Screen Preview (Clickable to /livescore Match Center) -->
+            <a href="/livescore" class="group/hero-match relative rounded-xl overflow-hidden aspect-video bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 border border-white/[0.08] hover:border-[#DC2626]/50 flex flex-col justify-between p-4 transition-all block cursor-pointer" title="Ver Centro de Partidos en Directo">
               <!-- Scoreboard -->
-              <div id="hero-scoreboard" class="flex items-center justify-between bg-black/60 backdrop-blur-md rounded-lg p-2.5 border border-white/[0.1]">
+              <div id="hero-scoreboard" class="flex items-center justify-between bg-black/60 backdrop-blur-md rounded-lg p-2.5 border border-white/[0.1] group-hover/hero-match:border-[#DC2626]/40 transition-colors">
                 <div class="flex items-center gap-2">
                   <span id="hero-home-team" class="font-bold text-white text-sm">Atlético Madrid</span>
                 </div>
-                <div class="flex items-center gap-2 px-3 py-1 bg-[#DC2626] rounded text-white font-black text-sm font-mono">
+                <div class="flex items-center gap-2 px-3 py-1 bg-[#DC2626] rounded text-white font-black text-sm font-mono shadow-md">
                   <span id="hero-home-score">2</span>
                   <span class="text-xs opacity-75">-</span>
                   <span id="hero-away-score">1</span>
@@ -178,14 +178,14 @@ const whatsappTrialUrl = "https://wa.me/18036582620?text=Hola%21+Quiero+probar+g
 
               <!-- Live Match Status Pill -->
               <div class="flex items-center justify-between text-xs text-gray-300">
-                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                  <Signal class="w-3.5 h-3.5" /> 60 FPS Estable
+                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold text-[11px]">
+                  <Signal class="w-3.5 h-3.5" /> 60 FPS Estable · Match Center
                 </span>
-                <span id="hero-match-status" class="px-2 py-0.5 rounded bg-black/70 text-gray-200 text-[11px] font-mono">
-                  LaLiga EA Sports · Marcador Oficial
+                <span id="hero-match-status" class="px-2 py-0.5 rounded bg-black/70 text-gray-200 text-[11px] font-mono group-hover/hero-match:text-[#F59E0B] transition-colors">
+                  LaLiga EA Sports · Marcador Oficial →
                 </span>
               </div>
-            </div>
+            </a>
 
             <!-- Quick Features Ticker under Screen -->
             <div class="mt-4 pt-3 border-t border-white/[0.08] grid grid-cols-3 gap-2 text-center text-[11px]">

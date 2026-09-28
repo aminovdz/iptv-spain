@@ -1,124 +1,245 @@
 ---
-import { Zap, PlayCircle, Radio } from 'lucide-astro';
+import { Zap, PlayCircle, Radio, ArrowRight } from 'lucide-astro';
 import { fetchLiveScoresFromESPN, type LiveMatch } from '../utils/sports';
 
 // Fetch real ESPN live matches at build time
 const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
+
+// Prepare display items: duplicate to ensure sufficient cards for mathematically seamless infinite looping on all screen sizes
+const baseMatches = initialMatches.length > 0 ? initialMatches : [];
+const displayMatches = baseMatches.length < 6 
+  ? [...baseMatches, ...baseMatches, ...baseMatches] 
+  : (baseMatches.length < 10 ? [...baseMatches, ...baseMatches] : baseMatches);
 ---
 
-<section class="py-12 bg-[#06070B] border-y border-white/[0.08] relative overflow-hidden" aria-labelledby="live-scores-title">
+<section class="py-10 bg-[#06070B] border-y border-white/[0.08] relative overflow-hidden" aria-labelledby="live-scores-title">
   <!-- Glowing subtle backdrop -->
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(220,38,38,0.06),rgba(0,0,0,0))] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(220,38,38,0.08),rgba(0,0,0,0))] pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    
-    <!-- Ticker Top Info -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Marcador en Directo Oficial</span>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      
+      <!-- Left: Status & Title -->
+      <div>
+        <div class="flex items-center gap-2 mb-2 flex-wrap">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            EN DIRECTO · MARCADOR OFICIAL
+          </span>
+          <span class="hidden sm:inline-flex items-center gap-1 text-[11px] text-gray-400">
+            <Radio class="w-3 h-3 text-emerald-400 animate-pulse" />
+            <span id="live-sync-indicator">Feed en tiempo real conectado</span>
+          </span>
         </div>
-        <h2 id="live-scores-title" class="text-white font-extrabold text-base sm:text-lg tracking-tight">
-          LaLiga & Champions League en Tiempo Real 4K
+        <h2 id="live-scores-title" class="text-white font-extrabold text-xl sm:text-2xl tracking-tight">
+          Partidos en Directo · LaLiga, Champions League & Fútbol 4K
         </h2>
+        <p class="text-xs sm:text-sm text-gray-400 mt-1">
+          Haz clic en cualquier partido para abrir el <strong class="text-gray-200">Centro de Partidos (Match Center)</strong> con estadísticas, alineaciones y retransmisión ultra estable.
+        </p>
       </div>
 
-      <div class="flex items-center gap-3 text-xs text-gray-400">
-        <span class="flex items-center gap-1.5 text-emerald-400">
-          <Radio class="w-3.5 h-3.5 animate-pulse text-emerald-400" />
-          <span id="live-sync-indicator">Feed en vivo conectado</span>
-        </span>
-        <span>•</span>
-        <span class="flex items-center gap-1 text-[#F59E0B]">
-          <Zap class="w-3.5 h-3.5" /> Anti-Freeze 9.8™
-        </span>
-      </div>
-    </div>
-
-    <!-- Match Grid -->
-    <div id="live-matches-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {initialMatches.slice(0, 4).map((match) => (
-        <div 
-          class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between"
-          data-match-id={match.id}
+      <!-- Right: Direct Link to /livescore Match Center -->
+      <div class="flex items-center gap-3 self-start md:self-auto flex-shrink-0">
+        <a
+          href="/livescore"
+          class="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white text-xs sm:text-sm font-bold shadow-lg shadow-red-900/30 hover:shadow-red-900/50 transition-all border border-red-500/30"
+          title="Abrir Centro de Partidos IPTV España"
         >
-          
-          <!-- Match Header -->
-          <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
-            <span class="font-bold text-gray-400 truncate max-w-[140px] match-league">{match.league}</span>
-            {match.isLive ? (
-              <span class="match-status-badge flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>{match.minute || 'EN VIVO'}</span>
-              </span>
-            ) : (
-              <span class="match-status-badge text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
-                {match.status}
-              </span>
-            )}
-          </div>
+          <span>Ver Match Center Completo</span>
+          <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
 
-          <!-- Teams and Scores -->
-          <div class="space-y-2 mb-4">
-            <!-- Home Team -->
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <img
-                  src={match.homeTeam.logo}
-                  alt={match.homeTeam.name}
-                  class="match-home-logo w-6 h-6 object-contain"
-                  loading="lazy"
-                  width="24"
-                  height="24"
-                  onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
-                />
-                <span class="match-home-name text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
-                  {match.homeTeam.name}
-                </span>
-              </div>
-              <span class="match-home-score text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
-                {match.homeTeam.score}
-              </span>
-            </div>
+    </div>
+  </div>
 
-            <!-- Away Team -->
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <img
-                  src={match.awayTeam.logo}
-                  alt={match.awayTeam.name}
-                  class="match-away-logo w-6 h-6 object-contain"
-                  loading="lazy"
-                  width="24"
-                  height="24"
-                  onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
-                />
-                <span class="match-away-name text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
-                  {match.awayTeam.name}
-                </span>
-              </div>
-              <span class="match-away-score text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
-                {match.awayTeam.score}
-              </span>
-            </div>
-          </div>
+  <!-- Infinite Loop Carousel Wrapper -->
+  <div class="carousel-wrapper relative overflow-hidden py-2 select-none group">
+    
+    <!-- Gradient fade masks on left and right for seamless infinite flow -->
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#06070B] to-transparent z-20"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#06070B] to-transparent z-20"></div>
 
-          <!-- Match Action CTA -->
+    <!-- Marquee Track -->
+    <div class="animate-infinite-loop flex gap-4 w-max">
+      
+      <!-- Track 1: First set of fixture cards -->
+      <div id="carousel-track-1" class="flex gap-4 items-center">
+        {displayMatches.map((match) => (
           <a
-            href={`https://wa.me/18036582620?text=Hola%21+Deseo+ver+el+partido+${encodeURIComponent(match.homeTeam.name)}+vs+${encodeURIComponent(match.awayTeam.name)}+en+directo+en+4K`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="match-cta w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
+            href={`/livescore?match=${match.id}`}
+            class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
+            data-match-id={match.id}
           >
-            <PlayCircle class="w-3.5 h-3.5" />
-            <span>Ver en Directo 4K</span>
-          </a>
+            <!-- Card Header -->
+            <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
+              <span class="font-bold text-gray-400 truncate max-w-[140px]">{match.league}</span>
+              {match.isLive ? (
+                <span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span>{match.minute || 'EN VIVO'}</span>
+                </span>
+              ) : (
+                <span class="text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
+                  {match.status}
+                </span>
+              )}
+            </div>
 
-        </div>
-      ))}
+            <!-- Teams & Scores -->
+            <div class="space-y-2 mb-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5 overflow-hidden pr-2">
+                  <img
+                    src={match.homeTeam.logo}
+                    alt={match.homeTeam.name}
+                    class="w-6 h-6 object-contain flex-shrink-0"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                  />
+                  <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
+                    {match.homeTeam.name}
+                  </span>
+                </div>
+                <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
+                  {match.homeTeam.score}
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5 overflow-hidden pr-2">
+                  <img
+                    src={match.awayTeam.logo}
+                    alt={match.awayTeam.name}
+                    class="w-6 h-6 object-contain flex-shrink-0"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                  />
+                  <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
+                    {match.awayTeam.name}
+                  </span>
+                </div>
+                <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
+                  {match.awayTeam.score}
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Action Bar -->
+            <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-400 group-hover/card:text-gray-200">
+              <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-400 group-hover/card:text-emerald-300">
+                <PlayCircle class="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>Ver en Match Center</span>
+              </span>
+              <span class="font-mono text-xs text-[#F59E0B] group-hover/card:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Track 2: Identical clone for mathematically seamless infinite looping -->
+      <div id="carousel-track-2" class="flex gap-4 items-center" aria-hidden="true">
+        {displayMatches.map((match) => (
+          <a
+            href={`/livescore?match=${match.id}`}
+            tabindex="-1"
+            class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
+            data-match-id={match.id}
+          >
+            <!-- Card Header -->
+            <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
+              <span class="font-bold text-gray-400 truncate max-w-[140px]">{match.league}</span>
+              {match.isLive ? (
+                <span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span>{match.minute || 'EN VIVO'}</span>
+                </span>
+              ) : (
+                <span class="text-gray-400 font-mono text-[10px] px-2 py-0.5 rounded bg-white/[0.04]">
+                  {match.status}
+                </span>
+              )}
+            </div>
+
+            <!-- Teams & Scores -->
+            <div class="space-y-2 mb-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5 overflow-hidden pr-2">
+                  <img
+                    src={match.homeTeam.logo}
+                    alt={match.homeTeam.name}
+                    class="w-6 h-6 object-contain flex-shrink-0"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                  />
+                  <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
+                    {match.homeTeam.name}
+                  </span>
+                </div>
+                <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
+                  {match.homeTeam.score}
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5 overflow-hidden pr-2">
+                  <img
+                    src={match.awayTeam.logo}
+                    alt={match.awayTeam.name}
+                    class="w-6 h-6 object-contain flex-shrink-0"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
+                  />
+                  <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
+                    {match.awayTeam.name}
+                  </span>
+                </div>
+                <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
+                  {match.awayTeam.score}
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Action Bar -->
+            <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-400 group-hover/card:text-gray-200">
+              <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-400 group-hover/card:text-emerald-300">
+                <PlayCircle class="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>Ver en Match Center</span>
+              </span>
+              <span class="font-mono text-xs text-[#F59E0B] group-hover/card:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
     </div>
 
+  </div>
+
+  <!-- Bottom Info bar & quick links -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06] text-xs text-gray-400">
+      <div class="flex items-center gap-2">
+        <Zap class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Transmisión deportiva 4K sin retardo ni cortes con Anti-Freeze 9.8™</span>
+      </div>
+      <a
+        href="/livescore"
+        class="inline-flex items-center gap-1.5 text-gray-300 hover:text-white font-medium hover:underline transition-colors"
+      >
+        <span>Pasa el cursor para pausar · Ver calendario completo en el Match Center</span>
+        <ArrowRight class="w-3 h-3 text-[#DC2626]" />
+      </a>
+    </div>
   </div>
 </section>
 
@@ -186,9 +307,10 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
 
   async function fetchRealMatches(): Promise<RealMatch[]> {
     try {
-      const [laligaRes, championsRes] = await Promise.allSettled([
+      const [laligaRes, championsRes, europaRes] = await Promise.allSettled([
         fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard'),
-        fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard')
+        fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard'),
+        fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard')
       ]);
 
       const matches: RealMatch[] = [];
@@ -203,6 +325,11 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
         matches.push(...(d.events || []).map((e: any) => parseESPNEvent(e, 'Champions League')));
       }
 
+      if (europaRes.status === 'fulfilled' && europaRes.value.ok) {
+        const d = await europaRes.value.json();
+        matches.push(...(d.events || []).map((e: any) => parseESPNEvent(e, 'UEFA Europa League')));
+      }
+
       if (matches.length > 0) {
         matches.sort((a, b) => {
           if (a.isLive && !b.isLive) return -1;
@@ -214,7 +341,7 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
         return matches;
       }
     } catch {
-      // If direct ESPN fetch fails (e.g. adblocker), fallback to cached edge API
+      // If direct ESPN fetch fails, fallback to edge API
       try {
         const res = await fetch('/api/live-scores.json');
         if (res.ok) {
@@ -230,7 +357,7 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
     return [];
   }
 
-  function renderMatchCard(match: RealMatch): string {
+  function renderCarouselCard(match: RealMatch, isAriaHidden: boolean = false): string {
     const statusBadge = match.isLive
       ? `<span class="flex items-center gap-1 text-emerald-400 font-extrabold uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -240,11 +367,11 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
            ${match.status}
          </span>`;
 
-    const waText = encodeURIComponent(`Hola! Deseo ver el partido ${match.homeTeam.name} vs ${match.awayTeam.name} en directo en 4K`);
-
     return `
-      <div 
-        class="match-card group relative rounded-2xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/50 p-4 transition-all duration-300 shadow-md hover:shadow-[0_10px_25px_-5px_rgba(220,38,38,0.25)] flex flex-col justify-between"
+      <a
+        href="/livescore?match=${match.id}"
+        ${isAriaHidden ? 'tabindex="-1"' : ''}
+        class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
         data-match-id="${match.id}"
       >
         <div class="flex items-center justify-between text-[11px] mb-3 pb-2 border-b border-white/[0.06]">
@@ -252,58 +379,56 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
           ${statusBadge}
         </div>
 
-        <div class="space-y-2 mb-4">
+        <div class="space-y-2 mb-3">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-2.5 overflow-hidden pr-2">
               <img
                 src="${match.homeTeam.logo}"
                 alt="${match.homeTeam.name}"
-                class="w-6 h-6 object-contain"
+                class="w-6 h-6 object-contain flex-shrink-0"
                 loading="lazy"
                 width="24"
                 height="24"
                 onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
               />
-              <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+              <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
                 ${match.homeTeam.name}
               </span>
             </div>
-            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
               ${match.homeTeam.score}
             </span>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-2.5 overflow-hidden pr-2">
               <img
                 src="${match.awayTeam.logo}"
                 alt="${match.awayTeam.name}"
-                class="w-6 h-6 object-contain"
+                class="w-6 h-6 object-contain flex-shrink-0"
                 loading="lazy"
                 width="24"
                 height="24"
                 onerror="this.src='https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo.png'"
               />
-              <span class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+              <span class="text-xs font-bold text-white group-hover/card:text-[#F59E0B] transition-colors truncate">
                 ${match.awayTeam.name}
               </span>
             </div>
-            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/40">
+            <span class="text-sm font-black text-white font-mono px-2 py-0.5 rounded bg-black/50 border border-white/[0.05] flex-shrink-0">
               ${match.awayTeam.score}
             </span>
           </div>
         </div>
 
-        <a
-          href="https://wa.me/18036582620?text=${waText}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-bold text-[11px] uppercase tracking-wider shadow-sm transition-all"
-        >
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-          <span>Ver en Directo 4K</span>
-        </a>
-      </div>
+        <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-400 group-hover/card:text-gray-200">
+          <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-400 group-hover/card:text-emerald-300">
+            <svg class="w-3.5 h-3.5 text-[#DC2626]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            <span>Ver en Match Center</span>
+          </span>
+          <span class="font-mono text-xs text-[#F59E0B] group-hover/card:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
     `;
   }
 
@@ -311,12 +436,22 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
     const matches = await fetchRealMatches();
     if (!matches || matches.length === 0) return;
 
-    const container = document.getElementById('live-matches-container');
-    if (container) {
-      container.innerHTML = matches.slice(0, 4).map(renderMatchCard).join('');
+    // Ensure enough items for seamless marquee loop
+    const displayMatches = matches.length < 6 
+      ? [...matches, ...matches, ...matches] 
+      : (matches.length < 10 ? [...matches, ...matches] : matches);
+
+    const track1 = document.getElementById('carousel-track-1');
+    const track2 = document.getElementById('carousel-track-2');
+
+    if (track1) {
+      track1.innerHTML = displayMatches.map((m) => renderCarouselCard(m, false)).join('');
+    }
+    if (track2) {
+      track2.innerHTML = displayMatches.map((m) => renderCarouselCard(m, true)).join('');
     }
 
-    // Update Hero Screen Scoreboard if present
+    // Update Hero Screen Scoreboard if present on the page
     const topMatch = matches[0];
     if (topMatch) {
       const heroHomeTeam = document.getElementById('hero-home-team');
@@ -338,14 +473,14 @@ const initialMatches: LiveMatch[] = await fetchLiveScoresFromESPN();
 
     const indicator = document.getElementById('live-sync-indicator');
     if (indicator) {
-      indicator.textContent = 'En vivo · Actualizado';
+      indicator.textContent = 'En vivo · Actualizado cada 30s';
     }
   }
 
   if (typeof window !== 'undefined') {
     // Run update shortly after DOM load
     setTimeout(updateLiveScoresDOM, 1000);
-    // Poll every 45 seconds for real live score events
-    setInterval(updateLiveScoresDOM, 45000);
+    // Poll every 35 seconds for real live score events
+    setInterval(updateLiveScoresDOM, 35000);
   }
 </script>

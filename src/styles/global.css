@@ -119,3 +119,34 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #DC2626;
 }
+
+/* Seamless Infinite Loop Carousel */
+@keyframes infinite-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-loop {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.carousel-wrapper:hover .animate-infinite-loop,
+.carousel-wrapper:focus-within .animate-infinite-loop {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-infinite-loop {
+    animation: none;
+    width: auto;
+    overflow-x: auto;
+  }
+}
+

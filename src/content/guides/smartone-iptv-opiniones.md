@@ -83,6 +83,6 @@ Tanto si decides usar SmartOne IPTV en tu Smart TV como si prefieres TiviMate en
 - **Infraestructura Anti-Freeze 9.8™** con servidores de 10 Gbps dedicados.
 - **Activación de reproductor VIP incluida gratis** en nuestros planes de 6 y 12 meses.
 - **Pago 100% seguro con tarjeta bancaria o PayPal** sin complicaciones.
-- **Soporte prioritario 24/7 en español** por WhatsApp (+1 803 658-2620).
+- **Soporte prioritario 24/7 en español** por WhatsApp (+213 550 59 22 00).
 
 Prueba el servicio durante 24 horas sin ningún compromiso solicitando tu enlace de test ahora mismo.

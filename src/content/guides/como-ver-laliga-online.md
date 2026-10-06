@@ -86,7 +86,7 @@ Descarga **Downloader** en tu Amazon Fire TV Stick o accede a la tienda de apps 
 
 <span class="bg-[#DC2626]/20 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">PASO 2</span>
 
-Solicita tu acceso a nuestro equipo en WhatsApp (+1 803 658-2620). Te enviamos las credenciales m3u / Xtream al instante.
+Solicita tu acceso a nuestro equipo en WhatsApp (+213 550 59 22 00). Te enviamos las credenciales m3u / Xtream al instante.
 
 <span class="bg-[#DC2626]/20 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">PASO 3</span>
 

@@ -63,7 +63,7 @@ A la hora de seleccionar un proveedor confiable, debes prestar atención a los s
 
 <span class="bg-[#DC2626]/20 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">PASO 1</span>
 
-Contacta a nuestro equipo por WhatsApp al **+1 (803) 658-2620** e indícanos el plan que prefieres (1, 3, 6 o 12 meses) o solicita una prueba de 24 horas.
+Contacta a nuestro equipo por WhatsApp al **+213 550 59 22 00** e indícanos el plan que prefieres (1, 3, 6 o 12 meses) o solicita una prueba de 24 horas.
 
 <span class="bg-[#DC2626]/20 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">PASO 2</span>
 

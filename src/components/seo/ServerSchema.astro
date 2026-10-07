@@ -28,6 +28,16 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptve-spana.cloud';
+const rawUrl = url || Astro.url.href;
+let cleanSchemaUrl = rawUrl;
+try {
+  const u = new URL(rawUrl, siteUrl);
+  u.search = '';
+  if (!u.pathname.endsWith('/') && !u.pathname.includes('.')) {
+    u.pathname += '/';
+  }
+  cleanSchemaUrl = u.toString();
+} catch {}
 
 // 1. Organization & WebSite Entity Graph
 const organizationSchema = {
@@ -122,7 +132,7 @@ const productSchema = {
     "offerCount": "4",
     "priceValidUntil": "2027-12-31",
     "availability": "https://schema.org/InStock",
-    "url": url,
+    "url": cleanSchemaUrl,
     "seller": {
       "@id": `${siteUrl}/#organization`
     },
@@ -133,7 +143,7 @@ const productSchema = {
         "price": "8.00",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": url
+        "url": cleanSchemaUrl
       },
       {
         "@type": "Offer",
@@ -141,7 +151,7 @@ const productSchema = {
         "price": "20.00",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": url
+        "url": cleanSchemaUrl
       },
       {
         "@type": "Offer",
@@ -149,7 +159,7 @@ const productSchema = {
         "price": "30.00",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": url
+        "url": cleanSchemaUrl
       },
       {
         "@type": "Offer",
@@ -157,7 +167,7 @@ const productSchema = {
         "price": "55.00",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": url
+        "url": cleanSchemaUrl
       }
     ]
   }
@@ -173,11 +183,11 @@ const breadcrumbSchema = {
       "name": "Inicio",
       "item": siteUrl
     },
-    ...(url !== siteUrl ? [{
+    ...(cleanSchemaUrl !== `${siteUrl}/` ? [{
       "@type": "ListItem",
       "position": 2,
       "name": title,
-      "item": url
+      "item": cleanSchemaUrl
     }] : [])
   ]
 };
@@ -213,17 +223,17 @@ const articleSchema = type === 'article' ? {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": url
+    "@id": cleanSchemaUrl
   }
 } : null;
 
 // 6. Local Business Schema for City Landing Pages
 const localBusinessSchema = type === 'city' && cityName ? {
   "@type": "LocalBusiness",
-  "@id": `${url}#localbusiness`,
+  "@id": `${cleanSchemaUrl}#localbusiness`,
   "name": `IPTV España en ${cityName}`,
   "description": `Servicio de IPTV y streaming 4K de alta velocidad disponible en ${cityName} y alrededores.`,
-  "url": url,
+  "url": cleanSchemaUrl,
   "telephone": "+213-550-59-22-00",
   "areaServed": {
     "@type": "City",

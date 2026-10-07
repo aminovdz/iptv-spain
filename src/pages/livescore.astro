@@ -565,9 +565,10 @@ const sportsFaqs = [
       });
     }
 
-    // Highlight card if ?match=ID is provided in URL
+    // Highlight card if #match-ID or ?match=ID is provided in URL
     const urlParams = new URLSearchParams(window.location.search);
-    const targetMatchId = urlParams.get('match');
+    const hash = window.location.hash;
+    const targetMatchId = urlParams.get('match') || (hash ? hash.replace(/^#match-/, '').replace(/^#/, '') : null);
     if (targetMatchId) {
       const targetCard = document.querySelector<HTMLElement>(`.match-item-card[data-match-id="${targetMatchId}"]`);
       if (targetCard) {

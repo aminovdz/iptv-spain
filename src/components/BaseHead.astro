@@ -29,7 +29,13 @@ const keywordsString = Array.isArray(keywords)
   : (keywords || defaultKeywords);
 
 const siteUrl = 'https://iptve-spana.cloud';
-const fullCanonicalURL = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
+let rawCanonical = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
+let cleanUrlObj = new URL(rawCanonical);
+cleanUrlObj.search = '';
+if (!cleanUrlObj.pathname.endsWith('/') && !cleanUrlObj.pathname.includes('.')) {
+  cleanUrlObj.pathname += '/';
+}
+const fullCanonicalURL = cleanUrlObj.toString();
 const ogImageUrl = new URL(image, Astro.site || siteUrl).toString();
 ---
 

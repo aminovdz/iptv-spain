@@ -42,7 +42,7 @@ const displayMatches = baseMatches.length < 6
       <!-- Right: Direct Link to /livescore Match Center -->
       <div class="flex items-center gap-3 self-start md:self-auto flex-shrink-0">
         <a
-          href="/livescore"
+          href="/livescore/"
           class="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white text-xs sm:text-sm font-bold shadow-lg shadow-red-900/30 hover:shadow-red-900/50 transition-all border border-red-500/30"
           title="Abrir Centro de Partidos IPTV España"
         >
@@ -68,7 +68,7 @@ const displayMatches = baseMatches.length < 6
       <div id="carousel-track-1" class="flex gap-4 items-center">
         {displayMatches.map((match) => (
           <a
-            href={`/livescore?match=${match.id}`}
+            href={`/livescore/#match-${match.id}`}
             class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
             data-match-id={match.id}
           >
@@ -146,7 +146,7 @@ const displayMatches = baseMatches.length < 6
       <div id="carousel-track-2" class="flex gap-4 items-center" aria-hidden="true">
         {displayMatches.map((match) => (
           <a
-            href={`/livescore?match=${match.id}`}
+            href={`/livescore/#match-${match.id}`}
             tabindex="-1"
             class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
             data-match-id={match.id}
@@ -233,7 +233,7 @@ const displayMatches = baseMatches.length < 6
         <span>Transmisión deportiva 4K sin retardo ni cortes con Anti-Freeze 9.8™</span>
       </div>
       <a
-        href="/livescore"
+        href="/livescore/"
         class="inline-flex items-center gap-1.5 text-gray-300 hover:text-white font-medium hover:underline transition-colors"
       >
         <span>Pasa el cursor para pausar · Ver calendario completo en el Match Center</span>
@@ -369,7 +369,7 @@ const displayMatches = baseMatches.length < 6
 
     return `
       <a
-        href="/livescore?match=${match.id}"
+        href="/livescore/#match-${match.id}"
         ${isAriaHidden ? 'tabindex="-1"' : ''}
         class="match-card group/card relative block w-[290px] sm:w-[320px] flex-shrink-0 rounded-2xl bg-[#0F111A]/95 hover:bg-[#161926] border border-white/[0.08] hover:border-[#DC2626]/70 p-4 transition-all duration-300 shadow-md hover:shadow-[0_12px_30px_-5px_rgba(220,38,38,0.35)] hover:-translate-y-1 cursor-pointer text-left"
         data-match-id="${match.id}"

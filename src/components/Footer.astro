@@ -16,36 +16,36 @@ const cities = [
 
 const quickLinks = [
   { name: 'Inicio', href: '/' },
-  { name: 'Centro de Partidos (Match Center)', href: '/livescore' },
+  { name: 'Centro de Partidos (Match Center)', href: '/livescore/' },
   { name: 'Plan 12 Meses (Recomendado)', href: '/#pricing' },
-  { name: 'SmartOne IPTV Reseña & Alternativas', href: '/smartone-iptv' },
-  { name: 'Lista IPTV España M3U', href: '/lista-iptv-espana' },
-  { name: 'IPTV Profesional (Bares y Empresas)', href: '/iptv-profesional' },
-  { name: 'Mejor IPTV España 2026', href: '/mejor-iptv-espana' },
-  { name: 'Programa de Recomendados', href: '/referral' },
-  { name: 'Contacto y Soporte', href: '/contact' }
+  { name: 'SmartOne IPTV Reseña & Alternativas', href: '/smartone-iptv/' },
+  { name: 'Lista IPTV España M3U', href: '/lista-iptv-espana/' },
+  { name: 'IPTV Profesional (Bares y Empresas)', href: '/iptv-profesional/' },
+  { name: 'Mejor IPTV España 2026', href: '/mejor-iptv-espana/' },
+  { name: 'Programa de Recomendados', href: '/referral/' },
+  { name: 'Contacto y Soporte', href: '/contact/' }
 ];
 
 const comparisonLinks = [
-  { name: 'IPTV España vs SmartOne IPTV', href: '/compare/iptv-espana-vs-smartone-iptv' },
-  { name: 'IPTV vs Operadores Tradicionales', href: '/compare/iptv-espana-vs-operadores-tradicionales' },
-  { name: 'Todas las Comparativas', href: '/compare' }
+  { name: 'IPTV España vs SmartOne IPTV', href: '/compare/iptv-espana-vs-smartone-iptv/' },
+  { name: 'IPTV vs Operadores Tradicionales', href: '/compare/iptv-espana-vs-operadores-tradicionales/' },
+  { name: 'Todas las Comparativas', href: '/compare/' }
 ];
 
 const guidesLinks = [
-  { name: '¿Es Legal el IPTV en España? Ley Kangaroo y CNMC', href: '/guides/es-legal-el-iptv-en-espana' },
-  { name: 'Cómo Ver LaLiga Online en Directo en 2026', href: '/guides/como-ver-laliga-online' },
-  { name: 'SmartOne IPTV Opiniones: ¿Vale la Pena en 2026?', href: '/guides/smartone-iptv-opiniones' },
-  { name: 'Mejor IPTV España: Guía de Streaming 4K', href: '/guides/mejor-iptv-espana' },
-  { name: 'Todas las Guías y Tutoriales', href: '/guides' }
+  { name: '¿Es Legal el IPTV en España? Ley Kangaroo y CNMC', href: '/guides/es-legal-el-iptv-en-espana/' },
+  { name: 'Cómo Ver LaLiga Online en Directo en 2026', href: '/guides/como-ver-laliga-online/' },
+  { name: 'SmartOne IPTV Opiniones: ¿Vale la Pena en 2026?', href: '/guides/smartone-iptv-opiniones/' },
+  { name: 'Mejor IPTV España: Guía de Streaming 4K', href: '/guides/mejor-iptv-espana/' },
+  { name: 'Todas las Guías y Tutoriales', href: '/guides/' }
 ];
 
 const legalLinks = [
-  { name: 'Política de Privacidad (RGPD)', href: '/privacy' },
-  { name: 'Términos y Condiciones de Uso', href: '/terms' },
-  { name: 'Política de Reembolso (Válida 24 Horas)', href: '/refund' },
-  { name: 'Aviso de Derechos de Autor (DMCA)', href: '/dmca' },
-  { name: 'Aviso Legal y Descargo de Responsabilidad', href: '/disclaimer' }
+  { name: 'Política de Privacidad (RGPD)', href: '/privacy/' },
+  { name: 'Términos y Condiciones de Uso', href: '/terms/' },
+  { name: 'Política de Reembolso (Válida 24 Horas)', href: '/refund/' },
+  { name: 'Aviso de Derechos de Autor (DMCA)', href: '/dmca/' },
+  { name: 'Aviso Legal y Descargo de Responsabilidad', href: '/disclaimer/' }
 ];
 ---
 
@@ -190,7 +190,7 @@ const legalLinks = [
         <ul class="grid grid-cols-2 gap-2 text-xs">
           {cities.map((city) => (
             <li>
-              <a href={`/locations/${city.slug}`} class="text-gray-400 hover:text-[#F59E0B] transition-colors flex items-center gap-1">
+              <a href={`/locations/${city.slug}/`} class="text-gray-400 hover:text-[#F59E0B] transition-colors flex items-center gap-1">
                 <MapPin class="w-3 h-3 text-[#DC2626]" /> {city.name}
               </a>
             </li>
@@ -208,10 +208,10 @@ const legalLinks = [
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-[11px]">
         <span>© {currentYear} IPTV España. Todos los derechos reservados. Desarrollado con tecnología Edge Cloudflare.</span>
         <div class="flex items-center gap-4">
-          <a href="/privacy" class="hover:underline">Privacidad</a>
-          <a href="/terms" class="hover:underline">Términos</a>
-          <a href="/refund" class="hover:underline">Reembolso (24h)</a>
-          <a href="/dmca" class="hover:underline">DMCA</a>
+          <a href="/privacy/" class="hover:underline">Privacidad</a>
+          <a href="/terms/" class="hover:underline">Términos</a>
+          <a href="/refund/" class="hover:underline">Reembolso (24h)</a>
+          <a href="/dmca/" class="hover:underline">DMCA</a>
         </div>
       </div>
     </div>

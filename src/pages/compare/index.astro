@@ -22,9 +22,9 @@ const comparisons = [
 <Layout
   title="Comparativas de IPTV en España 2026 — Análisis Objetivo"
   description="Todas las comparativas entre IPTV España y sus principales competidores y alternativas del mercado español. Ahorro, calidad 4K y estabilidad."
-  canonicalURL="https://iptve-spana.cloud/compare"
+  canonicalURL="https://iptv-espana.cloud/compare/"
 >
-  <StickyHeader currentPath="/compare" />
+  <StickyHeader currentPath="/compare/" />
 
   <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +45,7 @@ const comparisons = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {comparisons.map((c) => (
           <a
-            href={`/compare/${c.slug}`}
+            href={`/compare/${c.slug}/`}
             class="group p-8 rounded-3xl bg-[#0F111A] border border-white/[0.08] hover:border-[#DC2626]/40 transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between"
           >
             <div>

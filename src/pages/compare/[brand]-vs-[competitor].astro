@@ -87,10 +87,10 @@ const currentYear = new Date().getFullYear();
 <Layout
   title={comp.title}
   description={comp.metaDescription}
-  canonicalURL={`https://iptve-spana.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
+  canonicalURL={`https://iptv-espana.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}/`}
   schemaType="product"
 >
-  <StickyHeader currentPath={`/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`} />
+  <StickyHeader currentPath={`/compare/${comp.brandSlug}-vs-${comp.competitorSlug}/`} />
 
   <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +99,7 @@ const currentYear = new Date().getFullYear();
       <nav class="flex items-center gap-2 text-xs text-gray-400 mb-8" aria-label="Miga de pan">
         <a href="/" class="hover:text-white transition-colors">Inicio</a>
         <span>/</span>
-        <a href="/compare" class="hover:text-white transition-colors">Comparativas</a>
+        <a href="/compare/" class="hover:text-white transition-colors">Comparativas</a>
         <span>/</span>
         <span class="text-white font-semibold">{comp.competitorName}</span>
       </nav>

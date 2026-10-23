@@ -73,4 +73,4 @@ Realiza el abono con total comodidad por tarjeta bancaria, PayPal o criptomoneda
 
 Introduce tus datos en **TiviMate** o **IPTV Smarters** y disfruta al instante de la mejor televisión en 4K.
 
-Descubre más sobre nuestras soluciones en [Madrid](/locations/madrid), [Barcelona](/locations/barcelona) o consulta nuestras [comparativas oficiales](/compare).
+Descubre más sobre nuestras soluciones en [Madrid](/locations/madrid/), [Barcelona](/locations/barcelona/) o consulta nuestras [comparativas oficiales](/compare/).

@@ -92,4 +92,4 @@ Solicita tu acceso a nuestro equipo en WhatsApp (+213 550 59 22 00). Te enviamos
 
 Introduce usuario, contraseña y URL de servidor. En 60 segundos la lista se sincronizará y tendrás todos los canales deportivos ordenados con guía EPG.
 
-Consulta nuestras guías locales para usuarios en [Madrid](/locations/madrid), [Sevilla](/locations/sevilla) o [Valencia](/locations/valencia).
+Consulta nuestras guías locales para usuarios en [Madrid](/locations/madrid/), [Sevilla](/locations/sevilla/) o [Valencia](/locations/valencia/).

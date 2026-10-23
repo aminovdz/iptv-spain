@@ -19,7 +19,7 @@ const {
   title = 'IPTV España — Streaming 4K Estable y Sin Cortes',
   description = 'Servicio premium de IPTV en España con tecnología Anti-Freeze 9.8™, LaLiga en directo, 99.9% de uptime y soporte 24/7 en español.',
   url = Astro.url.href,
-  image = 'https://iptve-spana.cloud/images/og-banner.webp',
+  image = 'https://iptv-espana.cloud/images/og-banner.webp',
   datePublished,
   dateModified,
   authorName = 'Equipo Editorial IPTV España',
@@ -27,11 +27,11 @@ const {
   cityName
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptve-spana.cloud';
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://iptv-espana.cloud';
 const rawUrl = url || Astro.url.href;
-let cleanSchemaUrl = rawUrl;
+let cleanSchemaUrl = rawUrl.replace('iptve-spana.cloud', 'iptv-espana.cloud');
 try {
-  const u = new URL(rawUrl, siteUrl);
+  const u = new URL(cleanSchemaUrl, siteUrl);
   u.search = '';
   if (!u.pathname.endsWith('/') && !u.pathname.includes('.')) {
     u.pathname += '/';
@@ -44,8 +44,8 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": `${siteUrl}/#organization`,
   "name": "IPTV España",
-  "url": siteUrl,
-  "email": "contact@iptve-spana.cloud",
+  "url": `${siteUrl}/`,
+  "email": "contact@iptv-espana.cloud",
   "logo": {
     "@type": "ImageObject",
     "url": `${siteUrl}/favicon.svg`,
@@ -62,7 +62,7 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       "contactType": "sales",
-      "email": "contact@iptve-spana.cloud",
+      "email": "contact@iptv-espana.cloud",
       "availableLanguage": ["Spanish"]
     }
   ],

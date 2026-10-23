@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iptve-spana.cloud/sitemap-index.xml
+Sitemap: https://iptv-espana.cloud/sitemap-index.xml

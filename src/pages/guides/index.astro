@@ -15,9 +15,9 @@ const currentYear = new Date().getFullYear();
 <Layout
   title={`Guías y Tutoriales IPTV España ${currentYear} — Guía Completa de Streaming`}
   description="Aprende a configurar tu Smart TV y Firestick, solucionar errores de buffering y descubrir cómo ver LaLiga en directo sin pagar suscripciones abusivas."
-  canonicalURL="https://iptve-spana.cloud/guides"
+  canonicalURL="https://iptv-espana.cloud/guides/"
 >
-  <StickyHeader currentPath="/guides" />
+  <StickyHeader currentPath="/guides/" />
 
   <main class="flex-1 py-16 sm:py-24 bg-[#08090D]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +71,7 @@ const currentYear = new Date().getFullYear();
                 </div>
 
                 <h2 class="text-lg font-bold text-white group-hover:text-[#F59E0B] transition-colors leading-snug mb-3">
-                  <a href={`/guides/${guide.slug}`} class="focus:outline-none">
+                  <a href={`/guides/${guide.slug}/`} class="focus:outline-none">
                     {guide.data.title}
                   </a>
                 </h2>
@@ -84,7 +84,7 @@ const currentYear = new Date().getFullYear();
 
             <div class="px-6 pb-6 pt-2 border-t border-white/[0.05]">
               <a
-                href={`/guides/${guide.slug}`}
+                href={`/guides/${guide.slug}/`}
                 class="inline-flex items-center gap-1.5 text-xs font-bold text-[#DC2626] group-hover:text-[#F59E0B] transition-colors"
               >
                 <span>Leer Guía Completa</span>

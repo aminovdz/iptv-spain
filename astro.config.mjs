@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://iptve-spana.cloud',
+  site: 'https://iptv-espana.cloud',
   trailingSlash: 'always',
   output: 'static',
   adapter: cloudflare({

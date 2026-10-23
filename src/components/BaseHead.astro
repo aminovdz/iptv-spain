@@ -28,8 +28,9 @@ const keywordsString = Array.isArray(keywords)
   ? keywords.join(', ') 
   : (keywords || defaultKeywords);
 
-const siteUrl = 'https://iptve-spana.cloud';
+const siteUrl = 'https://iptv-espana.cloud';
 let rawCanonical = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
+rawCanonical = rawCanonical.replace('iptve-spana.cloud', 'iptv-espana.cloud');
 let cleanUrlObj = new URL(rawCanonical);
 cleanUrlObj.search = '';
 if (!cleanUrlObj.pathname.endsWith('/') && !cleanUrlObj.pathname.includes('.')) {
@@ -50,7 +51,7 @@ const ogImageUrl = new URL(image, Astro.site || siteUrl).toString();
 <link rel="canonical" href={fullCanonicalURL} />
 <link rel="alternate" hreflang="es-ES" href={fullCanonicalURL} />
 <link rel="alternate" hreflang="es" href={fullCanonicalURL} />
-<link rel="alternate" hreflang="x-default" href={siteUrl} />
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
 
 <!-- Custom Favicon & Device Icons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

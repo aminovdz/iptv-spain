@@ -39,7 +39,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
 <Layout
   title={`${entry.data.title} | IPTV España`}
   description={entry.data.description}
-  canonicalURL={`https://iptve-spana.cloud/guides/${entry.slug}`}
+  canonicalURL={`https://iptv-espana.cloud/guides/${entry.slug}/`}
   type="article"
   schemaType="article"
   publishedTime={entry.data.pubDate.toISOString()}
@@ -47,7 +47,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
   authorName={entry.data.author}
   faqs={faqs}
 >
-  <StickyHeader currentPath="/guides" />
+  <StickyHeader currentPath="/guides/" />
 
   <main class="flex-1 py-12 sm:py-20 bg-[#08090D]">
     <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +56,7 @@ const formattedPubDate = entry.data.pubDate.toLocaleDateString('es-ES', {
       <nav class="text-xs text-gray-400 mb-6 flex items-center space-x-2" aria-label="Miga de pan">
         <a href="/" class="hover:text-white transition-colors">Inicio</a>
         <span>/</span>
-        <a href="/guides" class="hover:text-white transition-colors">Guías</a>
+        <a href="/guides/" class="hover:text-white transition-colors">Guías</a>
         <span>/</span>
         <span class="text-gray-200 truncate">{entry.data.title}</span>
       </nav>

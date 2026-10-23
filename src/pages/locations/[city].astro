@@ -143,11 +143,11 @@ const { city } = Astro.props;
 <Layout
   title={city.metaTitle}
   description={city.metaDescription}
-  canonicalURL={`https://iptve-spana.cloud/locations/${city.slug}`}
+  canonicalURL={`https://iptv-espana.cloud/locations/${city.slug}/`}
   schemaType="city"
   cityName={city.name}
 >
-  <StickyHeader currentPath={`/locations/${city.slug}`} />
+  <StickyHeader currentPath={`/locations/${city.slug}/`} />
 
   <main class="flex-1">
     <!-- Local Hero -->
